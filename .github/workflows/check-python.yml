@@ -24,7 +24,7 @@ jobs:
     - name: Install Python dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install flake8 pytest
+        pip install flake8 pytest pytest-cov
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
 
     - name: Install this Python package
@@ -49,3 +49,8 @@ jobs:
       run: |
         cd Python/
         pytest
+
+    - name: Estimate test coverage
+      run: |
+        cd Python/
+        pytest --cov=seguid
