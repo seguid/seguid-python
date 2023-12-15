@@ -1,4 +1,10 @@
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'Python/**/*'
+  pull_request:
+    paths:
+      - 'Python/**/*'
 
 name: "Python checks"
 
