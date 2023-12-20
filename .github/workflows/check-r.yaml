@@ -93,6 +93,8 @@ jobs:
       - name: Check CLI
         if: runner.os != 'Windows'
         run: |
+          cd r
+          Rscript -e "install.packages('.', repos = NULL, type = 'source')"
           curl -L -O https://github.com/bats-core/bats-core/archive/refs/tags/v1.10.0.tar.gz && tar xf v1.10.0.tar.gz
           curl -L -O https://github.com/bats-core/bats-support/archive/refs/tags/v0.3.0.tar.gz && tar xf v0.3.0.tar.gz
           curl -L -O https://github.com/bats-core/bats-assert/archive/refs/tags/v2.1.0.tar.gz && tar xf v2.1.0.tar.gz
@@ -101,8 +103,7 @@ jobs:
           export PATH=$PWD/bats-core-1.10.0/bin:$PATH
           bash --version
           bats --version
-          cd r/tests/
-          bats *.bats
+          (cd tests/; bats *.bats)
 
       - name: Upload check results
         if: failure()
