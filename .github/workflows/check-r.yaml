@@ -2,9 +2,11 @@ on:
   push:
     paths:
       - 'r/**/*'
+      - .github/workflows/check-r.yml
   pull_request:
     paths:
       - 'r/**/*'
+      - .github/workflows/check-r.yml
 
 name: "R checks"
 

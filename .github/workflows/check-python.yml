@@ -2,9 +2,11 @@ on:
   push:
     paths:
       - 'Python/**/*'
+      - .github/workflows/check-python.yml
   pull_request:
     paths:
       - 'Python/**/*'
+      - .github/workflows/check-python.yml
 
 name: "Python checks"
 
