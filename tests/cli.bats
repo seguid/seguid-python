@@ -180,6 +180,31 @@ setup() {
 
 
 ## --------------------------------------------------------
+## Too many lines of input data
+## --------------------------------------------------------
+@test "<CLI call> --type=seguid <<< \$'ACTG\\nTGCA' (too many lines)" {
+    run "${cli_call[@]}" --type=seguid <<< $'ACTG\nTGCA'
+    assert_failure
+}
+
+@test "<CLI call> --type=slseguid <<< \$'ACTG\nTGCA' (too many lines)" {
+    run "${cli_call[@]}" --type=slseguid <<< $'ACTG\nTGCA'
+    assert_failure
+}
+
+@test "<CLI call> --type=dlseguid <<< \$'ACTG\\nTGCA\\nTGCA' (too many lines)" {
+    run "${cli_call[@]}" --type=dlseguid <<< $'ACTG\nTGCA\nTGCA'
+    assert_failure
+}
+
+@test "<CLI call> --type=dcseguid <<< \$'ACTG\\nTGCA\\nTGCA' (too many lines)" {
+    run "${cli_call[@]}" --type=dcseguid <<< $'ACTG\nTGCA\nTGCA'
+    assert_failure
+}
+
+
+
+## --------------------------------------------------------
 ## Failing cases
 ## --------------------------------------------------------
 @test "<CLI call> <<< \"aCGT\" gives error (invalid character)" {

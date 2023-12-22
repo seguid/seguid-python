@@ -23,8 +23,17 @@ else:
         type="seguid"
         
     ## Read sequence data from the standard input
-    seq=input()
-    
+    lines=[]
+    try:
+        while True:
+            line = input()
+            if not line:  # Optionally, break if an empty line is encountered
+                break
+            lines.append(line)
+    except EOFError:
+        pass
+    seq="\n".join(lines)
+
     if type == "seguid":
         res=seguid(seq)
     elif type == "slseguid":
@@ -32,14 +41,11 @@ else:
     elif type == "scseguid":
         res=scseguid(seq)
     elif type == "dlseguid":
-        repr=seq + "\n" + input()
-        tuple=tuple_from_repr(repr)
+        tuple=tuple_from_repr(seq)
         res=dlseguid(watson = tuple[0], crick = tuple[1], overhang = tuple[2])
     elif type == "dcseguid":
-        watson=seq
-        seq=input()
-        crick=reverse(seq)
-        res=dcseguid(watson, crick)
+        tuple=tuple_from_repr(seq)
+        res=dcseguid(watson = tuple[0], crick = tuple[1])
     else:
         raise ValueError("Unknown --type='" + type + "'")
     
