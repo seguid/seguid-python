@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "seguid"
+version = "0.0.1.9012"
+description = "Python implementation of SEGUID checksums for biological sequences"
+authors = ["BjornFJohansson <bjornjobb@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+pydivsufsort = "^0.0.12"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

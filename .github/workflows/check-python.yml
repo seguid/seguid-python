@@ -1,11 +1,11 @@
 on:
   push:
     paths:
-      - 'Python/**/*'
+      - 'python/**/*'
       - .github/workflows/check-python.yml
   pull_request:
     paths:
-      - 'Python/**/*'
+      - 'python/**/*'
       - .github/workflows/check-python.yml
 
 name: "Python checks"
@@ -37,7 +37,7 @@ jobs:
 
     - name: Install this Python package
       run: |
-        cd Python/
+        cd python/
         pip install .
         
     - name: Session information
@@ -46,7 +46,7 @@ jobs:
 
     - name: Lint with flake8
       run: |
-        cd Python/
+        cd python/
         flake8 --version
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -55,20 +55,20 @@ jobs:
         
     - name: Test with pytest
       run: |
-        cd Python/
+        cd python/
         pytest
           
     - name: Generate coverage report
       run: |
         pip install pytest-cov
-        cd Python/
+        cd python/
         pytest --cov=src/ ## output summarize in GitHub logs
         pytest --cov=src/ --cov-report=xml
         
     - name: Upload Coverage to Codecov
       uses: codecov/codecov-action@v3
       with:
-        directory: Python/
+        directory: python/
         env_vars: OS,PYTHON
         files: coverage.xml
         fail_ci_if_error: true
@@ -79,7 +79,7 @@ jobs:
     - name: Check CLI
       if: runner.os != 'Windows'
       run: |
-        cd Python
+        cd python
         curl -L -O https://github.com/bats-core/bats-core/archive/refs/tags/v1.10.0.tar.gz && tar xf v1.10.0.tar.gz
         curl -L -O https://github.com/bats-core/bats-support/archive/refs/tags/v0.3.0.tar.gz && tar xf v0.3.0.tar.gz
         curl -L -O https://github.com/bats-core/bats-assert/archive/refs/tags/v2.1.0.tar.gz && tar xf v2.1.0.tar.gz
