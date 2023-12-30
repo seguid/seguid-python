@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>seguid.manip &#8212; seguid  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for seguid.manip</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+
+<span class="kn">from</span> <span class="nn">array</span> <span class="kn">import</span> <span class="n">array</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Callable</span>
+
+<span class="kn">from</span> <span class="nn">seguid.asserts</span> <span class="kn">import</span> <span class="n">assert_table</span>
+<span class="kn">from</span> <span class="nn">seguid.asserts</span> <span class="kn">import</span> <span class="n">assert_in_alphabet</span>
+<span class="kn">from</span> <span class="nn">seguid.tables</span> <span class="kn">import</span> <span class="n">COMPLEMENT_TABLE_DNA</span>
+
+
+<div class="viewcode-block" id="rotate">
+<a class="viewcode-back" href="../../index.html#seguid.manip.rotate">[docs]</a>
+<span class="k">def</span> <span class="nf">rotate</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Rotates a circular, DNA sequence a certain amount.</span>
+
+<span class="sd">    Rotates sequence &#39;seq&#39;, &#39;amount&#39; number of symbols to the right.</span>
+<span class="sd">    A rotation &#39;amount&#39; is the same as a rotation &#39;amount + n * len(seq)&#39;</span>
+<span class="sd">    for any integer &#39;n&#39;.</span>
+
+<span class="sd">    Returns the rotated sequence as a string of length &#39;len(seq)&#39;.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; seq = &quot;ABCDEFGH&quot;</span>
+<span class="sd">    &gt;&gt;&gt; rotate(seq, 0)</span>
+<span class="sd">    &#39;ABCDEFGH&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; rotate(seq, +1)</span>
+<span class="sd">    &#39;BCDEFGHA&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; rotate(seq, +7)</span>
+<span class="sd">    &#39;HABCDEFG&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; rotate(seq, -1)</span>
+<span class="sd">    &#39;HABCDEFG&#39;</span>
+
+<span class="sd">    &gt;&gt;&gt; rotate(seq, +8)</span>
+<span class="sd">    &#39;ABCDEFGH&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span>    <span class="s2">&quot;Argument &#39;seq&#39; must be an string&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span> <span class="nb">int</span><span class="p">),</span> <span class="s2">&quot;Argument &#39;amount&#39; must be an integer&quot;</span>
+
+    <span class="c1">## Nothing to rotate?</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">seq</span>
+
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span> <span class="o">%</span> <span class="nb">len</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span>
+
+    <span class="c1">## Rotate?</span>
+    <span class="k">if</span> <span class="n">amount</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">seq</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="n">amount</span><span class="p">:]</span> <span class="o">+</span> <span class="n">seq</span><span class="p">[:</span><span class="n">amount</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">seq</span></div>
+
+
+
+<div class="viewcode-block" id="complementary">
+<a class="viewcode-back" href="../../index.html#seguid.manip.complementary">[docs]</a>
+<span class="k">def</span> <span class="nf">complementary</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">COMPLEMENT_TABLE_DNA</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complement of a DNA sequence.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">## Validate &#39;table&#39;:</span>
+    <span class="n">assert_table</span><span class="p">(</span><span class="n">table</span><span class="p">)</span>
+
+    <span class="c1">## Validate &#39;seq&#39;:</span>
+    <span class="n">assert_in_alphabet</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+
+    <span class="k">return</span> <span class="n">seq</span><span class="o">.</span><span class="n">translate</span><span class="p">({</span><span class="nb">ord</span><span class="p">(</span><span class="n">k</span><span class="p">):</span> <span class="nb">ord</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">table</span><span class="o">.</span><span class="n">items</span><span class="p">()})</span></div>
+
+
+
+<div class="viewcode-block" id="reverse">
+<a class="viewcode-back" href="../../index.html#seguid.manip.reverse">[docs]</a>
+<span class="k">def</span> <span class="nf">reverse</span><span class="p">(</span><span class="n">seq</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reverses a DNA sequence</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span>    <span class="s2">&quot;Argument &#39;seq&#39; must be an string&quot;</span>
+    <span class="k">return</span> <span class="n">seq</span><span class="p">[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+
+<div class="viewcode-block" id="rc">
+<a class="viewcode-back" href="../../index.html#seguid.manip.rc">[docs]</a>
+<span class="k">def</span> <span class="nf">rc</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">table</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">COMPLEMENT_TABLE_DNA</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Reverse complement of sequence.</span>
+
+<span class="sd">    Returns the reverse complement for a DNA strand.</span>
+
+<span class="sd">    The default complement table accepts GATC only.</span>
+
+<span class="sd">    The tables module defines and alternative table containing the</span>
+<span class="sd">    ambiguous codes suggested by IUPAC.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; rc(&quot;GTT&quot;)</span>
+<span class="sd">    &#39;AAC&#39;</span>
+<span class="sd">    &gt;&gt;&gt; from seguid.manip import rc</span>
+<span class="sd">    &gt;&gt;&gt; rc(&quot;GTa&quot;)</span>
+<span class="sd">    Traceback (most recent call last):</span>
+<span class="sd">        ...</span>
+<span class="sd">    ValueError: Detected symbols a in not in the &#39;alphabet&#39;</span>
+<span class="sd">    &gt;&gt;&gt; rc(&quot;GTa&quot;.upper())</span>
+<span class="sd">    &#39;TAC&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">reverse</span><span class="p">(</span><span class="n">complementary</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="p">))</span></div>
+
+
+
+<div class="viewcode-block" id="min_rotation_py">
+<a class="viewcode-back" href="../../index.html#seguid.manip.min_rotation_py">[docs]</a>
+<span class="k">def</span> <span class="nf">min_rotation_py</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Start position for the smallest rotation of a string s (pure Python).</span>
+
+<span class="sd">    Algorithm described in:</span>
+
+<span class="sd">    Pierre Duval, Jean. 1983. Factorizing Words</span>
+<span class="sd">    over an Ordered Alphabet. Journal of Algorithms &amp; Computational Technology</span>
+<span class="sd">    4 (4) (December 1): 363–381. and Algorithms on strings and sequences based</span>
+<span class="sd">    on Lyndon words, David Eppstein 2011.</span>
+<span class="sd">    https://gist.github.com/dvberkel/1950267</span>
+
+<span class="sd">    This is a pure python implementation, considerably slower than the</span>
+<span class="sd">    min_rotation function from pydivsufsort that is imported at the top of</span>
+<span class="sd">    this script.</span>
+
+<span class="sd">    Should only be used if pydivsufsort.min_rotation can not be used.</span>
+
+<span class="sd">    Note that both functions are case-sensitive and sorts by ASCII-code order</span>
+<span class="sd">    or &quot;ASCIIbetical&quot; order so:</span>
+
+<span class="sd">    - Uppercase come before lowercase letters; for example, &quot;Z&quot; precedes &quot;a&quot;</span>
+<span class="sd">    - Digits and several punctuation marks come before letters.</span>
+
+<span class="sd">    See the last two examples below for an example of the consequences of this.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; min_rotation_py(&quot;TAAA&quot;)</span>
+<span class="sd">    1</span>
+<span class="sd">    &gt;&gt;&gt; &quot;TAAA&quot;[1:] + &quot;TAAA&quot;[:1]</span>
+<span class="sd">    &#39;AAAT&#39;</span>
+<span class="sd">    &gt;&gt;&gt; s = &quot;ACAACAAACAACACAAACAAACACAAC&quot;</span>
+<span class="sd">    &gt;&gt;&gt; min_rotation_py(s)</span>
+<span class="sd">    14</span>
+<span class="sd">    &gt;&gt;&gt; s[14:] + s[:14]</span>
+<span class="sd">    &#39;AAACAAACACAACACAACAAACAACAC&#39;</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">prev</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span>
+    <span class="n">ds</span> <span class="o">=</span> <span class="n">array</span><span class="p">(</span><span class="s2">&quot;u&quot;</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">s</span><span class="p">)</span>
+    <span class="n">lens</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">lends</span> <span class="o">=</span> <span class="n">lens</span> <span class="o">*</span> <span class="mi">2</span>
+    <span class="n">old</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">w</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">lends</span><span class="p">:</span>
+        <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="o">=</span> <span class="n">k</span><span class="p">,</span> <span class="n">k</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">lends</span> <span class="ow">and</span> <span class="n">ds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;=</span> <span class="n">ds</span><span class="p">[</span><span class="n">j</span><span class="p">]:</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="p">(</span><span class="n">ds</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">ds</span><span class="p">[</span><span class="n">j</span><span class="p">])</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">k</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="n">k</span> <span class="o">+=</span> <span class="n">j</span> <span class="o">-</span> <span class="n">i</span>
+            <span class="n">prev</span> <span class="o">=</span> <span class="n">w</span>
+            <span class="n">w</span> <span class="o">=</span> <span class="n">ds</span><span class="p">[</span><span class="n">old</span><span class="p">:</span><span class="n">k</span><span class="p">]</span>
+            <span class="n">old</span> <span class="o">=</span> <span class="n">k</span>
+            <span class="k">if</span> <span class="n">w</span> <span class="o">==</span> <span class="n">prev</span><span class="p">:</span>
+                <span class="n">rep</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">prev</span><span class="p">,</span> <span class="n">rep</span> <span class="o">=</span> <span class="n">w</span><span class="p">,</span> <span class="mi">1</span>
+            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="o">*</span> <span class="n">rep</span> <span class="o">==</span> <span class="n">lens</span><span class="p">:</span>
+                <span class="k">return</span> <span class="n">old</span> <span class="o">-</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="mi">0</span></div>
+
+
+
+<div class="viewcode-block" id="rotate_to_min">
+<a class="viewcode-back" href="../../index.html#seguid.manip.rotate_to_min">[docs]</a>
+<span class="k">def</span> <span class="nf">rotate_to_min</span><span class="p">(</span><span class="n">s</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">seguid.config</span> <span class="kn">import</span> <span class="n">_min_rotation</span>
+
+    <span class="c1">## Assert upper-case letters are ordered before lower-case letters</span>
+    <span class="k">assert</span> <span class="n">_min_rotation</span><span class="p">(</span><span class="s2">&quot;Aa&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span>
+
+    <span class="n">amount</span> <span class="o">=</span> <span class="n">_min_rotation</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">rotate</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">amount</span> <span class="o">=</span> <span class="n">amount</span><span class="p">)</span>
+    <span class="k">return</span><span class="p">(</span><span class="n">s</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># def linearize_circular_dsDNA(watson, crick, position):</span>
+<span class="c1">#     cposition = len(watson) - position</span>
+<span class="c1">#     swatson = watson[position:] + watson[:position]</span>
+<span class="c1">#     scrick = watson[cposition:] + watson[:cposition]</span>
+<span class="c1">#     return (swatson, scrick, 0)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">seguid</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, bjorn.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

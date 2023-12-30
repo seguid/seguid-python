@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>seguid package &#8212; seguid  documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=039e1c02" />
+    <script src="_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="seguid-package">
+<h1>seguid package<a class="headerlink" href="#seguid-package" title="Link to this heading">¶</a></h1>
+<section id="module-seguid.asserts">
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-seguid.asserts" title="Link to this heading">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.asserts.assert_in_alphabet">
+<span class="sig-prename descclassname"><span class="pre">seguid.asserts.</span></span><span class="sig-name descname"><span class="pre">assert_in_alphabet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#set" title="(in Python v3.8)"><span class="pre">set</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/seguid/asserts.html#assert_in_alphabet"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.asserts.assert_in_alphabet" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.asserts.assert_table">
+<span class="sig-prename descclassname"><span class="pre">seguid.asserts.</span></span><span class="sig-name descname"><span class="pre">assert_table</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/seguid/asserts.html#assert_table"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.asserts.assert_table" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.asserts.assert_anneal">
+<span class="sig-prename descclassname"><span class="pre">seguid.asserts.</span></span><span class="sig-name descname"><span class="pre">assert_anneal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watson</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crick</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">overhang</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/functions.html#int" title="(in Python v3.8)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/functions.html#bool" title="(in Python v3.8)"><span class="pre">bool</span></a></span></span><a class="reference internal" href="_modules/seguid/asserts.html#assert_anneal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.asserts.assert_anneal" title="Link to this definition">¶</a></dt>
+<dd><p>docstring.</p>
+</dd></dl>
+
+<p id="module-seguid.chksum">seguid.</p>
+<p>The seguid module provides four functions for calculations of SEGUID checksums
+for biological sequences with varying topologies</p>
+<p>slseguid (s)ingle-stranded (l)inear SEGUID
+scseguid (s)ingle-stranded (c)ircular SEGUID
+dlseguid (d)ouble-stranded (l)inear SEGUID
+dcseguid (d)ouble-stranded (c)ircular SEGUID</p>
+<p>Some auxillary functions are also provided.</p>
+<p>The functions can be made to work without external dependencies, but
+scseguid and dcseguid are considerably faster with pydivsufsort installed.</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.chksum.seguid">
+<span class="sig-prename descclassname"><span class="pre">seguid.chksum.</span></span><span class="sig-name descname"><span class="pre">seguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/chksum.html#seguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.chksum.seguid" title="Link to this definition">¶</a></dt>
+<dd><p>SEGUID checksum for protein or single stranded linear DNA.</p>
+<p>OBSOLETE, use slseguid instead.</p>
+<p>Given a nucleotide or amino-acid sequence <cite>seq</cite>, the function returns
+a string containing the SEquence Globally Unique IDentifier (SEGUID).</p>
+<p>The optional ´encoding` argument expects a function accepting a
+byte string an returning another byte string. Several such functions are
+available from the standard library:</p>
+<p><a class="reference external" href="https://docs.python.org/3/library/base64.html">https://docs.python.org/3/library/base64.html</a></p>
+<p>The SEGUID is defined as the Base64 encoded sha1 checksum calculated for
+the sequence in upercase with the trailing “=” character removed. This
+means that upper or lower case symbols in <cite>seq</cite> do not affect the result.</p>
+<p>The resulting string is not url-safe as the Base64 encoding it potentially
+produces / and + characters, carrying special meaning in a Uniform Resource
+Locator (URL). It can also not be used as an identifier or variable name in
+programming languanges such as Python.</p>
+<p>This implementation follows the original SEGUID definition by
+Babnigg et al. 2006. For more information:</p>
+<p>Babnigg, G., &amp; Giometti, C. S. (2006). A database of unique protein
+sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
+<a class="reference external" href="https://doi.org/10.1002/pmic.200600032">https://doi.org/10.1002/pmic.200600032</a></p>
+<p>The checksum is prefixed with “seguid-”</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seguid</span><span class="p">(</span><span class="s2">&quot;AT&quot;</span><span class="p">)</span>
+<span class="go">&#39;seguid-Ax/RG6hzSrMEEWoCO1IWMGska+4&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.chksum.slseguid">
+<span class="sig-prename descclassname"><span class="pre">seguid.chksum.</span></span><span class="sig-name descname"><span class="pre">slseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/chksum.html#slseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.chksum.slseguid" title="Link to this definition">¶</a></dt>
+<dd><p>SEGUID checksum for single stranded linear DNA (slSEGUID).</p>
+<p>Identical to the seguid function except for that the ‘+’ and ‘/’ characters
+of standard Base64 encoding are replaced by ‘-’ and ‘_’, respectively
+following the standard in RFC 4648 section 5.</p>
+<p>The base64.urlsafe_b64encode from the Python standard libary is used.</p>
+<p>This checksum is applicable to single stranded linear DNA sequences.
+Can also be used for protein sequences.</p>
+<p>The checksum is prefixed with “slseguid-”</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">slseguid</span><span class="p">(</span><span class="s2">&quot;AT&quot;</span><span class="p">)</span>
+<span class="go">&#39;slseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.chksum.scseguid">
+<span class="sig-prename descclassname"><span class="pre">seguid.chksum.</span></span><span class="sig-name descname"><span class="pre">scseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/chksum.html#scseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.chksum.scseguid" title="Link to this definition">¶</a></dt>
+<dd><p>SEGUID checksum for single stranded circular DNA (scSEGUID).</p>
+<p>The scSEGUID is the slSEGUID checksum calculated for the lexicographically
+smallest string rotation of a ssDNA sequence.</p>
+<p>Only defined for circular sequences.</p>
+<p>The srfun argument has to take a string as an argument and
+return another string.</p>
+<p>The checksum is prefixed with “scseguid-”</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">scseguid</span><span class="p">(</span><span class="s2">&quot;ATTT&quot;</span><span class="p">)</span>
+<span class="go">&#39;scseguid-ot6JPLeAeMmfztW1736Kc6DAqlo&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">slseguid</span><span class="p">(</span><span class="s2">&quot;ATTT&quot;</span><span class="p">)</span>
+<span class="go">&#39;slseguid-ot6JPLeAeMmfztW1736Kc6DAqlo&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">scseguid</span><span class="p">(</span><span class="s2">&quot;TTTA&quot;</span><span class="p">)</span>
+<span class="go">&#39;scseguid-ot6JPLeAeMmfztW1736Kc6DAqlo&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">slseguid</span><span class="p">(</span><span class="s2">&quot;TTTA&quot;</span><span class="p">)</span>
+<span class="go">&#39;slseguid-8zCvKwyQAEsbPtC4yTV-pY0H93Q&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.chksum.dlseguid">
+<span class="sig-prename descclassname"><span class="pre">seguid.chksum.</span></span><span class="sig-name descname"><span class="pre">dlseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watson</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crick</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">overhang</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/functions.html#int" title="(in Python v3.8)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/chksum.html#dlseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.chksum.dlseguid" title="Link to this definition">¶</a></dt>
+<dd><p>SEGUID checksum for double stranded linear DNA (dlSEGUID).</p>
+<p>Calculates the dlSEGUID checksum for a dsDNA sequence defined by two
+strings representing the upper (Watson) and lower (Crick) strand
+complementary DNA strands and an integer value describing the stagger
+between the two strands in the 5’ (left) end of the molecule.</p>
+<p>The overhang is defined as the amount of 3’ overhang at the start side
+of the molecule. A molecule with 5’ overhang has a negative
+overhang value.</p>
+<p>See examples below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dsDNA</span>       <span class="n">overhang</span>
+
+<span class="o">--</span><span class="n">nnn</span><span class="o">...</span>    <span class="mi">2</span>
+<span class="n">nnnnn</span><span class="o">...</span>
+
+<span class="o">-</span><span class="n">nnnn</span><span class="o">...</span>    <span class="mi">1</span>
+<span class="n">nnnnn</span><span class="o">...</span>
+
+<span class="n">nnnnn</span><span class="o">...</span>    <span class="mi">0</span>
+<span class="n">nnnnn</span><span class="o">...</span>
+
+<span class="n">nnnnn</span><span class="o">...</span>   <span class="o">-</span><span class="mi">1</span>
+<span class="o">-</span><span class="n">nnnn</span><span class="o">...</span>
+
+<span class="n">nnnnn</span><span class="o">...</span>   <span class="o">-</span><span class="mi">2</span>
+<span class="o">--</span><span class="n">nnn</span><span class="o">...</span>
+</pre></div>
+</div>
+<p>The algorithm first selects the lexicographically smallest
+of the top or bottom strands.</p>
+<p>For positive overhang, the top strand is is left padded with the number
+of hyphen characters (ASCII 45) indicated by the overhang value.</p>
+<p>For negative overhang the reverse of the bottom strand is similarly padded.</p>
+<p>The string pair is similarly padded on the other side, so that two eaqual
+length strings are formed.</p>
+<p>The two string are joined, separated by a line break (ASCII 10) and the
+lsSEGUID function is used on the resulting string.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dsDNA</span>       <span class="n">overhang</span>  <span class="n">dlSEGUID</span>
+
+<span class="o">-</span><span class="n">TATGCC</span>     <span class="mi">1</span>        <span class="n">Jv9Z9JJ0IYnG</span><span class="o">-</span><span class="n">dTPBGwhDyAqnmU</span>
+ <span class="o">|||||</span>
+<span class="n">catacg</span><span class="o">-</span>
+
+<span class="o">-</span><span class="n">gcatac</span>     <span class="mi">1</span>        <span class="n">Jv9Z9JJ0IYnG</span><span class="o">-</span><span class="n">dTPBGwhDyAqnmU</span>
+ <span class="o">|||||</span>
+<span class="n">CCGTAT</span><span class="o">-</span>
+</pre></div>
+</div>
+<p>For the linear dsDNA sequence defined by Watson = “TATGCC”, Crick =”gcatac”
+and overhang = 1 (see figures above), The “gcatac” strand is selected as
+“gcatac” &lt; “TATGCC”.</p>
+<p>Overhang is positive, so the first strand is padded to “-gcatac”.</p>
+<p>A string is constructed like so:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;-gcatac&quot;</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;CCGTAT-&quot;</span>
+</pre></div>
+</div>
+<p>The checksum is prefixed with “dlseguid-”</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">dlseguid</span><span class="p">(</span><span class="s2">&quot;TATGCC&quot;</span><span class="p">,</span> <span class="s2">&quot;GCATAC&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;dlseguid-E7YtPGWjj3qCaPzWurlYBaJy_X4&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">dlseguid</span><span class="p">(</span><span class="s2">&quot;GCATAC&quot;</span><span class="p">,</span> <span class="s2">&quot;TATGCC&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;dlseguid-E7YtPGWjj3qCaPzWurlYBaJy_X4&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.chksum.dcseguid">
+<span class="sig-prename descclassname"><span class="pre">seguid.chksum.</span></span><span class="sig-name descname"><span class="pre">dcseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watson</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crick</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/chksum.html#dcseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.chksum.dcseguid" title="Link to this definition">¶</a></dt>
+<dd><p>SEGUID checksum for double stranded circular DNA (dcSEGUID).</p>
+<p>The dcSEGUID is the slSEGUID checksum calculated for the lexicographically
+smallest string rotation of a dsDNA sequence. Only defined for circular
+sequences.</p>
+<p>The checksum is prefixed with “dcseguid-”</p>
+</dd></dl>
+
+<span class="target" id="module-seguid.config"></span><dl class="py function">
+<dt class="sig sig-object py" id="seguid.config.set_min_rotation">
+<span class="sig-prename descclassname"><span class="pre">seguid.config.</span></span><span class="sig-name descname"><span class="pre">set_min_rotation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">which</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/seguid/config.html#set_min_rotation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.config.set_min_rotation" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-seguid.manip"></span><dl class="py function">
+<dt class="sig sig-object py" id="seguid.manip.rotate">
+<span class="sig-prename descclassname"><span class="pre">seguid.manip.</span></span><span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">amount</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/functions.html#int" title="(in Python v3.8)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/manip.html#rotate"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.manip.rotate" title="Link to this definition">¶</a></dt>
+<dd><p>Rotates a circular, DNA sequence a certain amount.</p>
+<p>Rotates sequence ‘seq’, ‘amount’ number of symbols to the right.
+A rotation ‘amount’ is the same as a rotation ‘amount + n * len(seq)’
+for any integer ‘n’.</p>
+<p>Returns the rotated sequence as a string of length ‘len(seq)’.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seq</span> <span class="o">=</span> <span class="s2">&quot;ABCDEFGH&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rotate</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">&#39;ABCDEFGH&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotate</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;BCDEFGHA&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotate</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="o">+</span><span class="mi">7</span><span class="p">)</span>
+<span class="go">&#39;HABCDEFG&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotate</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">&#39;HABCDEFG&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rotate</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="o">+</span><span class="mi">8</span><span class="p">)</span>
+<span class="go">&#39;ABCDEFGH&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.manip.complementary">
+<span class="sig-prename descclassname"><span class="pre">seguid.manip.</span></span><span class="sig-name descname"><span class="pre">complementary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/manip.html#complementary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.manip.complementary" title="Link to this definition">¶</a></dt>
+<dd><p>Complement of a DNA sequence.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.manip.reverse">
+<span class="sig-prename descclassname"><span class="pre">seguid.manip.</span></span><span class="sig-name descname"><span class="pre">reverse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/manip.html#reverse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.manip.reverse" title="Link to this definition">¶</a></dt>
+<dd><p>Reverses a DNA sequence</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.manip.rc">
+<span class="sig-prename descclassname"><span class="pre">seguid.manip.</span></span><span class="sig-name descname"><span class="pre">rc</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/manip.html#rc"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.manip.rc" title="Link to this definition">¶</a></dt>
+<dd><p>Reverse complement of sequence.</p>
+<p>Returns the reverse complement for a DNA strand.</p>
+<p>The default complement table accepts GATC only.</p>
+<p>The tables module defines and alternative table containing the
+ambiguous codes suggested by IUPAC.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;GTT&quot;</span><span class="p">)</span>
+<span class="go">&#39;AAC&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">seguid.manip</span> <span class="kn">import</span> <span class="n">rc</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;GTa&quot;</span><span class="p">)</span>
+<span class="gt">Traceback (most recent call last):</span>
+<span class="w">    </span><span class="o">...</span>
+<span class="gr">ValueError</span>: <span class="n">Detected symbols a in not in the &#39;alphabet&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rc</span><span class="p">(</span><span class="s2">&quot;GTa&quot;</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+<span class="go">&#39;TAC&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.manip.min_rotation_py">
+<span class="sig-prename descclassname"><span class="pre">seguid.manip.</span></span><span class="sig-name descname"><span class="pre">min_rotation_py</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/functions.html#int" title="(in Python v3.8)"><span class="pre">int</span></a></span></span><a class="reference internal" href="_modules/seguid/manip.html#min_rotation_py"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.manip.min_rotation_py" title="Link to this definition">¶</a></dt>
+<dd><p>Start position for the smallest rotation of a string s (pure Python).</p>
+<p>Algorithm described in:</p>
+<p>Pierre Duval, Jean. 1983. Factorizing Words
+over an Ordered Alphabet. Journal of Algorithms &amp; Computational Technology
+4 (4) (December 1): 363–381. and Algorithms on strings and sequences based
+on Lyndon words, David Eppstein 2011.
+<a class="reference external" href="https://gist.github.com/dvberkel/1950267">https://gist.github.com/dvberkel/1950267</a></p>
+<p>This is a pure python implementation, considerably slower than the
+min_rotation function from pydivsufsort that is imported at the top of
+this script.</p>
+<p>Should only be used if pydivsufsort.min_rotation can not be used.</p>
+<p>Note that both functions are case-sensitive and sorts by ASCII-code order
+or “ASCIIbetical” order so:</p>
+<ul class="simple">
+<li><p>Uppercase come before lowercase letters; for example, “Z” precedes “a”</p></li>
+<li><p>Digits and several punctuation marks come before letters.</p></li>
+</ul>
+<p>See the last two examples below for an example of the consequences of this.</p>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">min_rotation_py</span><span class="p">(</span><span class="s2">&quot;TAAA&quot;</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">&quot;TAAA&quot;</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span> <span class="o">+</span> <span class="s2">&quot;TAAA&quot;</span><span class="p">[:</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">&#39;AAAT&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;ACAACAAACAACACAAACAAACACAAC&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">min_rotation_py</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">14</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="mi">14</span><span class="p">:]</span> <span class="o">+</span> <span class="n">s</span><span class="p">[:</span><span class="mi">14</span><span class="p">]</span>
+<span class="go">&#39;AAACAAACACAACACAACAAACAACAC&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.manip.rotate_to_min">
+<span class="sig-prename descclassname"><span class="pre">seguid.manip.</span></span><span class="sig-name descname"><span class="pre">rotate_to_min</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/functions.html#int" title="(in Python v3.8)"><span class="pre">int</span></a></span></span><a class="reference internal" href="_modules/seguid/manip.html#rotate_to_min"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.manip.rotate_to_min" title="Link to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<span class="target" id="module-seguid.reprutils"></span><dl class="py function">
+<dt class="sig sig-object py" id="seguid.reprutils.tuple_from_repr">
+<span class="sig-prename descclassname"><span class="pre">seguid.reprutils.</span></span><span class="sig-name descname"><span class="pre">tuple_from_repr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">rpr</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'-'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#tuple" title="(in Python v3.8)"><span class="pre">tuple</span></a></span></span><a class="reference internal" href="_modules/seguid/reprutils.html#tuple_from_repr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.reprutils.tuple_from_repr" title="Link to this definition">¶</a></dt>
+<dd><p>Generate a (watson, crick, overhang) tuple from dsDNA text representation.</p>
+<p>This function can generate a tuple (watson, crick, overhang)
+from a dsDNA figure such as the ones depicted below. The resulting
+tuple can be used as an argument for the lSEGUID_sticky or nseguid
+functions. See these functions for the definition of watson, crick and
+overhang. Example inputs can be:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">TATGCC</span>
+<span class="n">CATACG</span><span class="o">-</span>
+
+<span class="n">GTATGCC</span>
+<span class="n">CATACGG</span>
+
+<span class="n">GTATGC</span><span class="o">-</span>
+<span class="o">-</span><span class="n">ATACGG</span>
+</pre></div>
+</div>
+<p>The first and last figure above represent DNA with single
+stranded ends, 3’ and 5’ respectively. The dash represent
+an empty space in the DNA sequence. This is only allowed
+on one of the adjacent positions. The following is <em>not</em>
+allowed:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span><span class="n">TATGCC</span>
+<span class="o">-</span><span class="n">ATACGG</span>
+</pre></div>
+</div>
+<p class="rubric">Examples</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">rpr1</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;-TATGCC</span>
+<span class="gp">... </span><span class="s2">          CATACG-&quot;&quot;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tuple_from_repr</span><span class="p">(</span><span class="n">rpr1</span><span class="p">)</span>
+<span class="go">(&#39;TATGCC&#39;, &#39;GCATAC&#39;, 1)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rpr2</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;GTATGCC</span>
+<span class="gp">... </span><span class="s2">           CATACGG&quot;&quot;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tuple_from_repr</span><span class="p">(</span><span class="n">rpr2</span><span class="p">)</span>
+<span class="go">(&#39;GTATGCC&#39;, &#39;GGCATAC&#39;, 0)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rpr3</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;GTATGC-</span>
+<span class="gp">... </span><span class="s2">           -ATACGG&quot;&quot;&quot;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">tuple_from_repr</span><span class="p">(</span><span class="n">rpr3</span><span class="p">)</span>
+<span class="go">(&#39;GTATGC&#39;, &#39;GGCATA&#39;, -1)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="seguid.reprutils.repr_from_tuple">
+<span class="sig-prename descclassname"><span class="pre">seguid.reprutils.</span></span><span class="sig-name descname"><span class="pre">repr_from_tuple</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watson</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crick</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">overhang</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/functions.html#int" title="(in Python v3.8)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">table</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#dict" title="(in Python v3.8)"><span class="pre">dict</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">COMPLEMENT_TABLE_DNA</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">space</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'-'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/reprutils.html#repr_from_tuple"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.reprutils.repr_from_tuple" title="Link to this definition">¶</a></dt>
+<dd><p>docstring.</p>
+</dd></dl>
+
+<span class="target" id="module-seguid.tables"></span><dl class="py data">
+<dt class="sig sig-object py" id="seguid.tables.COMPLEMENT_TABLE_RNA">
+<span class="sig-prename descclassname"><span class="pre">seguid.tables.</span></span><span class="sig-name descname"><span class="pre">COMPLEMENT_TABLE_RNA</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'A':</span> <span class="pre">'U',</span> <span class="pre">'C':</span> <span class="pre">'G',</span> <span class="pre">'G':</span> <span class="pre">'C',</span> <span class="pre">'U':</span> <span class="pre">'A'}</span></em><a class="headerlink" href="#seguid.tables.COMPLEMENT_TABLE_RNA" title="Link to this definition">¶</a></dt>
+<dd><p>The table below was adapted from Cornish-Bowden, 1985:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Symbol</p></th>
+<th class="head"><p>Meaning</p></th>
+<th class="head"><p>Complement</p></th>
+<th class="head"><p>Origin of designation</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>G</p></td>
+<td><p>G</p></td>
+<td><p>C</p></td>
+<td><p>Guanine</p></td>
+</tr>
+<tr class="row-odd"><td><p>A</p></td>
+<td><p>A</p></td>
+<td><p>T</p></td>
+<td><p>Adenine</p></td>
+</tr>
+<tr class="row-even"><td><p>T</p></td>
+<td><p>T</p></td>
+<td><p>A</p></td>
+<td><p>Thymine</p></td>
+</tr>
+<tr class="row-odd"><td><p>C</p></td>
+<td><p>C</p></td>
+<td><p>G</p></td>
+<td><p>Cytosine</p></td>
+</tr>
+<tr class="row-even"><td><p>R</p></td>
+<td><p>A or G</p></td>
+<td><p>Y</p></td>
+<td><p>puRine</p></td>
+</tr>
+<tr class="row-odd"><td><p>Y</p></td>
+<td><p>C or T</p></td>
+<td><p>R</p></td>
+<td><p>pYrimidine</p></td>
+</tr>
+<tr class="row-even"><td><p>M</p></td>
+<td><p>A or C</p></td>
+<td><p>K</p></td>
+<td><p>aMino</p></td>
+</tr>
+<tr class="row-odd"><td><p>K</p></td>
+<td><p>G or T</p></td>
+<td><p>M</p></td>
+<td><p>Ketone</p></td>
+</tr>
+<tr class="row-even"><td><p>S</p></td>
+<td><p>C or G</p></td>
+<td><p>S</p></td>
+<td><p>Strong interaction (3 H bonds)</p></td>
+</tr>
+<tr class="row-odd"><td><p>W</p></td>
+<td><p>A or T</p></td>
+<td><p>W</p></td>
+<td><p>Weak interaction (2 H bonds)</p></td>
+</tr>
+<tr class="row-even"><td><p>H</p></td>
+<td><p>A or C or T</p></td>
+<td><p>D</p></td>
+<td><p>not-G, H (follows G in the alphabet)</p></td>
+</tr>
+<tr class="row-odd"><td><p>B</p></td>
+<td><p>C or G or T</p></td>
+<td><p>V</p></td>
+<td><p>not-A, B follows A</p></td>
+</tr>
+<tr class="row-even"><td><p>V</p></td>
+<td><p>A or C or G</p></td>
+<td><p>B</p></td>
+<td><p>not-T (not-U), V follows U</p></td>
+</tr>
+<tr class="row-odd"><td><p>D</p></td>
+<td><p>A or G or T</p></td>
+<td><p>H</p></td>
+<td><p>not-C, D follows C</p></td>
+</tr>
+<tr class="row-even"><td><p>N</p></td>
+<td><p>G or A or T or C</p></td>
+<td><p>N</p></td>
+<td><p>aNy</p></td>
+</tr>
+</tbody>
+</table>
+<p>Cornish-Bowden, A. (1985). Nomenclature for incompletely specified
+bases in nucleic acid sequences: recommendations 1984.
+Nucleic Acids Research, 13(9), 3021–3030.
+<a class="reference external" href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC341218">https://www.ncbi.nlm.nih.gov/pmc/articles/PMC341218</a></p>
+</dd></dl>
+
+</section>
+<section id="module-seguid">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-seguid" title="Link to this heading">¶</a></h2>
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">seguid</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, bjorn.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
