@@ -29,12 +29,12 @@ from seguid.asserts import assert_in_alphabet
 from seguid.asserts import assert_anneal
 from seguid.reprutils import repr_from_tuple
 
-seguid_prefix: str = "seguid:"
-slseguid_prefix: str = "slseguid:"
-scseguid_prefix: str = "scseguid:"
-dlseguid_prefix: str = "dlseguid:"
-dcseguid_prefix: str = "dcseguid:"
-b64abet = set('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/_-')
+seguid_prefix: str = "seguid-"
+slseguid_prefix: str = "slseguid-"
+scseguid_prefix: str = "scseguid-"
+dlseguid_prefix: str = "dlseguid-"
+dcseguid_prefix: str = "dcseguid-"
+b64alphabet = set('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/_-')
 
 
 def _seguid(seq: str,
@@ -49,7 +49,7 @@ def _seguid(seq: str,
     hs = encoding(m.digest())
     csum = f"{hs.decode('ASCII').rstrip('=')}"
     assert len(csum) == 27
-    assert set(csum).issubset(b64abet)
+    assert set(csum).issubset(b64alphabet)
     return csum
 
 
@@ -84,12 +84,12 @@ def seguid(seq: str,
     sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
     https://doi.org/10.1002/pmic.200600032
 
-    The checksum is prefixed with "seguid:"
+    The checksum is prefixed with "seguid-"
 
     Examples
     --------
     >>> seguid("AT")
-    'seguid:Ax/RG6hzSrMEEWoCO1IWMGska+4'
+    'seguid-Ax/RG6hzSrMEEWoCO1IWMGska+4'
     """
     return seguid_prefix + _seguid(seq,
                                    table=table,
@@ -109,12 +109,12 @@ def slseguid(seq: str,
     This checksum is applicable to single stranded linear DNA sequences.
     Can also be used for protein sequences.
 
-    The checksum is prefixed with "slseguid:"
+    The checksum is prefixed with "slseguid-"
 
     Examples
     --------
     >>> slseguid("AT")
-    'slseguid:Ax_RG6hzSrMEEWoCO1IWMGska-4'
+    'slseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
     """
     return slseguid_prefix + _seguid(seq,
                                      table=table,
@@ -133,18 +133,18 @@ def scseguid(seq: str,
     The srfun argument has to take a string as an argument and
     return another string.
 
-    The checksum is prefixed with "scseguid:"
+    The checksum is prefixed with "scseguid-"
 
     Examples
     --------
     >>> scseguid("ATTT")
-    'scseguid:ot6JPLeAeMmfztW1736Kc6DAqlo'
+    'scseguid-ot6JPLeAeMmfztW1736Kc6DAqlo'
     >>> slseguid("ATTT")
-    'slseguid:ot6JPLeAeMmfztW1736Kc6DAqlo'
+    'slseguid-ot6JPLeAeMmfztW1736Kc6DAqlo'
     >>> scseguid("TTTA")
-    'scseguid:ot6JPLeAeMmfztW1736Kc6DAqlo'
+    'scseguid-ot6JPLeAeMmfztW1736Kc6DAqlo'
     >>> slseguid("TTTA")
-    'slseguid:8zCvKwyQAEsbPtC4yTV-pY0H93Q'
+    'slseguid-8zCvKwyQAEsbPtC4yTV-pY0H93Q'
     """
     return scseguid_prefix + _seguid(rotate_to_min(seq),
                                      table=table,
@@ -226,14 +226,14 @@ def dlseguid(watson: str,
 
         "-gcatac" + chr(10) + "CCGTAT-"
 
-    The checksum is prefixed with "dlseguid:"
+    The checksum is prefixed with "dlseguid-"
 
     Examples
     --------
     >>> dlseguid("TATGCC", "GCATAC", 1)
-    'dlseguid:E7YtPGWjj3qCaPzWurlYBaJy_X4'
+    'dlseguid-E7YtPGWjj3qCaPzWurlYBaJy_X4'
     >>> dlseguid("GCATAC", "TATGCC", 1)
-    'dlseguid:E7YtPGWjj3qCaPzWurlYBaJy_X4'
+    'dlseguid-E7YtPGWjj3qCaPzWurlYBaJy_X4'
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
@@ -263,7 +263,7 @@ def dcseguid(watson: str,
     smallest string rotation of a dsDNA sequence. Only defined for circular
     sequences.
 
-    The checksum is prefixed with "dcseguid:"
+    The checksum is prefixed with "dcseguid-"
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
