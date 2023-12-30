@@ -38,7 +38,7 @@ jobs:
     - name: Install this Python package
       run: |
         cd python/
-        pip install . [pydivsufsort]
+        pip install .[pydivsufsort]
 
     - name: Session information
       run: |
