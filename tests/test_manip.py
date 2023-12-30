@@ -10,6 +10,17 @@ from seguid.manip import rotate_to_min
 from seguid.config import set_min_rotation
 from seguid.config import _min_rotation
 
+def test_sort_order():
+
+    from string import printable
+
+    assert "".join(sorted(printable)) == ('\t\n\x0b\x0c\r !"'
+                                          "#$%&\'"
+                                          "()*+,-./0123456789:;<=>?@"
+                                          "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+                                          "[\\]^_`"
+                                          "abcdefghijklmnopqrstuvwxyz"
+                                          "{|}~")
 
 def test_complementary():
     """docstring."""
