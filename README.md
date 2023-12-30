@@ -3,10 +3,11 @@
 [![R checks](https://github.com/MetabolicEngineeringGroupCBMA/seguid/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/MetabolicEngineeringGroupCBMA/seguid/actions/workflows/R-CMD-check.yaml)
 
 
-# SEGUID checksums for single or double stranded linear or circular DNA
+# SEGUID v2 checksums for single or double stranded linear or circular DNA
 
-Functions for calculating slSEGUID, scSEGUID, dlSEGUID and dcSEGUID checksums for
-Single stranded (ssDNA) or double stranded (dsDNA) sequences, either linear or circular.
+This package implements SEGUID v2 and the original SEGUID for legacy reasons.
+
+SEGUID v2 consists of four separate functions (see table below). SEGUID v2 is useful for protein sequences as well as single stranded (ssDNA) and double stranded (dsDNA), either linear or circular.
 
 |          | ssDNA     | dsDNA     |
 |----------|-----------|-----------|
@@ -41,14 +42,14 @@ Python 3.11.3 | packaged by conda-forge | (main, Apr  6 2023, 08:57:19) [GCC 11.
 Type "help", "copyright", "credits" or "license" for more information.
 >>> from seguid import slseguid
 >>> slseguid("AT")
-'slseguid:Ax_RG6hzSrMEEWoCO1IWMGska-4'
+'slseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
 >>> from seguid import scseguid
 >>> slseguid("AT")
-'slseguid:Ax_RG6hzSrMEEWoCO1IWMGska-4'
+'slseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
 >>> scseguid("AT")
-'scseguid:Ax_RG6hzSrMEEWoCO1IWMGska-4'
+'scseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
 >>> scseguid("TA")
-'scseguid:Ax_RG6hzSrMEEWoCO1IWMGska-4'
+'scseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
 >>> from seguid.reprutils import tuple_from_repr
 >>> bluntdsDNAtuple = tuple_from_repr("""TA
 ...                                      AT""")
@@ -56,18 +57,18 @@ Type "help", "copyright", "credits" or "license" for more information.
 ('TA', 'TA', 0)
 >>> from seguid import dlseguid
 >>> dlseguid(*bluntdsDNAtuple)
-'dlseguid:p_7aVtdTvX0G5N6NSDSPw0NgU6Y'
+'dlseguid-p_7aVtdTvX0G5N6NSDSPw0NgU6Y'
 >>> stickydsDNAtuple = tuple_from_repr("""-TA
 ...                                       TA-""")
 >>> stickydsDNAtuple
 ('TA', 'AT', 1)
 >>> dlseguid(*stickydsDNAtuple)
-'dlseguid:JwB2eUmZkCNjyWAv471JeUbiSDM'
+'dlseguid-JwB2eUmZkCNjyWAv471JeUbiSDM'
 >>> from seguid import dcseguid
 >>> dcseguid("AT", "AT")
-'dcseguid:AWD-dt5-TEua8RbOWfnctJIu9nA'
+'dcseguid-AWD-dt5-TEua8RbOWfnctJIu9nA'
 >>> dcseguid("TA", "TA")
-'dcseguid:AWD-dt5-TEua8RbOWfnctJIu9nA'
+'dcseguid-AWD-dt5-TEua8RbOWfnctJIu9nA'
 ```
 
 Run tests with pytest without arguments in the python/ directory;
