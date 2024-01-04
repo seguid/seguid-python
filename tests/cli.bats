@@ -16,7 +16,7 @@ setup() {
     run "${cli_call[@]}" --version
     assert_success
     ## Assert numeric x.y.z format
-    assert_output --regexp "\b[[:digit:]]+([.][[:digit:]]+)$"
+    assert_output --regexp "\b[[:digit:]]+([.][[:digit:]]+)\b"
 }
 
 @test "<CLI call> --help" {
