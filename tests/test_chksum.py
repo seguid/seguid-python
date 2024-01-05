@@ -3,6 +3,9 @@
 
 import pytest
 
+import tempfile
+import os
+
 from pathlib import Path
 from hashlib import sha1
 from base64 import urlsafe_b64encode as b64us
@@ -185,3 +188,20 @@ def test_empty():
 
     with pytest.raises(AssertionError):
         dcseguid("", "")
+
+
+def test_checksum_as_filename():
+
+    seq="GATTACA"
+    ## Comment:
+    ## The   SEGUID check is seguid-tp2jzeCM2e3W4yxtrrx09CMKa/8
+    ## The slSEGUID check is seguid-tp2jzeCM2e3W4yxtrrx09CMKa_8
+    with tempfile.TemporaryDirectory() as temp_dir:
+        filename=slseguid(seq)
+        with open(filename, "w") as file:
+            file.write(seq)
+        assert os.path.isfile(filename)
+        with open(filename, "r") as file:
+             content = file.read()
+        assert content == seq
+
