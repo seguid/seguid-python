@@ -23,8 +23,10 @@ import base64
 
 from seguid.manip import rc
 from seguid.manip import rotate_to_min
+
 # from seguid.manip import linearize_circular_dsDNA
-from seguid.tables import COMPLEMENT_TABLE_DNA
+# from seguid.tables import COMPLEMENT_TABLE_DNA
+from seguid.tables import tablefactory
 from seguid.asserts import assert_in_alphabet
 from seguid.asserts import assert_anneal
 from seguid.reprutils import repr_from_tuple
@@ -34,16 +36,13 @@ slseguid_prefix: str = "slseguid-"
 scseguid_prefix: str = "scseguid-"
 dlseguid_prefix: str = "dlseguid-"
 dcseguid_prefix: str = "dcseguid-"
-b64alphabet = set('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/_-')
+b64alphabet = set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/_-")
 
 
-def _seguid(seq: str,
-            table: dict = COMPLEMENT_TABLE_DNA,
-            encoding: callable = base64.standard_b64encode) -> str:
-
+def _seguid(seq: str, table: str = "{DNA}", encoding: callable = base64.standard_b64encode) -> str:
     assert callable(encoding)
     assert seq, "A sequence must not be empty"
-    assert_in_alphabet(seq, alphabet=set(table.keys()))
+    assert_in_alphabet(seq, alphabet=set(tablefactory(table).keys()))
     m = hashlib.sha1()
     m.update(seq.encode("ASCII").upper())
     hs = encoding(m.digest())
@@ -53,8 +52,7 @@ def _seguid(seq: str,
     return csum
 
 
-def seguid(seq: str,
-           table: dict = COMPLEMENT_TABLE_DNA) -> str:
+def seguid(seq: str, table: str = "{DNA}") -> str:
     """SEGUID checksum for protein or single stranded linear DNA.
 
     OBSOLETE, use slseguid instead.
@@ -91,13 +89,10 @@ def seguid(seq: str,
     >>> seguid("AT")
     'seguid-Ax/RG6hzSrMEEWoCO1IWMGska+4'
     """
-    return seguid_prefix + _seguid(seq,
-                                   table=table,
-                                   encoding=base64.standard_b64encode)
+    return seguid_prefix + _seguid(seq, table=table, encoding=base64.standard_b64encode)
 
 
-def slseguid(seq: str,
-             table: dict = COMPLEMENT_TABLE_DNA) -> str:
+def slseguid(seq: str, table: str = "{DNA}") -> str:
     """SEGUID checksum for single stranded linear DNA (slSEGUID).
 
     Identical to the seguid function except for that the '+' and '/' characters
@@ -116,13 +111,10 @@ def slseguid(seq: str,
     >>> slseguid("AT")
     'slseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
     """
-    return slseguid_prefix + _seguid(seq,
-                                     table=table,
-                                     encoding=base64.urlsafe_b64encode)
+    return slseguid_prefix + _seguid(seq, table=table, encoding=base64.urlsafe_b64encode)
 
 
-def scseguid(seq: str,
-             table: dict = COMPLEMENT_TABLE_DNA) -> str:
+def scseguid(seq: str, table: str = "{DNA}") -> str:
     r"""SEGUID checksum for single stranded circular DNA (scSEGUID).
 
     The scSEGUID is the slSEGUID checksum calculated for the lexicographically
@@ -146,15 +138,10 @@ def scseguid(seq: str,
     >>> slseguid("TTTA")
     'slseguid-8zCvKwyQAEsbPtC4yTV-pY0H93Q'
     """
-    return scseguid_prefix + _seguid(rotate_to_min(seq),
-                                     table=table,
-                                     encoding=base64.urlsafe_b64encode)
+    return scseguid_prefix + _seguid(rotate_to_min(seq), table=table, encoding=base64.urlsafe_b64encode)
 
 
-def dlseguid(watson: str,
-             crick: str,
-             overhang: int,
-             table: dict = COMPLEMENT_TABLE_DNA) -> str:
+def dlseguid(watson: str, crick: str, overhang: int, table: str = "{DNA}") -> str:
     r"""SEGUID checksum for double stranded linear DNA (dlSEGUID).
 
     Calculates the dlSEGUID checksum for a dsDNA sequence defined by two
@@ -237,26 +224,25 @@ def dlseguid(watson: str,
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
-    assert len(set(table.values())) > 1, "Was a protein table used by mistake?"
-    assert_anneal(watson, crick, overhang, table=table)
+
+    tb = tablefactory(table)
+
+    assert len(set(tb.values())) > 1, "Was a protein table used by mistake?"
+    assert_anneal(watson, crick, overhang, table=tb)
 
     w, c, o = min(
         (watson, crick, overhang),
         (crick, watson, len(watson) - len(crick) + overhang),
     )
 
-    msg = repr_from_tuple(watson=w, crick=c, overhang=o, table=table, space="-")
+    msg = repr_from_tuple(watson=w, crick=c, overhang=o, table=tb, space="-")
 
-    extable = table | {"-": "-", "\n": "\n"}
+    extable = table + ",--,\n\n"
 
-    return dlseguid_prefix + _seguid(msg,
-                                     table=extable,
-                                     encoding=base64.urlsafe_b64encode)
+    return dlseguid_prefix + _seguid(msg, table=extable, encoding=base64.urlsafe_b64encode)
 
 
-def dcseguid(watson: str,
-             crick: str,
-             table: dict = COMPLEMENT_TABLE_DNA) -> str:
+def dcseguid(watson: str, crick: str, table: str = "{DNA}") -> str:
     """SEGUID checksum for double stranded circular DNA (dcSEGUID).
 
     The dcSEGUID is the slSEGUID checksum calculated for the lexicographically
@@ -267,10 +253,13 @@ def dcseguid(watson: str,
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
-    assert len(set(table.values())) > 1, "Was a protein table used by mistake?"
+
+    tb = tablefactory(table)
+
+    assert len(set(tb.values())) > 1, "Was a protein table used by mistake?"
     assert len(watson) == len(crick)
 
-    assert_anneal(watson, crick, 0, table=table)
+    assert_anneal(watson, crick, 0, table=tb)
 
     watson_min = rotate_to_min(watson)
     crick_min = rotate_to_min(crick)
@@ -281,6 +270,6 @@ def dcseguid(watson: str,
     else:
         w = crick_min
 
-    return dcseguid_prefix + dlseguid(watson=w,
-                                      crick=rc(w, table=table),
-                                      overhang=0, table=table)[len(dlseguid_prefix):]
+    return (
+        dcseguid_prefix + dlseguid(watson=w, crick=rc(w, table=tb), overhang=0, table=table)[len(dlseguid_prefix) :]
+    )
