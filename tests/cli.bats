@@ -115,6 +115,13 @@ setup() {
 }
 
 
+@test "<CLI call> --type=seguid --table='{DNA}' <<< \"ACGT\"" {
+    run "${cli_call[@]}" --type=seguid --table='{DNA}' <<< "ACGT"
+    assert_success
+    assert_output "seguid-IQiZThf2zKn/I1KtqStlEdsHYDQ"
+}
+
+
 ## --------------------------------------------------------
 ## Corner cases (single-symbol input)
 ## --------------------------------------------------------
@@ -235,49 +242,97 @@ setup() {
 ## --------------------------------------------------------
 ## RNA
 ## --------------------------------------------------------
-@test "<CLI call> --table=rna <<< \"ACGU\"" {
-    skip "To be implemented"
-    run "${cli_call[@]}" --table=rna <<< "ACGU"
+@test "<CLI call> --table='{RNA}' <<< \"ACGU\"" {
+    run "${cli_call[@]}" --table='{RNA}' <<< "ACGU"
     assert_success
     assert_output "seguid-LLaWk2Jb8NGt20QXhgm+cSVat34"
 }
 
 
-@test "<CLI call>--type=seguid --table=rna <<< \"ACGU\"" {
-    skip "To be implemented"
-    run "${cli_call[@]}" --type=seguid --table=rna <<< "ACGU"
+@test "<CLI call>--type=seguid --table='{RNA}' <<< \"ACGU\"" {
+    run "${cli_call[@]}" --type=seguid --table='{RNA}' <<< "ACGU"
     assert_success
     assert_output "seguid-LLaWk2Jb8NGt20QXhgm+cSVat34"
 }
 
 
-@test "<CLI call> --type=lsseguid --table=rna <<< \"ACGU\"" {
-    skip "To be implemented"
-    run "${cli_call[@]}" --type=lsseguid --table=rna <<< "ACGU"
+@test "<CLI call> --type=lsseguid --table='{RNA}' <<< \"ACGU\"" {
+    run "${cli_call[@]}" --type=lsseguid --table='{RNA}' <<< "ACGU"
     assert_success
     assert_output "lsseguid-LLaWk2Jb8NGt20QXhgm-cSVat34"
 }
 
 
-@test "<CLI call> --type=csseguid --table=rna <<< \"ACGU\"" {
-    skip "To be implemented"
-    run "${cli_call[@]}" --type=csseguid --table=rna <<< "ACGU"
+@test "<CLI call> --type=csseguid --table='{RNA}' <<< \"ACGU\"" {
+    run "${cli_call[@]}" --type=csseguid --table='{RNA}' <<< "ACGU"
     assert_success
     assert_output "csseguid-LLaWk2Jb8NGt20QXhgm-cSVat34"
 }
 
-@test "<CLI call> --type=ldseguid --table=rna <<< \$'AACGU\\nUUdTGCA'" {
-    skip "To be implemented"
-    run "${cli_call[@]}" --type=ldseguid --table=rna <<< $'AACGU\nUUGCA'
+@test "<CLI call> --type=ldseguid --table='{RNA}' <<< \$'AACGU\\nUUdTGCA'" {
+    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/64"
+    run "${cli_call[@]}" --type=ldseguid --table='{RNA}' <<< $'AACGU\nUUGCA'
     assert_success
     assert_output "ldseguid-r61AxqwrG01x8RpNluuRlfoL9VY"
 }
 
-@test "<CLI call> --type=cdseguid --table=rna <<< \$'AACGU\\nUUGCA'" {
-    skip "To be implemented"
-    run "${cli_call[@]}" --type=cdseguid --table=rna <<< $'AACGU\nUUGCA'
+@test "<CLI call> --type=cdseguid --table='{RNA}' <<< \$'AACGU\\nUUGCA'" {
+    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/64"
+    run "${cli_call[@]}" --type=cdseguid --table='{RNA}' <<< $'AACGU\nUUGCA'
     assert_success
     assert_output "cdseguid-r61AxqwrG01x8RpNluuRlfoL9VY"
+}
+
+
+
+## --------------------------------------------------------
+## Protein
+## --------------------------------------------------------
+## Source: http://bioinformatics.anl.gov/seguid/ftp.aspx
+@test "<CLI call> --table='{protein}' <<< 'PQITLWQRPIATIKVGGQLKEALLDTGADDTVLEEMNLPGRWKPKLIGGIGGFVKVRQYDQIPIEICGHQAIGTVLVGPTPANIIGRNLLTQIGCTLNF'" {
+    run "${cli_call[@]}" --table='{protein}' <<< "PQITLWQRPIATIKVGGQLKEALLDTGADDTVLEEMNLPGRWKPKLIGGIGGFVKVRQYDQIPIEICGHQAIGTVLVGPTPANIIGRNLLTQIGCTLNF"
+    assert_success
+    assert_output "seguid-N4/z+gxAPfkFozbb3f3vStDB/5g"
+}
+
+
+@test "<CLI call> --table='{protein}' <<< 'MTEYKLVVVGAGGVGKSALTIQLTQNHFVDEYDPTIE'" {
+    run "${cli_call[@]}" --table='{protein}' <<< "MTEYKLVVVGAGGVGKSALTIQLTQNHFVDEYDPTIE"
+    assert_success
+    assert_output "seguid-PdwDBhhFjE6qlPmSWCJCOjKIDeA"
+}
+
+
+@test "<CLI call> --table='{protein}' <<< 'ARDNAKNTLYLQMSRLRSEDTAMYYCAR'" {
+    run "${cli_call[@]}" --table='{protein}' <<< "ARDNAKNTLYLQMSRLRSEDTAMYYCAR"
+    assert_success
+    assert_output "seguid-IdtGC8ZYgDbkA0i4u4n0tiAQwng"
+}
+
+
+
+## --------------------------------------------------------
+## Custom table
+## --------------------------------------------------------
+@test "<CLI call> --table='AU,UA,CG,GC' <<< \"ACGU\"" {
+    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/65"
+    run "${cli_call[@]}" --table='AU,UA,CG,GC' <<< "ACGU"
+    assert_success
+    assert_output "seguid-LLaWk2Jb8NGt20QXhgm+cSVat34"
+}
+
+@test "<CLI call> --type=seguid --table='AT,TA,CG,GC' <<< \"ACGT\"" {
+    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/65"
+    run "${cli_call[@]}" --type=seguid --table='AT,TA,CG,GC' <<< "ACGT"
+    assert_success
+    assert_output "seguid-IQiZThf2zKn/I1KtqStlEdsHYDQ"
+}
+
+@test "<CLI call> --table='A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y' <<< 'ARDNAKNTLYLQMSRLRSEDTAMYYCAR'" {
+    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/65"
+    run "${cli_call[@]}" --table='A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y' <<< "ARDNAKNTLYLQMSRLRSEDTAMYYCAR"
+    assert_success
+    assert_output "seguid-IdtGC8ZYgDbkA0i4u4n0tiAQwng"
 }
 
 
@@ -300,3 +355,4 @@ setup() {
     rm "${pathname}"
     rmdir "${td}"
 }
+
