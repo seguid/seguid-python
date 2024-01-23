@@ -11,6 +11,7 @@ from seguid.reprutils import tuple_from_repr
 
 parser = ArgumentParser(prog="python -m seguid", description="seguid: Sequence Globally Unique Identifier (SEGUID) for Nucleotide and Amino-Acid Sequences")
 parser.add_argument("--version", action="store_true", help="Show version")
+parser.add_argument("--table", type=str, nargs="?", help="Type of input sequence")
 parser.add_argument("--type", type=str, nargs="?", help="Type of checksum to calculate")
 
 args = vars(parser.parse_args())
