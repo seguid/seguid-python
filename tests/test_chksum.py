@@ -22,10 +22,10 @@ from seguid.manip import rc
 
 from seguid.reprutils import repr_from_tuple
 
-from seguid.tables import COMPLEMENT_TABLE_DNA
-from seguid.tables import COMPLEMENT_TABLE_RNA
-from seguid.tables import COMPLEMENT_TABLE_IUPAC
-from seguid.tables import TABLE_IUPAC_PROTEIN
+# from seguid.tables import COMPLEMENT_TABLE_DNA
+# from seguid.tables import COMPLEMENT_TABLE_RNA
+# from seguid.tables import COMPLEMENT_TABLE_IUPAC
+# from seguid.tables import TABLE_IUPAC_PROTEIN
 
 
 def test_seguid():
@@ -37,7 +37,7 @@ def test_seguid():
         "QSFTIEGLAVGVIRNGDWL"
     )
 
-    assert seguid(NP_313053_1, table=TABLE_IUPAC_PROTEIN) == "seguid-2c4yjE+JqjvzYF1d0OmUh8pCpz8"
+    assert seguid(NP_313053_1, table="{protein}") == "seguid-2c4yjE+JqjvzYF1d0OmUh8pCpz8"
 
 
 
@@ -68,8 +68,8 @@ def test_csseguid():
 
 
 def test_ldseguid():
-    ct = COMPLEMENT_TABLE_DNA
-    table = ct | {"\n":"\n", "-":"-"}
+    ct = "{DNA}"
+    table = ct + ",--,\n\n"
     # AT
     # TA
 
@@ -137,40 +137,40 @@ def test_with_tables():
 
     result = 'seguid-Ax/RG6hzSrMEEWoCO1IWMGska+4'
     result_rna = 'seguid-rN9Bc195AlLq45vug03K0N5Yfj0'
-    assert seguid("AT", table=COMPLEMENT_TABLE_DNA) == result
-    assert seguid("AU", table=COMPLEMENT_TABLE_RNA) == result_rna
-    assert seguid("AT", table=COMPLEMENT_TABLE_IUPAC) == result
-    assert seguid("AT", table=TABLE_IUPAC_PROTEIN) == result
+    assert seguid("AT", table="{DNA}") == result
+    assert seguid("AU", table="{RNA}") == result_rna
+    assert seguid("AT", table="{IUPAC}") == result
+    assert seguid("AT", table="{protein}") == result
 
     result = 'lsseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
     result_rna = 'lsseguid-rN9Bc195AlLq45vug03K0N5Yfj0'
-    assert lsseguid("AT", table=COMPLEMENT_TABLE_DNA) == result
-    assert lsseguid("AU", table=COMPLEMENT_TABLE_RNA) == result_rna
-    assert lsseguid("AT", table=COMPLEMENT_TABLE_IUPAC) == result
-    assert lsseguid("AT", table=TABLE_IUPAC_PROTEIN) == result
+    assert lsseguid("AT", table="{DNA}") == result
+    assert lsseguid("AU", table="{RNA}") == result_rna
+    assert lsseguid("AT", table="{IUPAC}") == result
+    assert lsseguid("AT", table="{protein}") == result
 
     result = 'csseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
     result_rna = 'csseguid-rN9Bc195AlLq45vug03K0N5Yfj0'
-    assert csseguid("AT", table=COMPLEMENT_TABLE_DNA) == result
-    assert csseguid("AU", table=COMPLEMENT_TABLE_RNA) == result_rna
-    assert csseguid("AT", table=COMPLEMENT_TABLE_IUPAC) == result
-    assert csseguid("AT", table=TABLE_IUPAC_PROTEIN) == result
+    assert csseguid("AT", table="{DNA}") == result
+    assert csseguid("AU", table="{RNA}") == result_rna
+    assert csseguid("AT", table="{IUPAC}") == result
+    assert csseguid("AT", table="{protein}") == result
 
     result = 'ldseguid-AWD-dt5-TEua8RbOWfnctJIu9nA'
     result_rna = 'ldseguid-1jgY1uMadj9rCRXKjeFDBK2jI44'
-    assert ldseguid("AT", "AT", 0, table=COMPLEMENT_TABLE_DNA) == result
-    assert ldseguid("AU", "AU", 0, table=COMPLEMENT_TABLE_RNA) == result_rna
-    assert ldseguid("AT", "AT", 0, table=COMPLEMENT_TABLE_IUPAC) == result
+    assert ldseguid("AT", "AT", 0, table="{DNA}") == result
+    assert ldseguid("AU", "AU", 0, table="{RNA}") == result_rna
+    assert ldseguid("AT", "AT", 0, table="{IUPAC}") == result
     with pytest.raises(AssertionError):
-        ldseguid("AT", "AT", 0, table=TABLE_IUPAC_PROTEIN)
+        ldseguid("AT", "AT", 0, table="{protein}")
 
     result = 'cdseguid-AWD-dt5-TEua8RbOWfnctJIu9nA'
     result_rna = 'cdseguid-1jgY1uMadj9rCRXKjeFDBK2jI44'
-    assert cdseguid("AT", "AT", table=COMPLEMENT_TABLE_DNA) == result
-    assert cdseguid("AU", "AU", table=COMPLEMENT_TABLE_RNA) == result_rna
-    assert cdseguid("AT", "AT", table=COMPLEMENT_TABLE_IUPAC) == result
+    assert cdseguid("AT", "AT", table="{DNA}") == result
+    assert cdseguid("AU", "AU", table="{RNA}") == result_rna
+    assert cdseguid("AT", "AT", table="{IUPAC}") == result
     with pytest.raises(AssertionError):
-        assert cdseguid("AT", "AT", table=TABLE_IUPAC_PROTEIN) == result
+        assert cdseguid("AT", "AT", table="{protein}") == result
 
 def test_empty():
 
@@ -204,4 +204,3 @@ def test_checksum_as_filename():
         with open(filename, "r") as file:
              content = file.read()
         assert content == seq
-

@@ -36,7 +36,7 @@ def rotate(seq: str, amount: int = 0) -> str:
     >>> rotate(seq, +8)
     'ABCDEFGH'
     """
-    assert isinstance(seq, str),    "Argument 'seq' must be an string"
+    assert isinstance(seq, str), "Argument 'seq' must be an string"
     assert isinstance(amount, int), "Argument 'amount' must be an integer"
 
     ## Nothing to rotate?
@@ -53,8 +53,7 @@ def rotate(seq: str, amount: int = 0) -> str:
 
 
 def complementary(seq: str, table: dict = COMPLEMENT_TABLE_DNA) -> str:
-    """Complement of a DNA sequence.
-    """
+    """Complement of a DNA sequence."""
     ## Validate 'table':
     assert_table(table)
 
@@ -65,9 +64,8 @@ def complementary(seq: str, table: dict = COMPLEMENT_TABLE_DNA) -> str:
 
 
 def reverse(seq) -> str:
-    """Reverses a DNA sequence
-    """
-    assert isinstance(seq, str),    "Argument 'seq' must be an string"
+    """Reverses a DNA sequence"""
+    assert isinstance(seq, str), "Argument 'seq' must be an string"
     return seq[::-1]
 
 
@@ -93,7 +91,7 @@ def rc(seq: str, table: dict = COMPLEMENT_TABLE_DNA) -> str:
     >>> rc("GTa".upper())
     'TAC'
     """
-    return reverse(complementary(seq, table = table))
+    return reverse(complementary(seq, table=table))
 
 
 def min_rotation_py(s: str) -> int:
@@ -167,8 +165,8 @@ def rotate_to_min(s: str) -> int:
     assert _min_rotation("Aa") == 0
 
     amount = _min_rotation(s)
-    s = rotate(s, amount = amount)
-    return(s)
+    s = rotate(s, amount=amount)
+    return s
 
 
 # def linearize_circular_dsDNA(watson, crick, position):

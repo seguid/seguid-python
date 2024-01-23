@@ -79,3 +79,28 @@ TABLE_IUPAC_PROTEIN = {"A": "",
                        "V": "",
                        "W": "",
                        "Y": ""}
+
+
+table_categories = {
+    "{DNA}": COMPLEMENT_TABLE_DNA,
+    "{RNA}": COMPLEMENT_TABLE_RNA,
+    "{IUPAC}": COMPLEMENT_TABLE_IUPAC,
+    "{protein}": TABLE_IUPAC_PROTEIN,
+}
+
+
+def tablefactory(argument: str):
+
+    # argument = "{protein},X,Z"
+    # argument = "{DNA},BV,VB,DH,HD,KM,MK,NN,SS,WW"
+
+    tb, *ext = [e for e in argument.split(",")]
+    table = table_categories[tb]
+
+    if ext and all(len(e) == 1 for e in ext):
+        assert set(table.values()) == {""} # extension is an alphabet
+        table.update((c, "") for c in ext)
+    elif ext and all(len(e) == 2 for e in ext):
+        # assert_table                     # extension is a translation table
+        table.update((k, v) for k,v in ext)
+    return table
