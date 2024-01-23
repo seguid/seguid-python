@@ -1,6 +1,6 @@
-__version__ = "0.0.1.9013"
+__version__ = "0.0.1.9014"
 
-from seguid.chksum import slseguid
-from seguid.chksum import scseguid
-from seguid.chksum import dlseguid
-from seguid.chksum import dcseguid
+from seguid.chksum import lsseguid
+from seguid.chksum import csseguid
+from seguid.chksum import ldseguid
+from seguid.chksum import cdseguid

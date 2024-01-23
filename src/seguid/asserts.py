@@ -67,7 +67,7 @@ def assert_anneal(watson: str,
 
 
 # def assert_checksum(checksum):
-#     checksum = "dcseguid:AWD-dt5-TEua8RbOWfnctJIu9nA"
+#     checksum = "cdseguid:AWD-dt5-TEua8RbOWfnctJIu9nA"
 #     mobj = re.match("(?:|sl|sc|ds|dc)seguid:(.+)", checksum)
 #     assert len(mobj.group(1)) == 27
 #     b64 = set('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/_-')

@@ -11,8 +11,8 @@ SEGUID v2 consists of four separate functions (see table below). SEGUID v2 is us
 
 |          | ssDNA     | dsDNA     |
 |----------|-----------|-----------|
-| linear   | slSEGUID  | dlSEGUID  |
-| circular | scSEGUID  | dcSEGUID  |
+| linear   | lsSEGUID  | ldSEGUID  |
+| circular | csSEGUID  | cdSEGUID  |
 
 
 ## R

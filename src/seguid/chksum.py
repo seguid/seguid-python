@@ -6,15 +6,15 @@ seguid.
 The seguid module provides four functions for calculations of SEGUID checksums
 for biological sequences with varying topologies
 
-slseguid (s)ingle-stranded (l)inear SEGUID
-scseguid (s)ingle-stranded (c)ircular SEGUID
-dlseguid (d)ouble-stranded (l)inear SEGUID
-dcseguid (d)ouble-stranded (c)ircular SEGUID
+lsseguid (s)ingle-stranded (l)inear SEGUID
+csseguid (s)ingle-stranded (c)ircular SEGUID
+ldseguid (d)ouble-stranded (l)inear SEGUID
+cdseguid (d)ouble-stranded (c)ircular SEGUID
 
 Some auxillary functions are also provided.
 
 The functions can be made to work without external dependencies, but
-scseguid and dcseguid are considerably faster with pydivsufsort installed.
+csseguid and cdseguid are considerably faster with pydivsufsort installed.
 
 """
 
@@ -30,10 +30,10 @@ from seguid.asserts import assert_anneal
 from seguid.reprutils import repr_from_tuple
 
 seguid_prefix: str = "seguid-"
-slseguid_prefix: str = "slseguid-"
-scseguid_prefix: str = "scseguid-"
-dlseguid_prefix: str = "dlseguid-"
-dcseguid_prefix: str = "dcseguid-"
+lsseguid_prefix: str = "lsseguid-"
+csseguid_prefix: str = "csseguid-"
+ldseguid_prefix: str = "ldseguid-"
+cdseguid_prefix: str = "cdseguid-"
 b64alphabet = set('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/_-')
 
 
@@ -57,7 +57,7 @@ def seguid(seq: str,
            table: dict = COMPLEMENT_TABLE_DNA) -> str:
     """SEGUID checksum for protein or single stranded linear DNA.
 
-    OBSOLETE, use slseguid instead.
+    OBSOLETE, use lsseguid instead.
 
     Given a nucleotide or amino-acid sequence `seq`, the function returns
     a string containing the SEquence Globally Unique IDentifier (SEGUID).
@@ -96,7 +96,7 @@ def seguid(seq: str,
                                    encoding=base64.standard_b64encode)
 
 
-def slseguid(seq: str,
+def lsseguid(seq: str,
              table: dict = COMPLEMENT_TABLE_DNA) -> str:
     """SEGUID checksum for single stranded linear DNA (slSEGUID).
 
@@ -109,19 +109,19 @@ def slseguid(seq: str,
     This checksum is applicable to single stranded linear DNA sequences.
     Can also be used for protein sequences.
 
-    The checksum is prefixed with "slseguid-"
+    The checksum is prefixed with "lsseguid-"
 
     Examples
     --------
-    >>> slseguid("AT")
-    'slseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
+    >>> lsseguid("AT")
+    'lsseguid-Ax_RG6hzSrMEEWoCO1IWMGska-4'
     """
-    return slseguid_prefix + _seguid(seq,
+    return lsseguid_prefix + _seguid(seq,
                                      table=table,
                                      encoding=base64.urlsafe_b64encode)
 
 
-def scseguid(seq: str,
+def csseguid(seq: str,
              table: dict = COMPLEMENT_TABLE_DNA) -> str:
     r"""SEGUID checksum for single stranded circular DNA (scSEGUID).
 
@@ -133,25 +133,25 @@ def scseguid(seq: str,
     The srfun argument has to take a string as an argument and
     return another string.
 
-    The checksum is prefixed with "scseguid-"
+    The checksum is prefixed with "csseguid-"
 
     Examples
     --------
-    >>> scseguid("ATTT")
-    'scseguid-ot6JPLeAeMmfztW1736Kc6DAqlo'
-    >>> slseguid("ATTT")
-    'slseguid-ot6JPLeAeMmfztW1736Kc6DAqlo'
-    >>> scseguid("TTTA")
-    'scseguid-ot6JPLeAeMmfztW1736Kc6DAqlo'
-    >>> slseguid("TTTA")
-    'slseguid-8zCvKwyQAEsbPtC4yTV-pY0H93Q'
+    >>> csseguid("ATTT")
+    'csseguid-ot6JPLeAeMmfztW1736Kc6DAqlo'
+    >>> lsseguid("ATTT")
+    'lsseguid-ot6JPLeAeMmfztW1736Kc6DAqlo'
+    >>> csseguid("TTTA")
+    'csseguid-ot6JPLeAeMmfztW1736Kc6DAqlo'
+    >>> lsseguid("TTTA")
+    'lsseguid-8zCvKwyQAEsbPtC4yTV-pY0H93Q'
     """
-    return scseguid_prefix + _seguid(rotate_to_min(seq),
+    return csseguid_prefix + _seguid(rotate_to_min(seq),
                                      table=table,
                                      encoding=base64.urlsafe_b64encode)
 
 
-def dlseguid(watson: str,
+def ldseguid(watson: str,
              crick: str,
              overhang: int,
              table: dict = COMPLEMENT_TABLE_DNA) -> str:
@@ -226,14 +226,14 @@ def dlseguid(watson: str,
 
         "-gcatac" + chr(10) + "CCGTAT-"
 
-    The checksum is prefixed with "dlseguid-"
+    The checksum is prefixed with "ldseguid-"
 
     Examples
     --------
-    >>> dlseguid("TATGCC", "GCATAC", 1)
-    'dlseguid-E7YtPGWjj3qCaPzWurlYBaJy_X4'
-    >>> dlseguid("GCATAC", "TATGCC", 1)
-    'dlseguid-E7YtPGWjj3qCaPzWurlYBaJy_X4'
+    >>> ldseguid("TATGCC", "GCATAC", 1)
+    'ldseguid-E7YtPGWjj3qCaPzWurlYBaJy_X4'
+    >>> ldseguid("GCATAC", "TATGCC", 1)
+    'ldseguid-E7YtPGWjj3qCaPzWurlYBaJy_X4'
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
@@ -249,12 +249,12 @@ def dlseguid(watson: str,
 
     extable = table | {"-": "-", "\n": "\n"}
 
-    return dlseguid_prefix + _seguid(msg,
+    return ldseguid_prefix + _seguid(msg,
                                      table=extable,
                                      encoding=base64.urlsafe_b64encode)
 
 
-def dcseguid(watson: str,
+def cdseguid(watson: str,
              crick: str,
              table: dict = COMPLEMENT_TABLE_DNA) -> str:
     """SEGUID checksum for double stranded circular DNA (dcSEGUID).
@@ -263,7 +263,7 @@ def dcseguid(watson: str,
     smallest string rotation of a dsDNA sequence. Only defined for circular
     sequences.
 
-    The checksum is prefixed with "dcseguid-"
+    The checksum is prefixed with "cdseguid-"
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
@@ -281,6 +281,6 @@ def dcseguid(watson: str,
     else:
         w = crick_min
 
-    return dcseguid_prefix + dlseguid(watson=w,
+    return cdseguid_prefix + ldseguid(watson=w,
                                       crick=rc(w, table=table),
-                                      overhang=0, table=table)[len(dlseguid_prefix):]
+                                      overhang=0, table=table)[len(ldseguid_prefix):]

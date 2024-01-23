@@ -3,10 +3,10 @@
 
 import pytest
 
-from seguid import slseguid
-from seguid import scseguid
-from seguid import dlseguid
-from seguid import dcseguid
+from seguid import lsseguid
+from seguid import csseguid
+from seguid import ldseguid
+from seguid import cdseguid
 
 
 def _test_speed():

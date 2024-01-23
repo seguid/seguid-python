@@ -47,71 +47,71 @@ setup() {
 }
 
 
-@test "<CLI call> --type=slseguid <<< \"ACGT\"" {
-    run "${cli_call[@]}" --type=slseguid <<< "ACGT"
+@test "<CLI call> --type=lsseguid <<< \"ACGT\"" {
+    run "${cli_call[@]}" --type=lsseguid <<< "ACGT"
     assert_success
-    assert_output "slseguid-IQiZThf2zKn_I1KtqStlEdsHYDQ"
+    assert_output "lsseguid-IQiZThf2zKn_I1KtqStlEdsHYDQ"
 }
 
 
-@test "<CLI call> --type=scseguid <<< \"ACGT\"" {
-    run "${cli_call[@]}" --type=scseguid <<< "ACGT"
+@test "<CLI call> --type=csseguid <<< \"ACGT\"" {
+    run "${cli_call[@]}" --type=csseguid <<< "ACGT"
     assert_success
-    assert_output "scseguid-IQiZThf2zKn_I1KtqStlEdsHYDQ"
+    assert_output "csseguid-IQiZThf2zKn_I1KtqStlEdsHYDQ"
 }
 
-@test "<CLI call> --type=scseguid <<< \"CGTA\" (rotation invariant)" {
-    run "${cli_call[@]}" --type=scseguid <<< "CGTA"
+@test "<CLI call> --type=csseguid <<< \"CGTA\" (rotation invariant)" {
+    run "${cli_call[@]}" --type=csseguid <<< "CGTA"
     assert_success
-    assert_output "scseguid-IQiZThf2zKn_I1KtqStlEdsHYDQ"
+    assert_output "csseguid-IQiZThf2zKn_I1KtqStlEdsHYDQ"
 }
 
-@test "<CLI call> --type=scseguid <<< \"GTAC\" (rotation invariant)" {
-    run "${cli_call[@]}" --type=scseguid <<< "GTAC"
+@test "<CLI call> --type=csseguid <<< \"GTAC\" (rotation invariant)" {
+    run "${cli_call[@]}" --type=csseguid <<< "GTAC"
     assert_success
-    assert_output "scseguid-IQiZThf2zKn_I1KtqStlEdsHYDQ"
+    assert_output "csseguid-IQiZThf2zKn_I1KtqStlEdsHYDQ"
 }
 
-@test "<CLI call> --type=dlseguid <<< \$'AACGT\\nTTGCA'" {
-    run "${cli_call[@]}" --type=dlseguid <<< $'AACGT\nTTGCA'
+@test "<CLI call> --type=ldseguid <<< \$'AACGT\\nTTGCA'" {
+    run "${cli_call[@]}" --type=ldseguid <<< $'AACGT\nTTGCA'
     assert_success
-    assert_output "dlseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
+    assert_output "ldseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
 }
 
-@test "<CLI call> --type=dcseguid <<< \$'AACGT\\nTTGCA'" {
-    run "${cli_call[@]}" --type=dcseguid <<< $'AACGT\nTTGCA'
+@test "<CLI call> --type=cdseguid <<< \$'AACGT\\nTTGCA'" {
+    run "${cli_call[@]}" --type=cdseguid <<< $'AACGT\nTTGCA'
     assert_success
-    assert_output "dcseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
+    assert_output "cdseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
 }
 
-@test "<CLI call> --type=dcseguid <<< \$'CGTAA\\nGCATT' (rotation invariant)" {
-    run "${cli_call[@]}" --type=dcseguid <<< $'CGTAA\nGCATT'
+@test "<CLI call> --type=cdseguid <<< \$'CGTAA\\nGCATT' (rotation invariant)" {
+    run "${cli_call[@]}" --type=cdseguid <<< $'CGTAA\nGCATT'
     assert_success
-    assert_output "dcseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
+    assert_output "cdseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
 }
 
-@test "<CLI call> --type=dcseguid <<< \$'GTAAC\\nCATTG' (rotation invariant)" {
-    run "${cli_call[@]}" --type=dcseguid <<< $'GTAAC\nCATTG'
+@test "<CLI call> --type=cdseguid <<< \$'GTAAC\\nCATTG' (rotation invariant)" {
+    run "${cli_call[@]}" --type=cdseguid <<< $'GTAAC\nCATTG'
     assert_success
-    assert_output "dcseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
+    assert_output "cdseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
 }
 
-@test "<CLI call> --type=dcseguid <<< \$'GTTAC\\nCAATG' (strand symmetry)" {
-    run "${cli_call[@]}" --type=dcseguid <<< $'GTTAC\nCAATG'
+@test "<CLI call> --type=cdseguid <<< \$'GTTAC\\nCAATG' (strand symmetry)" {
+    run "${cli_call[@]}" --type=cdseguid <<< $'GTTAC\nCAATG'
     assert_success
-    assert_output "dcseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
+    assert_output "cdseguid-tYeHZYwxQGDHTqGDcrebERag0AU"
 }
 
-@test "<CLI call> --type=dlseguid <<< \$'-CGT\\nTGCA'" {
-    run "${cli_call[@]}" --type=dlseguid <<< $'-CGT\nTGCA'
+@test "<CLI call> --type=ldseguid <<< \$'-CGT\\nTGCA'" {
+    run "${cli_call[@]}" --type=ldseguid <<< $'-CGT\nTGCA'
     assert_success
-    assert_output "dlseguid-MpPe6pJoya3CoRh3BAw2qgEOcKI"
+    assert_output "ldseguid-MpPe6pJoya3CoRh3BAw2qgEOcKI"
 }
 
-@test "<CLI call> --type=dlseguid <<< \$'-CGT\nTGC-'" {
-    run "${cli_call[@]}" --type=dlseguid <<< $'-CGT\nTGC-'
+@test "<CLI call> --type=ldseguid <<< \$'-CGT\nTGC-'" {
+    run "${cli_call[@]}" --type=ldseguid <<< $'-CGT\nTGC-'
     assert_success
-    assert_output "dlseguid-a_o4Ga8vQrhlvI_zkjUg0uu6obA"
+    assert_output "ldseguid-a_o4Ga8vQrhlvI_zkjUg0uu6obA"
 }
 
 
@@ -124,28 +124,28 @@ setup() {
     assert_output "seguid-bc1M4j2I4u6VaLpUbAB8Y9kTHBs"
 }
 
-@test "<CLI call> --type=slseguid <<< \"\" (single-symbol input)" {
-    run "${cli_call[@]}" --type=slseguid <<< "A"
+@test "<CLI call> --type=lsseguid <<< \"\" (single-symbol input)" {
+    run "${cli_call[@]}" --type=lsseguid <<< "A"
     assert_success
-    assert_output "slseguid-bc1M4j2I4u6VaLpUbAB8Y9kTHBs"
+    assert_output "lsseguid-bc1M4j2I4u6VaLpUbAB8Y9kTHBs"
 }
 
-@test "<CLI call> --type=scseguid <<< \"\" (single-symbol input)" {
-    run "${cli_call[@]}" --type=scseguid <<< "A"
+@test "<CLI call> --type=csseguid <<< \"\" (single-symbol input)" {
+    run "${cli_call[@]}" --type=csseguid <<< "A"
     assert_success
-    assert_output "scseguid-bc1M4j2I4u6VaLpUbAB8Y9kTHBs"
+    assert_output "csseguid-bc1M4j2I4u6VaLpUbAB8Y9kTHBs"
 }
 
-@test "<CLI call> --type=dlseguid <<< \$'A\nT' (single-symbol input)" {
-    run "${cli_call[@]}" --type=dlseguid <<< $'A\nT'
+@test "<CLI call> --type=ldseguid <<< \$'A\nT' (single-symbol input)" {
+    run "${cli_call[@]}" --type=ldseguid <<< $'A\nT'
     assert_success
-    assert_output "dlseguid-S4AfmFCoHYVrWNQ_d7-lVVF2t20"
+    assert_output "ldseguid-S4AfmFCoHYVrWNQ_d7-lVVF2t20"
 }
 
-@test "<CLI call> --type=dcseguid <<< \$'A\nT' (single-symbol input)" {
-    run "${cli_call[@]}" --type=dcseguid <<< $'A\nT'
+@test "<CLI call> --type=cdseguid <<< \$'A\nT' (single-symbol input)" {
+    run "${cli_call[@]}" --type=cdseguid <<< $'A\nT'
     assert_success
-    assert_output "dcseguid-S4AfmFCoHYVrWNQ_d7-lVVF2t20"
+    assert_output "cdseguid-S4AfmFCoHYVrWNQ_d7-lVVF2t20"
 }
 
 
@@ -157,23 +157,23 @@ setup() {
     assert_failure
 }
 
-@test "<CLI call> --type=slseguid <<< \"\" (empty input)" {
-    run "${cli_call[@]}" --type=slseguid <<< ""
+@test "<CLI call> --type=lsseguid <<< \"\" (empty input)" {
+    run "${cli_call[@]}" --type=lsseguid <<< ""
     assert_failure
 }
 
-@test "<CLI call> --type=scseguid <<< \"\" (empty input)" {
-    run "${cli_call[@]}" --type=scseguid <<< ""
+@test "<CLI call> --type=csseguid <<< \"\" (empty input)" {
+    run "${cli_call[@]}" --type=csseguid <<< ""
     assert_failure
 }
 
-@test "<CLI call> --type=dlseguid <<< \"\" (empty input)" {
-    run "${cli_call[@]}" --type=dlseguid <<< ""
+@test "<CLI call> --type=ldseguid <<< \"\" (empty input)" {
+    run "${cli_call[@]}" --type=ldseguid <<< ""
     assert_failure
 }
 
-@test "<CLI call> --type=dcseguid <<< \"\" (empty input)" {
-    run "${cli_call[@]}" --type=dcseguid <<< ""
+@test "<CLI call> --type=cdseguid <<< \"\" (empty input)" {
+    run "${cli_call[@]}" --type=cdseguid <<< ""
     assert_failure
 }
 
@@ -186,18 +186,18 @@ setup() {
     assert_failure
 }
 
-@test "<CLI call> --type=slseguid <<< \$'ACTG\nTGCA' (too many lines)" {
-    run "${cli_call[@]}" --type=slseguid <<< $'ACTG\nTGCA'
+@test "<CLI call> --type=lsseguid <<< \$'ACTG\nTGCA' (too many lines)" {
+    run "${cli_call[@]}" --type=lsseguid <<< $'ACTG\nTGCA'
     assert_failure
 }
 
-@test "<CLI call> --type=dlseguid <<< \$'ACTG\\nTGCA\\nTGCA' (too many lines)" {
-    run "${cli_call[@]}" --type=dlseguid <<< $'ACTG\nTGCA\nTGCA'
+@test "<CLI call> --type=ldseguid <<< \$'ACTG\\nTGCA\\nTGCA' (too many lines)" {
+    run "${cli_call[@]}" --type=ldseguid <<< $'ACTG\nTGCA\nTGCA'
     assert_failure
 }
 
-@test "<CLI call> --type=dcseguid <<< \$'ACTG\\nTGCA\\nTGCA' (too many lines)" {
-    run "${cli_call[@]}" --type=dcseguid <<< $'ACTG\nTGCA\nTGCA'
+@test "<CLI call> --type=cdseguid <<< \$'ACTG\\nTGCA\\nTGCA' (too many lines)" {
+    run "${cli_call[@]}" --type=cdseguid <<< $'ACTG\nTGCA\nTGCA'
     assert_failure
 }
 
@@ -216,18 +216,18 @@ setup() {
     assert_failure
 }
 
-@test "<CLI call> --type=dlseguid <<< \$' ACGT\\nTGCA' gives error (invalid character)" {
-    run "${cli_call[@]}" --type=dlseguid <<< $' ACGT\nTGCA '
+@test "<CLI call> --type=ldseguid <<< \$' ACGT\\nTGCA' gives error (invalid character)" {
+    run "${cli_call[@]}" --type=ldseguid <<< $' ACGT\nTGCA '
     assert_failure
 }
 
-@test "<CLI call> --type=dlseguid <<< \$'ACGT\\nTGC' gives error (unbalanced lengths)" {
-    run "${cli_call[@]}" --type=dlseguid <<< $'ACGT\nTGC'
+@test "<CLI call> --type=ldseguid <<< \$'ACGT\\nTGC' gives error (unbalanced lengths)" {
+    run "${cli_call[@]}" --type=ldseguid <<< $'ACGT\nTGC'
     assert_failure
 }
 
-@test "<CLI call> --type=dlseguid <<< \$'ACGT\\nTGCC' gives error (incompatible sequences)" {
-    run "${cli_call[@]}" --type=dlseguid <<< $'ACGT\nTGCC'
+@test "<CLI call> --type=ldseguid <<< \$'ACGT\\nTGCC' gives error (incompatible sequences)" {
+    run "${cli_call[@]}" --type=ldseguid <<< $'ACGT\nTGCC'
     assert_failure
 }
 
@@ -251,46 +251,46 @@ setup() {
 }
 
 
-@test "<CLI call> --type=slseguid --table=rna <<< \"ACGU\"" {
+@test "<CLI call> --type=lsseguid --table=rna <<< \"ACGU\"" {
     skip "To be implemented"
-    run "${cli_call[@]}" --type=slseguid --table=rna <<< "ACGU"
+    run "${cli_call[@]}" --type=lsseguid --table=rna <<< "ACGU"
     assert_success
-    assert_output "slseguid-LLaWk2Jb8NGt20QXhgm-cSVat34"
+    assert_output "lsseguid-LLaWk2Jb8NGt20QXhgm-cSVat34"
 }
 
 
-@test "<CLI call> --type=scseguid --table=rna <<< \"ACGU\"" {
+@test "<CLI call> --type=csseguid --table=rna <<< \"ACGU\"" {
     skip "To be implemented"
-    run "${cli_call[@]}" --type=scseguid --table=rna <<< "ACGU"
+    run "${cli_call[@]}" --type=csseguid --table=rna <<< "ACGU"
     assert_success
-    assert_output "scseguid-LLaWk2Jb8NGt20QXhgm-cSVat34"
+    assert_output "csseguid-LLaWk2Jb8NGt20QXhgm-cSVat34"
 }
 
-@test "<CLI call> --type=dlseguid --table=rna <<< \$'AACGU\\nUUdTGCA'" {
+@test "<CLI call> --type=ldseguid --table=rna <<< \$'AACGU\\nUUdTGCA'" {
     skip "To be implemented"
-    run "${cli_call[@]}" --type=dlseguid --table=rna <<< $'AACGU\nUUGCA'
+    run "${cli_call[@]}" --type=ldseguid --table=rna <<< $'AACGU\nUUGCA'
     assert_success
-    assert_output "dlseguid-r61AxqwrG01x8RpNluuRlfoL9VY"
+    assert_output "ldseguid-r61AxqwrG01x8RpNluuRlfoL9VY"
 }
 
-@test "<CLI call> --type=dcseguid --table=rna <<< \$'AACGU\\nUUGCA'" {
+@test "<CLI call> --type=cdseguid --table=rna <<< \$'AACGU\\nUUGCA'" {
     skip "To be implemented"
-    run "${cli_call[@]}" --type=dcseguid --table=rna <<< $'AACGU\nUUGCA'
+    run "${cli_call[@]}" --type=cdseguid --table=rna <<< $'AACGU\nUUGCA'
     assert_success
-    assert_output "dcseguid-r61AxqwrG01x8RpNluuRlfoL9VY"
+    assert_output "cdseguid-r61AxqwrG01x8RpNluuRlfoL9VY"
 }
 
 
 ## --------------------------------------------------------
 ## Use checksums as filenames
 ## --------------------------------------------------------
-@test "<CLI call> --type='slseguid' <<< \"GATTACA\" checksum can be used as a filename" {
+@test "<CLI call> --type='lsseguid' <<< \"GATTACA\" checksum can be used as a filename" {
     seq="GATTACA"
     ## Comment:
     ## The   SEGUID check is seguid-tp2jzeCM2e3W4yxtrrx09CMKa/8
     ## The slSEGUID check is seguid-tp2jzeCM2e3W4yxtrrx09CMKa_8
     td=$(mktemp -d)
-    filename=$("${cli_call[@]}" --type='slseguid' <<< "${seq}")
+    filename=$("${cli_call[@]}" --type='lsseguid' <<< "${seq}")
     pathname="${td}/${filename}"
     echo "${seq}" > "${pathname}"
     [[ -f "${pathname}" ]]

@@ -8,7 +8,7 @@ This directory contains test data for functions in the test_chksum.py file.
 
 ---
 The M13.txt file contain the 6407 nucleotides circular single stranded DNA genome of the
-M13 bacteriophage. The M13 genome sequence is avaliable from the GenBank accession numbers
+M13 bacteriophage. The M13 genome sequence is available from the GenBank accession numbers
 NC_003287.2 or V00604.2
 
 https://www.ncbi.nlm.nih.gov/nuccore/NC_003287.2
