@@ -92,13 +92,15 @@ table_categories = {
 
 
 def tablefactory(argument: str):
-
     # argument = "{protein},X,Z"
     # argument = "{DNA},BV,VB,DH,HD,KM,MK,NN,SS,WW"
-
+    # argument = "AT,TA,CG,GC"
     tb, *ext = [e for e in argument.split(",")]
-    table = table_categories[tb]
-
+    try:
+        table = table_categories[tb]
+    except KeyError:
+        assert len(tb) == 2, "Firs argument not a table category or a basepair."
+        table = {tb[0]:tb[1]}
     if ext and all(len(e) == 1 for e in ext):
         assert set(table.values()) == {""} # extension is an alphabet
         table.update((c, "") for c in ext)
