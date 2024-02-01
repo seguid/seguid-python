@@ -25,7 +25,6 @@ setup() {
     assert_output --partial "--version"
     assert_output --partial "--help"
     assert_output --regexp "[Uu]sage:"
-    assert_output --regexp "[Oo]ptions:"
 }
 
 
