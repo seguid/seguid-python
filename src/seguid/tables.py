@@ -46,17 +46,17 @@ Nucleic Acids Research, 13(9), 3021–3030.
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC341218
 """
 
-COMPLEMENT_TABLE_IUPAC = COMPLEMENT_TABLE_DNA | {"B": "V",
-                                                 "D": "H",
-                                                 "H": "D",
-                                                 "K": "M",
-                                                 "M": "K",
-                                                 "S": "S",
-                                                 "R": "Y",
-                                                 "V": "B",
-                                                 "Y": "R",
-                                                 "W": "W",
-                                                 "N": "N"}
+COMPLEMENT_TABLE_IUPAC = {**COMPLEMENT_TABLE_DNA,  **{"B": "V",
+                                                      "D": "H",
+                                                      "H": "D",
+                                                      "K": "M",
+                                                      "M": "K",
+                                                      "S": "S",
+                                                      "R": "Y",
+                                                      "V": "B",
+                                                      "Y": "R",
+                                                      "W": "W",
+                                                      "N": "N"}}
 
 # Definition of a the IUPAC Protein Symbols
 # values are empty strings since there is no concept of complementarity

@@ -86,7 +86,7 @@ def tuple_from_repr(
     )
 
     result = watson.strip(space), crickrv.strip(space)[::-1], overhang
-    assert_anneal(*result, table=table | {space: space})
+    assert_anneal(*result, table={**table, **{space: space}})
 
     return result
 
