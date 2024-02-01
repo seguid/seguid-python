@@ -37,6 +37,7 @@ jobs:
           - {os: ubuntu-latest,  python: '3.10' }
           - {os: ubuntu-latest,  python: '3.9' }
           - {os: ubuntu-latest,  python: '3.8' }
+          - {os: ubuntu-latest,  python: '3.6' }
 
 
     steps:
