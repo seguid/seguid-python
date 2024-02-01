@@ -314,21 +314,18 @@ setup() {
 ## Custom table
 ## --------------------------------------------------------
 @test "<CLI call> --table='AU,UA,CG,GC' <<< \"ACGU\"" {
-    ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/65"
     run "${cli_call[@]}" --table='AU,UA,CG,GC' <<< "ACGU"
     assert_success
     assert_output "seguid-LLaWk2Jb8NGt20QXhgm+cSVat34"
 }
 
 @test "<CLI call> --type=seguid --table='AT,TA,CG,GC' <<< \"ACGT\"" {
-    ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/65"
     run "${cli_call[@]}" --type=seguid --table='AT,TA,CG,GC' <<< "ACGT"
     assert_success
     assert_output "seguid-IQiZThf2zKn/I1KtqStlEdsHYDQ"
 }
 
 @test "<CLI call> --table='A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y' <<< 'ARDNAKNTLYLQMSRLRSEDTAMYYCAR'" {
-    ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/65"
     run "${cli_call[@]}" --table='A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y' <<< "ARDNAKNTLYLQMSRLRSEDTAMYYCAR"
     assert_success
     assert_output "seguid-IdtGC8ZYgDbkA0i4u4n0tiAQwng"
