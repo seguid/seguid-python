@@ -2,6 +2,9 @@ SHELL=bash
 
 all: test install
 
+install-deps:
+	python -m pip install pytest pydivsufsort
+
 install:
 	python -m pip install .
 
