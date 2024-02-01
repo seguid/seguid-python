@@ -52,7 +52,9 @@ COMPLEMENT_TABLE_IUPAC = COMPLEMENT_TABLE_DNA | {"B": "V",
                                                  "K": "M",
                                                  "M": "K",
                                                  "S": "S",
+                                                 "R": "Y",
                                                  "V": "B",
+                                                 "Y": "R",
                                                  "W": "W",
                                                  "N": "N"}
 
