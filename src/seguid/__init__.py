@@ -1,4 +1,4 @@
-__version__ = "0.0.1.9016"
+__version__ = "0.03"
 
 from seguid.chksum import lsseguid
 from seguid.chksum import csseguid
