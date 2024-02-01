@@ -197,10 +197,11 @@ def test_checksum_as_filename():
     ## The   SEGUID check is seguid-tp2jzeCM2e3W4yxtrrx09CMKa/8
     ## The slSEGUID check is seguid-tp2jzeCM2e3W4yxtrrx09CMKa_8
     with tempfile.TemporaryDirectory() as temp_dir:
-        filename=lsseguid(seq)
+        filename=os.path.join(temp_dir, lsseguid(seq))
         with open(filename, "w") as file:
             file.write(seq)
         assert os.path.isfile(filename)
         with open(filename, "r") as file:
              content = file.read()
+        os.remove(filename)
         assert content == seq
