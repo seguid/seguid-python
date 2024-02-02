@@ -269,14 +269,12 @@ setup() {
 }
 
 @test "<CLI call> --type=ldseguid --table='{RNA}' <<< \$'AACGU\\nUUdTGCA'" {
-    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/64"
     run "${cli_call[@]}" --type=ldseguid --table='{RNA}' <<< $'AACGU\nUUGCA'
     assert_success
     assert_output "ldseguid-r61AxqwrG01x8RpNluuRlfoL9VY"
 }
 
 @test "<CLI call> --type=cdseguid --table='{RNA}' <<< \$'AACGU\\nUUGCA'" {
-    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/64"
     run "${cli_call[@]}" --type=cdseguid --table='{RNA}' <<< $'AACGU\nUUGCA'
     assert_success
     assert_output "cdseguid-r61AxqwrG01x8RpNluuRlfoL9VY"
