@@ -13,9 +13,6 @@ the original SEGUID algorithm.
 ## Example
 
 ```python
-Python 3.10.12 (main, Nov 20 2023, 15:14:05) [GCC 11.4.0] on linux
-Type "help", "copyright", "credits" or "license" for more information.
-
 >>> from seguid import *
 
 >>> lsseguid("AT")
