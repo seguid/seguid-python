@@ -1,5 +1,6 @@
 [![Python checks](https://github.com/MetabolicEngineeringGroupCBMA/seguid/actions/workflows/check-python.yml/badge.svg)](https://github.com/MetabolicEngineeringGroupCBMA/seguid/actions/workflows/check-python.yml)
 [![Python Code Coverage](https://codecov.io/gh/MetabolicEngineeringGroupCBMA/seguid/graph/badge.svg)](https://codecov.io/gh/MetabolicEngineeringGroupCBMA/seguid)
+[![Documentation Status](https://readthedocs.org/projects/seguid/badge/?version=latest)](https://seguid.readthedocs.io/en/latest/?badge=latest)
 
 
 
@@ -39,7 +40,8 @@ Type "help", "copyright", "credits" or "license" for more information.
 
 ## Documentation
 
-[![Documentation Status](https://readthedocs.org/projects/seguid/badge/?version=latest)](https://seguid.readthedocs.io/en/latest/?badge=latest)
+The package documentation is available on [Read the
+Docs](https://seguid.readthedocs.io/en/latest/).
 
 
 ## Installation
