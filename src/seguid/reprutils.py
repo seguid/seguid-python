@@ -1,14 +1,14 @@
-from seguid.tables import COMPLEMENT_TABLE_DNA
+# from seguid.tables import COMPLEMENT_TABLE_DNA
 # from textwrap import dedent
 from inspect import cleandoc
 from seguid.asserts import assert_in_alphabet
 from seguid.asserts import assert_anneal
 from seguid.manip import reverse
-
+from seguid.tables import tablefactory
 
 def tuple_from_repr(
     rpr: str,
-    table: dict = COMPLEMENT_TABLE_DNA,
+    table: str = "{DNA}",
     space: str = "-"
 ) -> tuple:
     """Generate a (watson, crick, overhang) tuple from dsDNA text representation.
@@ -63,8 +63,10 @@ def tuple_from_repr(
     assert space != " ", "Space can not be 'space' (ASCII 32)"
     linebreak = "\n"
 
+    tabledict = tablefactory(table)
+
     try:
-        assert_in_alphabet(space, alphabet=set(table.keys()) | set(linebreak))
+        assert_in_alphabet(space, alphabet=set(tabledict.keys()) | set(linebreak))
     except ValueError:
         pass
     else:
@@ -73,7 +75,7 @@ def tuple_from_repr(
     cleaned_rpr = cleandoc(rpr)
 
     assert_in_alphabet(cleaned_rpr,
-                       alphabet=set(table.keys()) | set(space) | set(linebreak))
+                       alphabet=set(tabledict.keys()) | set(space) | set(linebreak))
 
     watson, crickrv = cleaned_rpr.splitlines()
 
@@ -86,7 +88,7 @@ def tuple_from_repr(
     )
 
     result = watson.strip(space), crickrv.strip(space)[::-1], overhang
-    assert_anneal(*result, table={**table, **{space: space}})
+    assert_anneal(*result, table={**tabledict, **{space: space}})
 
     return result
 
@@ -95,11 +97,11 @@ def repr_from_tuple(
     watson: str,
     crick: str,
     overhang: int,
-    table: dict = COMPLEMENT_TABLE_DNA,
+    table: str = "{DNA}",
     space: str = "-"
 ) -> str:
     """docstring."""
-    assert_anneal(watson, crick, overhang = overhang, table = table)
+    assert_anneal(watson, crick, overhang=overhang, table = tablefactory(table))
     assert isinstance(space, str)
     assert len(space) == 1
 

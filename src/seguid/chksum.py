@@ -6,10 +6,10 @@ seguid.
 The seguid module provides four functions for calculations of SEGUID checksums
 for biological sequences with varying topologies
 
-lsseguid (s)ingle-stranded (l)inear SEGUID
-csseguid (s)ingle-stranded (c)ircular SEGUID
-ldseguid (d)ouble-stranded (l)inear SEGUID
-cdseguid (d)ouble-stranded (c)ircular SEGUID
+lsseguid (l)inear   (s)ingle-stranded SEGUID
+csseguid (c)ircular (s)ingle-stranded SEGUID
+ldseguid (l)inear   (d)ouble-stranded SGUID
+cdseguid (c)ircular (d)ouble-stranded SEGUID
 
 Some auxillary functions are also provided.
 
@@ -235,7 +235,7 @@ def ldseguid(watson: str, crick: str, overhang: int, table: str = "{DNA}") -> st
         (crick, watson, len(watson) - len(crick) + overhang),
     )
 
-    msg = repr_from_tuple(watson=w, crick=c, overhang=o, table=tb, space="-")
+    msg = repr_from_tuple(watson=w, crick=c, overhang=o, table=table, space="-")
 
     extable = table + ",--,\n\n"
 
@@ -273,4 +273,3 @@ def cdseguid(watson: str, crick: str, table: str = "{DNA}") -> str:
     return (
         cdseguid_prefix + ldseguid(watson=w, crick=rc(w, table=tb), overhang=0, table=table)[len(ldseguid_prefix) :]
     )
-
