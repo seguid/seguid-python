@@ -121,21 +121,21 @@ setup() {
 }
 
 @test "<CLI call> --type=seguid --table='{DNA}' --form='long' <<< \"ACGT\"" {
-    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
+    ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
     run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='long' <<< "ACGT"
     assert_success
     assert_output "seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
 }
 
 @test "<CLI call> --type=seguid --table='{DNA}' --form='short' <<< \"ACGT\"" {
-    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
+    ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
     run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='short' <<< "ACGT"
     assert_success
     assert_output "seguid=IQiZTh"
 }
 
 @test "<CLI call> --type=seguid --table='{DNA}' --form='both' <<< \"ACGT\"" {
-    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
+    ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
     run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='both' <<< "ACGT"
     assert_success
     assert_output "seguid=IQiZTh seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
@@ -388,4 +388,3 @@ setup() {
     rm "${pathname}"
     rmdir "${td}"
 }
-
