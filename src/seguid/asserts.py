@@ -3,6 +3,7 @@
 from seguid.tables import COMPLEMENT_TABLE_DNA
 import seguid.manip
 from string import ascii_letters
+from string import digits
 import re
 
 def assert_in_alphabet(seq: str,
@@ -11,7 +12,7 @@ def assert_in_alphabet(seq: str,
     assert isinstance(seq, str), "Argument 'seq' must be an string"
     assert isinstance(alphabet, set), "Argument 'alphabet' must be a set"
     assert len(alphabet) > 0, "Argument 'alphabet' must not be empty"
-    assert not alphabet - (set(ascii_letters)| set("\n-")), "Only A-Z a-z allowed"
+    assert not alphabet - (set(ascii_letters) | set(digits) | set("\n-")), "Only A-Z a-z allowed"
     first = list(alphabet)[0]
     assert isinstance(first, str), "Argument 'alphabet' should contain 'str' elements"
 
