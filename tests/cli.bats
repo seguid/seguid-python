@@ -131,14 +131,14 @@ setup() {
     ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
     run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='short' <<< "ACGT"
     assert_success
-    assert_output "seguid=IQiZTh"
+    assert_output "IQiZTh"
 }
 
 @test "<CLI call> --type=seguid --table='{DNA}' --form='both' <<< \"ACGT\"" {
     ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
     run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='both' <<< "ACGT"
     assert_success
-    assert_output "seguid=IQiZTh seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
+    assert_output "IQiZTh seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
 }
 
 
