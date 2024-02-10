@@ -121,21 +121,18 @@ setup() {
 }
 
 @test "<CLI call> --type=seguid --table='{DNA}' --form='long' <<< \"ACGT\"" {
-    ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
     run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='long' <<< "ACGT"
     assert_success
     assert_output "seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
 }
 
 @test "<CLI call> --type=seguid --table='{DNA}' --form='short' <<< \"ACGT\"" {
-    ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
     run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='short' <<< "ACGT"
     assert_success
     assert_output "IQiZTh"
 }
 
 @test "<CLI call> --type=seguid --table='{DNA}' --form='both' <<< \"ACGT\"" {
-    ## skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/67"
     run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='both' <<< "ACGT"
     assert_success
     assert_output "IQiZTh seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
@@ -352,17 +349,21 @@ setup() {
 
 
 # Expanded epigenetic alphabet per Viner et al. (2024)
-@test "<CLI call> --table='{DNA},m1,1m,h2,2h,f3,3f,c4,4c' <<< 'AmT2C\nT1AhG'" {
-    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/68"
+@test "<CLI call> --type=lsseguid --table='{DNA},m1,1m,h2,2h,f3,3f,c4,4c' <<< 'AmT2C'" {
+    run "${cli_call[@]}" --type=lsseguid --table="{DNA},m1,1m,h2,2h,f3,3f,c4,4c" <<< 'AmT2C'
+    assert_success
+    assert_output "lsseguid=MW4Rh3lGY2mhwteaSKh1-Kn2fGA"
+}
+
+# Expanded epigenetic alphabet per Viner et al. (2024)
+@test "<CLI call> --type=ldseguid --table='{DNA},m1,1m,h2,2h,f3,3f,c4,4c' <<< \$'AmT2C\nT1AhG'" {
     run "${cli_call[@]}" --type=ldseguid --table="{DNA},m1,1m,h2,2h,f3,3f,c4,4c" <<< $'AmT2C\nT1AhG'
     assert_success
     assert_output "ldseguid=rsPDjP4SWr3-ploCeXTdTA80u0Y"
 }
 
-
 # Ambigous expanded epigenetic alphabet per Viner et al. (2024)
-@test "<CLI call> --table='{DNA},m1,1m,h2,2h,f3,3f,c4,4c,w6,6w,x7,7x,y8,8y,z9,9z' <<< 'AmT2C\nT1AhG'" {
-    skip "https://github.com/MetabolicEngineeringGroupCBMA/seguid/issues/68"
+@test "<CLI call> --type=ldseguid --table='{DNA},m1,1m,h2,2h,f3,3f,c4,4c,w6,6w,x7,7x,y8,8y,z9,9z' <<< \$'AmT2C\nT1AhG'" {
     run "${cli_call[@]}" --type=ldseguid --table="{DNA},m1,1m,h2,2h,f3,3f,c4,4c,w6,6w,x7,7x,y8,8y,z9,9z" <<< $'AAAhyAmA\nTTT28T1T'
     assert_success
     assert_output "ldseguid=ARKoPbYshXt9atSMOfbwMdcviXA"
@@ -388,3 +389,4 @@ setup() {
     rm "${pathname}"
     rmdir "${td}"
 }
+
