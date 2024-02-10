@@ -37,9 +37,10 @@ csseguid_prefix: str = "csseguid="
 ldseguid_prefix: str = "ldseguid="
 cdseguid_prefix: str = "cdseguid="
 b64alphabet = set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/_-")
+short = 6
 
 
-def _seguid(seq: str, table: str = "{DNA}", encoding: callable = base64.standard_b64encode) -> str:
+def _seguid(seq: str, table: str = "{DNA}", encoding: callable = base64.standard_b64encode, form: str = "long") -> str:
     assert callable(encoding)
     assert seq, "A sequence must not be empty"
     assert_in_alphabet(seq, alphabet=set(tablefactory(table).keys()))
@@ -52,7 +53,17 @@ def _seguid(seq: str, table: str = "{DNA}", encoding: callable = base64.standard
     return csum
 
 
-def seguid(seq: str, table: str = "{DNA}") -> str:
+def _form(prefix, csum, form):
+    longform = ""
+    shortform = ""
+    if form != "short":
+        longform = prefix + csum
+    if form != "long":
+        shortform = csum[:short]
+    return " ".join((shortform, longform)).strip()
+
+
+def seguid(seq: str, table: str = "{DNA}", form: str = "long") -> str:
     """SEGUID checksum for protein or single stranded linear DNA.
 
     OBSOLETE, use lsseguid instead.
@@ -89,10 +100,12 @@ def seguid(seq: str, table: str = "{DNA}") -> str:
     >>> seguid("AT")
     'seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4'
     """
-    return seguid_prefix + _seguid(seq, table=table, encoding=base64.standard_b64encode)
+    return _form(seguid_prefix,
+                 _seguid(seq, table=table, encoding=base64.standard_b64encode),
+                 form)
 
 
-def lsseguid(seq: str, table: str = "{DNA}") -> str:
+def lsseguid(seq: str, table: str = "{DNA}", form: str = "long") -> str:
     """SEGUID checksum for single stranded linear DNA (slSEGUID).
 
     Identical to the seguid function except for that the '+' and '/' characters
@@ -111,10 +124,12 @@ def lsseguid(seq: str, table: str = "{DNA}") -> str:
     >>> lsseguid("AT")
     'lsseguid=Ax_RG6hzSrMEEWoCO1IWMGska-4'
     """
-    return lsseguid_prefix + _seguid(seq, table=table, encoding=base64.urlsafe_b64encode)
+    return _form(lsseguid_prefix,
+                 _seguid(seq, table=table, encoding=base64.urlsafe_b64encode),
+                 form)
 
 
-def csseguid(seq: str, table: str = "{DNA}") -> str:
+def csseguid(seq: str, table: str = "{DNA}", form: str = "long") -> str:
     r"""SEGUID checksum for single stranded circular DNA (csSEGUID).
 
     The csSEGUID is the lsSEGUID checksum calculated for the lexicographically
@@ -138,10 +153,12 @@ def csseguid(seq: str, table: str = "{DNA}") -> str:
     >>> lsseguid("TTTA")
     'lsseguid=8zCvKwyQAEsbPtC4yTV-pY0H93Q'
     """
-    return csseguid_prefix + _seguid(rotate_to_min(seq), table=table, encoding=base64.urlsafe_b64encode)
+    return _form(csseguid_prefix,
+                 _seguid(rotate_to_min(seq), table=table, encoding=base64.urlsafe_b64encode),
+                 form)
 
 
-def ldseguid(watson: str, crick: str, overhang: int, table: str = "{DNA}") -> str:
+def ldseguid(watson: str, crick: str, overhang: int, table: str = "{DNA}", form: str = "long") -> str:
     r"""SEGUID checksum for double stranded linear DNA (ldSEGUID).
 
     Calculates the ldSEGUID checksum for a dsDNA sequence defined by two
@@ -239,10 +256,11 @@ def ldseguid(watson: str, crick: str, overhang: int, table: str = "{DNA}") -> st
 
     extable = table + ",--,\n\n"
 
-    return ldseguid_prefix + _seguid(msg, table=extable, encoding=base64.urlsafe_b64encode)
+    return _form(ldseguid_prefix,
+                 _seguid(msg, table=extable, encoding=base64.urlsafe_b64encode),
+                 form)
 
-
-def cdseguid(watson: str, crick: str, table: str = "{DNA}") -> str:
+def cdseguid(watson: str, crick: str, table: str = "{DNA}", form: str = "long") -> str:
     """SEGUID checksum for double stranded circular DNA (dcSEGUID).
 
     The dcSEGUID is the slSEGUID checksum calculated for the lexicographically
@@ -270,6 +288,6 @@ def cdseguid(watson: str, crick: str, table: str = "{DNA}") -> str:
     else:
         w = crick_min
 
-    return (
-        cdseguid_prefix + ldseguid(watson=w, crick=rc(w, table=tb), overhang=0, table=table)[len(ldseguid_prefix) :]
-    )
+    return _form(cdseguid_prefix,
+                 ldseguid(watson=w, crick=rc(w, table=tb), overhang=0, table=table, form="long")[len(ldseguid_prefix):],
+                 form)
