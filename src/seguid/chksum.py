@@ -45,7 +45,7 @@ def _seguid(seq: str, table: str = "{DNA}", encoding: callable = base64.standard
     assert seq, "A sequence must not be empty"
     assert_in_alphabet(seq, alphabet=set(tablefactory(table).keys()))
     m = hashlib.sha1()
-    m.update(seq.encode("ASCII").upper())
+    m.update(seq.encode("ASCII"))
     hs = encoding(m.digest())
     csum = f"{hs.decode('ASCII').rstrip('=')}"
     assert len(csum) == 27
