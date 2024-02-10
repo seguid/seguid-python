@@ -104,7 +104,7 @@ setup() {
 @test "<CLI call> --type=ldseguid <<< \$'-CGT\\nTGCA'" {
     run "${cli_call[@]}" --type=ldseguid <<< $'-CGT\nTGCA'
     assert_success
-    assert_output "ldseguid=MpPe6pJoya3CoRh3BAw2qgEOcKI"
+    assert_output "ldseguid=ONPHQCrPDPDbypL85mg8vXNQGPw"
 }
 
 @test "<CLI call> --type=ldseguid <<< \$'-CGT\nTGC-'" {
@@ -113,6 +113,11 @@ setup() {
     assert_output "ldseguid=a_o4Ga8vQrhlvI_zkjUg0uu6obA"
 }
 
+@test "<CLI call> --type=ldseguid <<< \$'--TTACA\nCTAATG-'" {
+    run "${cli_call[@]}" --type=ldseguid <<< $'--TTACA\nCTAATG-'
+    assert_success
+    assert_output "ldseguid=V5jUOgj3BIT71mTOAp4161kx3HA"
+}
 
 @test "<CLI call> --type=seguid --table='{DNA}' <<< \"ACGT\"" {
     run "${cli_call[@]}" --type=seguid --table='{DNA}' <<< "ACGT"

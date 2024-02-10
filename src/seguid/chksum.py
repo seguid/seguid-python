@@ -235,9 +235,9 @@ def ldseguid(watson: str, crick: str, overhang: int, table: str = "{DNA}", form:
     Examples
     --------
     >>> ldseguid("TATGCC", "GCATAC", 1)
-    'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
+    'ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo'
     >>> ldseguid("GCATAC", "TATGCC", 1)
-    'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
+    'ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo'
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
@@ -247,17 +247,20 @@ def ldseguid(watson: str, crick: str, overhang: int, table: str = "{DNA}", form:
     assert len(set(tb.values())) > 1, "Was a protein table used by mistake?"
     assert_anneal(watson, crick, overhang, table=tb)
 
-    w, c, o = min(
-        (watson, crick, overhang),
-        (crick, watson, len(watson) - len(crick) + overhang),
-    )
-
-    msg = repr_from_tuple(watson=w, crick=c, overhang=o, table=table, space="-")
+    watson_crick_repr = repr_from_tuple(watson=watson, crick=crick, overhang=overhang, table=table, space="-")
+    crick_watson_repr = watson_crick_repr.split('\n')
+    crick_watson_repr = crick_watson_repr[::-1]
+    crick_watson_repr = '\n'.join(crick_watson_repr)
+    
+    if (watson_crick_repr < crick_watson_repr):
+        repr = watson_crick_repr
+    else:
+        repr = crick_watson_repr
 
     extable = table + ",--,\n\n"
 
     return _form(ldseguid_prefix,
-                 _seguid(msg, table=extable, encoding=base64.urlsafe_b64encode),
+                 _seguid(repr, table=extable, encoding=base64.urlsafe_b64encode),
                  form)
 
 def cdseguid(watson: str, crick: str, table: str = "{DNA}", form: str = "long") -> str:

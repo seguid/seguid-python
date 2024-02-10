@@ -8,6 +8,10 @@ install-deps:
 install:
 	python -m pip install .
 
+docs:
+	cd docs; \
+	make
+
 test:
 	python -m pytest
 
