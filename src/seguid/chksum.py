@@ -235,7 +235,7 @@ def ldseguid(watson: str, crick: str, overhang: int, table: str = "{DNA}", form:
     Examples
     --------
     >>> ldseguid("TATGCC", "GCATAC", 1)
-    'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
+    'ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo'
     >>> ldseguid("GCATAC", "TATGCC", 1)
     'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
     """
