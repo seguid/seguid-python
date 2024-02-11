@@ -1,6 +1,6 @@
 SHELL=bash
 
-all: test install
+all: install check check-cli
 
 install-deps:
 	python -m pip install pytest pydivsufsort
@@ -12,7 +12,7 @@ docs:
 	cd docs; \
 	make
 
-test:
+check:
 	python -m pytest
 
 check-cli:
