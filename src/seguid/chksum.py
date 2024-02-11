@@ -235,9 +235,9 @@ def ldseguid(watson: str, crick: str, overhang: int, table: str = "{DNA}", form:
     Examples
     --------
     >>> ldseguid("TATGCC", "GCATAC", 1)
-    'ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo'
+    'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
     >>> ldseguid("GCATAC", "TATGCC", 1)
-    'ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo'
+    'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
