@@ -2,14 +2,14 @@
 # -*- coding: utf-8 -*-
 
 # Definition of Complementary DNA Symbols
-COMPLEMENT_TABLE_DNA = {"G": "C",
+COMPLEMENT_ALPHABET_DNA = {"G": "C",
                         "A": "T",
                         "C": "G",
                         "T": "A"}
 
 
 # Definition of Complementary RNA Symbols
-COMPLEMENT_TABLE_RNA = {"G": "C",
+COMPLEMENT_ALPHABET_RNA = {"G": "C",
                         "A": "U",
                         "C": "G",
                         "U": "A"}
@@ -17,7 +17,7 @@ COMPLEMENT_TABLE_RNA = {"G": "C",
 
 # Definition of Complementary IUPAC Ambigous DNA Symbols
 """
-The table below was adapted from Cornish-Bowden, 1985:
+The alphabet below was adapted from Cornish-Bowden, 1985:
 
 ======== ================== ============ ======================================
 Symbol   Meaning            Complement   Origin of designation
@@ -46,7 +46,7 @@ Nucleic Acids Research, 13(9), 3021–3030.
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC341218
 """
 
-COMPLEMENT_TABLE_IUPAC = {**COMPLEMENT_TABLE_DNA,  **{"B": "V",
+COMPLEMENT_ALPHABET_IUPAC = {**COMPLEMENT_ALPHABET_DNA,  **{"B": "V",
                                                       "D": "H",
                                                       "H": "D",
                                                       "K": "M",
@@ -61,7 +61,7 @@ COMPLEMENT_TABLE_IUPAC = {**COMPLEMENT_TABLE_DNA,  **{"B": "V",
 # Definition of a the IUPAC Protein Symbols
 # values are empty strings since there is no concept of complementarity
 # for proteins
-TABLE_IUPAC_PROTEIN = {"A": "",
+ALPHABET_IUPAC_PROTEIN = {"A": "",
                        "C": "",
                        "D": "",
                        "E": "",
@@ -83,11 +83,11 @@ TABLE_IUPAC_PROTEIN = {"A": "",
                        "Y": ""}
 
 
-table_categories = {
-    "{DNA}": COMPLEMENT_TABLE_DNA,
-    "{RNA}": COMPLEMENT_TABLE_RNA,
-    "{IUPAC}": COMPLEMENT_TABLE_IUPAC,
-    "{protein}": TABLE_IUPAC_PROTEIN,
+alphabet_categories = {
+    "{DNA}": COMPLEMENT_ALPHABET_DNA,
+    "{RNA}": COMPLEMENT_ALPHABET_RNA,
+    "{IUPAC}": COMPLEMENT_ALPHABET_IUPAC,
+    "{protein}": ALPHABET_IUPAC_PROTEIN,
 }
 
 
@@ -98,19 +98,19 @@ def tablefactory(argument: str):
     # argument = 'A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y'
     tb, *ext = [e for e in argument.split(",")]
     try:
-        table = table_categories[tb]
+        alphabet = alphabet_categories[tb]
     except KeyError:
         if len(tb) == 1:
-            table = {tb[0]: ""}
+            alphabet = {tb[0]: ""}
         elif len(tb) == 2:
-            table = {tb[0]: tb[1]}
+            alphabet = {tb[0]: tb[1]}
         else:
-            raise ValueError("First element not a table category, symbol or basepair.")
+            raise ValueError("First element not a alphabet category, symbol or basepair.")
 
     if ext and all(len(e) == 1 for e in ext):
-        assert set(table.values()) == {""}  # extension is an alphabet
-        table.update((c, "") for c in ext)
+        assert set(alphabet.values()) == {""}  # extension is an alphabet
+        alphabet.update((c, "") for c in ext)
     elif ext and all(len(e) == 2 for e in ext):
-        # assert_table                      # extension is a translation table
-        table.update((k, v) for k, v in ext)
-    return table
+        # assert_alphabet                      # extension is a translation alphabet
+        alphabet.update((k, v) for k, v in ext)
+    return alphabet

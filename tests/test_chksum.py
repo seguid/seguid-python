@@ -22,10 +22,10 @@ from seguid.manip import rc
 
 from seguid.reprutils import repr_from_tuple
 
-# from seguid.tables import COMPLEMENT_TABLE_DNA
-# from seguid.tables import COMPLEMENT_TABLE_RNA
-# from seguid.tables import COMPLEMENT_TABLE_IUPAC
-# from seguid.tables import TABLE_IUPAC_PROTEIN
+# from seguid.tables import COMPLEMENT_ALPHABET_DNA
+# from seguid.tables import COMPLEMENT_ALPHABET_RNA
+# from seguid.tables import COMPLEMENT_ALPHABET_IUPAC
+# from seguid.tables import ALPHABET_IUPAC_PROTEIN
 
 
 def test_seguid():
@@ -37,7 +37,7 @@ def test_seguid():
         "QSFTIEGLAVGVIRNGDWL"
     )
 
-    assert seguid(NP_313053_1, table="{protein}") == "seguid=2c4yjE+JqjvzYF1d0OmUh8pCpz8"
+    assert seguid(NP_313053_1, alphabet="{protein}") == "seguid=2c4yjE+JqjvzYF1d0OmUh8pCpz8"
 
 
 
@@ -69,14 +69,14 @@ def test_csseguid():
 
 def test_ldseguid():
     ct = "{DNA}"
-    table = ct + ",--,\n\n"
+    alphabet = ct + ",--,\n\n"
     # AT
     # TA
 
     dlDNA = "AT"
     dlDNA_ldseguid = "AWD-dt5-TEua8RbOWfnctJIu9nA"
     assert ldseguid(dlDNA, rc(dlDNA), 0) == f"ldseguid={dlDNA_ldseguid}"
-    assert dlDNA_ldseguid in lsseguid("AT\nTA", table = table)
+    assert dlDNA_ldseguid in lsseguid("AT\nTA", alphabet = alphabet)
     assert cs("AT\nTA") == dlDNA_ldseguid
 
     #  -AT
@@ -85,7 +85,7 @@ def test_ldseguid():
     dlDNA2 = ("AT", "TA", 1)
     dlDNA2_ldseguid = "JwB2eUmZkCNjyWAv471JeUbiSDM"
     assert ldseguid(*dlDNA2) == f"ldseguid={dlDNA2_ldseguid}"
-    assert dlDNA2_ldseguid in lsseguid("-AT\nAT-", table = table)
+    assert dlDNA2_ldseguid in lsseguid("-AT\nAT-", alphabet = alphabet)
     assert cs("-AT\nAT-") == dlDNA2_ldseguid
 
     # TA-
@@ -95,7 +95,7 @@ def test_ldseguid():
     assert repr_from_tuple(*dlDNA3) == "TA-\n-TA"
     dlDNA3_ldseguid = "XBcVadfQevTW_lklW4rdqw5udQ8"
     assert ldseguid(*dlDNA3) == f"ldseguid={dlDNA3_ldseguid}"
-    assert dlDNA3_ldseguid in lsseguid("-TA\nTA-", table = table)
+    assert dlDNA3_ldseguid in lsseguid("-TA\nTA-", alphabet = alphabet)
     assert cs("-TA\nTA-") == dlDNA3_ldseguid
 
     # CTATAG
@@ -105,7 +105,7 @@ def test_ldseguid():
     assert repr_from_tuple(*dlDNA4) == "CTATAG\n--TA--"
     dlDNA4_ldseguid = "_E05Xeo7KnLxrjsqDdpXNw_AIDE"
     assert ldseguid(*dlDNA4) == f"ldseguid={dlDNA4_ldseguid}"
-    assert dlDNA4_ldseguid in lsseguid("--TA--\nCTATAG", table = table)
+    assert dlDNA4_ldseguid in lsseguid("--TA--\nCTATAG", alphabet = alphabet)
     assert cs("--TA--\nCTATAG") == dlDNA4_ldseguid
 
     # --AT--
@@ -115,7 +115,7 @@ def test_ldseguid():
     assert repr_from_tuple(*dlDNA5) == "--AT--\nGATATC"
     dlDNA5_ldseguid = "np3hncfQvOh8rZ8Co1Ts_02NXg4"
     assert ldseguid(*dlDNA5) == f"ldseguid={dlDNA5_ldseguid}"
-    assert dlDNA5_ldseguid in lsseguid("--AT--\nGATATC", table = table)
+    assert dlDNA5_ldseguid in lsseguid("--AT--\nGATATC", alphabet = alphabet)
     assert cs("--AT--\nGATATC") == dlDNA5_ldseguid
 
     repr_from_tuple("AT", "CTATAG", 2)
@@ -136,44 +136,44 @@ def test_cdseguid():
     assert cdseguid("AACGT", "ACGTT") == truth
 
 
-def test_with_tables():
+def test_with_alphabets():
 
     result = 'seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4'
     result_rna = 'seguid=rN9Bc195AlLq45vug03K0N5Yfj0'
-    assert seguid("AT", table="{DNA}") == result
-    assert seguid("AU", table="{RNA}") == result_rna
-    assert seguid("AT", table="{IUPAC}") == result
-    assert seguid("AT", table="{protein}") == result
+    assert seguid("AT", alphabet="{DNA}") == result
+    assert seguid("AU", alphabet="{RNA}") == result_rna
+    assert seguid("AT", alphabet="{IUPAC}") == result
+    assert seguid("AT", alphabet="{protein}") == result
 
     result = 'lsseguid=Ax_RG6hzSrMEEWoCO1IWMGska-4'
     result_rna = 'lsseguid=rN9Bc195AlLq45vug03K0N5Yfj0'
-    assert lsseguid("AT", table="{DNA}") == result
-    assert lsseguid("AU", table="{RNA}") == result_rna
-    assert lsseguid("AT", table="{IUPAC}") == result
-    assert lsseguid("AT", table="{protein}") == result
+    assert lsseguid("AT", alphabet="{DNA}") == result
+    assert lsseguid("AU", alphabet="{RNA}") == result_rna
+    assert lsseguid("AT", alphabet="{IUPAC}") == result
+    assert lsseguid("AT", alphabet="{protein}") == result
 
     result = 'csseguid=Ax_RG6hzSrMEEWoCO1IWMGska-4'
     result_rna = 'csseguid=rN9Bc195AlLq45vug03K0N5Yfj0'
-    assert csseguid("AT", table="{DNA}") == result
-    assert csseguid("AU", table="{RNA}") == result_rna
-    assert csseguid("AT", table="{IUPAC}") == result
-    assert csseguid("AT", table="{protein}") == result
+    assert csseguid("AT", alphabet="{DNA}") == result
+    assert csseguid("AU", alphabet="{RNA}") == result_rna
+    assert csseguid("AT", alphabet="{IUPAC}") == result
+    assert csseguid("AT", alphabet="{protein}") == result
 
     result = 'ldseguid=AWD-dt5-TEua8RbOWfnctJIu9nA'
     result_rna = 'ldseguid=1jgY1uMadj9rCRXKjeFDBK2jI44'
-    assert ldseguid("AT", "AT", 0, table="{DNA}") == result
-    assert ldseguid("AU", "AU", 0, table="{RNA}") == result_rna
-    assert ldseguid("AT", "AT", 0, table="{IUPAC}") == result
+    assert ldseguid("AT", "AT", 0, alphabet="{DNA}") == result
+    assert ldseguid("AU", "AU", 0, alphabet="{RNA}") == result_rna
+    assert ldseguid("AT", "AT", 0, alphabet="{IUPAC}") == result
     with pytest.raises(AssertionError):
-        ldseguid("AT", "AT", 0, table="{protein}")
+        ldseguid("AT", "AT", 0, alphabet="{protein}")
 
     result = 'cdseguid=AWD-dt5-TEua8RbOWfnctJIu9nA'
     result_rna = 'cdseguid=1jgY1uMadj9rCRXKjeFDBK2jI44'
-    assert cdseguid("AT", "AT", table="{DNA}") == result
-    assert cdseguid("AU", "AU", table="{RNA}") == result_rna
-    assert cdseguid("AT", "AT", table="{IUPAC}") == result
+    assert cdseguid("AT", "AT", alphabet="{DNA}") == result
+    assert cdseguid("AU", "AU", alphabet="{RNA}") == result_rna
+    assert cdseguid("AT", "AT", alphabet="{IUPAC}") == result
     with pytest.raises(AssertionError):
-        assert cdseguid("AT", "AT", table="{protein}") == result
+        assert cdseguid("AT", "AT", alphabet="{protein}") == result
 
 def test_empty():
 

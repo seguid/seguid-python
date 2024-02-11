@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from seguid.tables import COMPLEMENT_TABLE_DNA
+from seguid.tables import COMPLEMENT_ALPHABET_DNA
 import seguid.manip
 from string import ascii_letters
 from string import digits
@@ -31,10 +31,10 @@ def assert_in_alphabet(seq: str,
         )
 
 
-def assert_table(table: dict):
-    assert isinstance(table, dict), "Argument 'table' must be a dict"
-    keys  = table.keys()
-    values = table.values()
+def assert_alphabet(alphabet: dict):
+    assert isinstance(alphabet, dict), "Argument 'alphabet' must be a dict"
+    keys  = alphabet.keys()
+    values = alphabet.values()
     # Assert that the set of values are also in the set of keys
     unknown = set(
         chr(v) for v in values if v not in (k for k in keys)
@@ -43,25 +43,25 @@ def assert_table(table: dict):
     if unknown:
         missing = ' '.join(unknown)
         raise ValueError(
-            "Detected values (" f"{missing}) in 'table' that are not in the keys"
+            "Detected values (" f"{missing}) in 'alphabet' that are not in the keys"
         )
 
 
 def assert_anneal(watson: str,
                   crick: str,
                   overhang: int,
-                  table: dict = COMPLEMENT_TABLE_DNA) -> bool:
+                  alphabet: dict = COMPLEMENT_ALPHABET_DNA) -> bool:
     """docstring."""
-    assert_table(table)
-    assert_in_alphabet(watson, alphabet=set(table.keys()))
-    assert_in_alphabet(crick, alphabet=set(table.keys()))
+    assert_alphabet(alphabet)
+    assert_in_alphabet(watson, alphabet=set(alphabet.keys()))
+    assert_in_alphabet(crick, alphabet=set(alphabet.keys()))
 
     assert isinstance(overhang, int), "overhang must be an integer"
     assert -len(watson) < overhang, "watson and crick has to anneal with at least one bp"
     assert overhang < len(crick), "watson and crick has to anneal with at least one bp"
 
     up = watson[max(-overhang, 0): len(crick) - overhang]
-    dn = seguid.manip.rc(crick, table=table)[max(overhang, 0): len(watson) + overhang]
+    dn = seguid.manip.rc(crick, alphabet=alphabet)[max(overhang, 0): len(watson) + overhang]
 
     if up != dn:
         raise ValueError("Mismatched basepairs.")

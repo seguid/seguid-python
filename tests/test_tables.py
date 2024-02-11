@@ -3,16 +3,16 @@
 
 import pytest
 
-from seguid.asserts import assert_table
+from seguid.asserts import assert_alphabet
 
-from seguid.tables import COMPLEMENT_TABLE_DNA
-from seguid.tables import COMPLEMENT_TABLE_RNA
-from seguid.tables import COMPLEMENT_TABLE_IUPAC
-from seguid.tables import TABLE_IUPAC_PROTEIN
+from seguid.tables import COMPLEMENT_ALPHABET_DNA
+from seguid.tables import COMPLEMENT_ALPHABET_RNA
+from seguid.tables import COMPLEMENT_ALPHABET_IUPAC
+from seguid.tables import ALPHABET_IUPAC_PROTEIN
 
 
-def test_complementary_tables():
+def test_complementary_alphabets():
     """docstring."""
-    assert_table(COMPLEMENT_TABLE_DNA)
-    assert_table(COMPLEMENT_TABLE_RNA)
-    assert_table(COMPLEMENT_TABLE_IUPAC)
+    assert_alphabet(COMPLEMENT_ALPHABET_DNA)
+    assert_alphabet(COMPLEMENT_ALPHABET_RNA)
+    assert_alphabet(COMPLEMENT_ALPHABET_IUPAC)

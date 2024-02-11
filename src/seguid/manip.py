@@ -4,9 +4,9 @@
 from array import array
 from typing import Callable
 
-from seguid.asserts import assert_table
+from seguid.asserts import assert_alphabet
 from seguid.asserts import assert_in_alphabet
-from seguid.tables import COMPLEMENT_TABLE_DNA
+from seguid.tables import COMPLEMENT_ALPHABET_DNA
 
 
 def rotate(seq: str, amount: int = 0) -> str:
@@ -52,15 +52,15 @@ def rotate(seq: str, amount: int = 0) -> str:
     return seq
 
 
-def complementary(seq: str, table: dict = COMPLEMENT_TABLE_DNA) -> str:
+def complementary(seq: str, alphabet: dict = COMPLEMENT_ALPHABET_DNA) -> str:
     """Complement of a DNA sequence."""
-    ## Validate 'table':
-    assert_table(table)
+    ## Validate 'alphabet':
+    assert_alphabet(alphabet)
 
     ## Validate 'seq':
-    assert_in_alphabet(seq, alphabet=set(table.keys()))
+    assert_in_alphabet(seq, alphabet=set(alphabet.keys()))
 
-    return seq.translate({ord(k): ord(v) for k, v in table.items()})
+    return seq.translate({ord(k): ord(v) for k, v in alphabet.items()})
 
 
 def reverse(seq) -> str:
@@ -69,14 +69,14 @@ def reverse(seq) -> str:
     return seq[::-1]
 
 
-def rc(seq: str, table: dict = COMPLEMENT_TABLE_DNA) -> str:
+def rc(seq: str, alphabet: dict = COMPLEMENT_ALPHABET_DNA) -> str:
     """Reverse complement of sequence.
 
     Returns the reverse complement for a DNA strand.
 
-    The default complement table accepts GATC only.
+    The default complement alphabet accepts GATC only.
 
-    The tables module defines and alternative table containing the
+    The tables module defines and alternative alphabet containing the
     ambiguous codes suggested by IUPAC.
 
     Examples
@@ -91,7 +91,7 @@ def rc(seq: str, table: dict = COMPLEMENT_TABLE_DNA) -> str:
     >>> rc("GTa".upper())
     'TAC'
     """
-    return reverse(complementary(seq, table=table))
+    return reverse(complementary(seq, alphabet=alphabet))
 
 
 def min_rotation_py(s: str) -> int:

@@ -119,26 +119,26 @@ setup() {
     assert_output "ldseguid=V5jUOgj3BIT71mTOAp4161kx3HA"
 }
 
-@test "<CLI call> --type=seguid --table='{DNA}' <<< \"ACGT\"" {
-    run "${cli_call[@]}" --type=seguid --table='{DNA}' <<< "ACGT"
+@test "<CLI call> --type=seguid --alphabet='{DNA}' <<< \"ACGT\"" {
+    run "${cli_call[@]}" --type=seguid --alphabet='{DNA}' <<< "ACGT"
     assert_success
     assert_output "seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
 }
 
-@test "<CLI call> --type=seguid --table='{DNA}' --form='long' <<< \"ACGT\"" {
-    run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='long' <<< "ACGT"
+@test "<CLI call> --type=seguid --alphabet='{DNA}' --form='long' <<< \"ACGT\"" {
+    run "${cli_call[@]}" --type=seguid --alphabet='{DNA}' --form='long' <<< "ACGT"
     assert_success
     assert_output "seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
 }
 
-@test "<CLI call> --type=seguid --table='{DNA}' --form='short' <<< \"ACGT\"" {
-    run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='short' <<< "ACGT"
+@test "<CLI call> --type=seguid --alphabet='{DNA}' --form='short' <<< \"ACGT\"" {
+    run "${cli_call[@]}" --type=seguid --alphabet='{DNA}' --form='short' <<< "ACGT"
     assert_success
     assert_output "IQiZTh"
 }
 
-@test "<CLI call> --type=seguid --table='{DNA}' --form='both' <<< \"ACGT\"" {
-    run "${cli_call[@]}" --type=seguid --table='{DNA}' --form='both' <<< "ACGT"
+@test "<CLI call> --type=seguid --alphabet='{DNA}' --form='both' <<< \"ACGT\"" {
+    run "${cli_call[@]}" --type=seguid --alphabet='{DNA}' --form='both' <<< "ACGT"
     assert_success
     assert_output "IQiZTh seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
 }
@@ -264,41 +264,41 @@ setup() {
 ## --------------------------------------------------------
 ## RNA
 ## --------------------------------------------------------
-@test "<CLI call> --table='{RNA}' <<< \"ACGU\"" {
-    run "${cli_call[@]}" --table='{RNA}' <<< "ACGU"
+@test "<CLI call> --alphabet='{RNA}' <<< \"ACGU\"" {
+    run "${cli_call[@]}" --alphabet='{RNA}' <<< "ACGU"
     assert_success
     assert_output "seguid=LLaWk2Jb8NGt20QXhgm+cSVat34"
 }
 
 
-@test "<CLI call>--type=seguid --table='{RNA}' <<< \"ACGU\"" {
-    run "${cli_call[@]}" --type=seguid --table='{RNA}' <<< "ACGU"
+@test "<CLI call>--type=seguid --alphabet='{RNA}' <<< \"ACGU\"" {
+    run "${cli_call[@]}" --type=seguid --alphabet='{RNA}' <<< "ACGU"
     assert_success
     assert_output "seguid=LLaWk2Jb8NGt20QXhgm+cSVat34"
 }
 
 
-@test "<CLI call> --type=lsseguid --table='{RNA}' <<< \"ACGU\"" {
-    run "${cli_call[@]}" --type=lsseguid --table='{RNA}' <<< "ACGU"
+@test "<CLI call> --type=lsseguid --alphabet='{RNA}' <<< \"ACGU\"" {
+    run "${cli_call[@]}" --type=lsseguid --alphabet='{RNA}' <<< "ACGU"
     assert_success
     assert_output "lsseguid=LLaWk2Jb8NGt20QXhgm-cSVat34"
 }
 
 
-@test "<CLI call> --type=csseguid --table='{RNA}' <<< \"ACGU\"" {
-    run "${cli_call[@]}" --type=csseguid --table='{RNA}' <<< "ACGU"
+@test "<CLI call> --type=csseguid --alphabet='{RNA}' <<< \"ACGU\"" {
+    run "${cli_call[@]}" --type=csseguid --alphabet='{RNA}' <<< "ACGU"
     assert_success
     assert_output "csseguid=LLaWk2Jb8NGt20QXhgm-cSVat34"
 }
 
-@test "<CLI call> --type=ldseguid --table='{RNA}' <<< \$'AACGU\\nUUdTGCA'" {
-    run "${cli_call[@]}" --type=ldseguid --table='{RNA}' <<< $'AACGU\nUUGCA'
+@test "<CLI call> --type=ldseguid --alphabet='{RNA}' <<< \$'AACGU\\nUUdTGCA'" {
+    run "${cli_call[@]}" --type=ldseguid --alphabet='{RNA}' <<< $'AACGU\nUUGCA'
     assert_success
     assert_output "ldseguid=r61AxqwrG01x8RpNluuRlfoL9VY"
 }
 
-@test "<CLI call> --type=cdseguid --table='{RNA}' <<< \$'AACGU\\nUUGCA'" {
-    run "${cli_call[@]}" --type=cdseguid --table='{RNA}' <<< $'AACGU\nUUGCA'
+@test "<CLI call> --type=cdseguid --alphabet='{RNA}' <<< \$'AACGU\\nUUGCA'" {
+    run "${cli_call[@]}" --type=cdseguid --alphabet='{RNA}' <<< $'AACGU\nUUGCA'
     assert_success
     assert_output "cdseguid=r61AxqwrG01x8RpNluuRlfoL9VY"
 }
@@ -309,22 +309,22 @@ setup() {
 ## Protein
 ## --------------------------------------------------------
 ## Source: http://bioinformatics.anl.gov/seguid/ftp.aspx
-@test "<CLI call> --table='{protein}' <<< 'PQITLWQRPIATIKVGGQLKEALLDTGADDTVLEEMNLPGRWKPKLIGGIGGFVKVRQYDQIPIEICGHQAIGTVLVGPTPANIIGRNLLTQIGCTLNF'" {
-    run "${cli_call[@]}" --table='{protein}' <<< "PQITLWQRPIATIKVGGQLKEALLDTGADDTVLEEMNLPGRWKPKLIGGIGGFVKVRQYDQIPIEICGHQAIGTVLVGPTPANIIGRNLLTQIGCTLNF"
+@test "<CLI call> --alphabet='{protein}' <<< 'PQITLWQRPIATIKVGGQLKEALLDTGADDTVLEEMNLPGRWKPKLIGGIGGFVKVRQYDQIPIEICGHQAIGTVLVGPTPANIIGRNLLTQIGCTLNF'" {
+    run "${cli_call[@]}" --alphabet='{protein}' <<< "PQITLWQRPIATIKVGGQLKEALLDTGADDTVLEEMNLPGRWKPKLIGGIGGFVKVRQYDQIPIEICGHQAIGTVLVGPTPANIIGRNLLTQIGCTLNF"
     assert_success
     assert_output "seguid=N4/z+gxAPfkFozbb3f3vStDB/5g"
 }
 
 
-@test "<CLI call> --table='{protein}' <<< 'MTEYKLVVVGAGGVGKSALTIQLTQNHFVDEYDPTIE'" {
-    run "${cli_call[@]}" --table='{protein}' <<< "MTEYKLVVVGAGGVGKSALTIQLTQNHFVDEYDPTIE"
+@test "<CLI call> --alphabet='{protein}' <<< 'MTEYKLVVVGAGGVGKSALTIQLTQNHFVDEYDPTIE'" {
+    run "${cli_call[@]}" --alphabet='{protein}' <<< "MTEYKLVVVGAGGVGKSALTIQLTQNHFVDEYDPTIE"
     assert_success
     assert_output "seguid=PdwDBhhFjE6qlPmSWCJCOjKIDeA"
 }
 
 
-@test "<CLI call> --table='{protein}' <<< 'ARDNAKNTLYLQMSRLRSEDTAMYYCAR'" {
-    run "${cli_call[@]}" --table='{protein}' <<< "ARDNAKNTLYLQMSRLRSEDTAMYYCAR"
+@test "<CLI call> --alphabet='{protein}' <<< 'ARDNAKNTLYLQMSRLRSEDTAMYYCAR'" {
+    run "${cli_call[@]}" --alphabet='{protein}' <<< "ARDNAKNTLYLQMSRLRSEDTAMYYCAR"
     assert_success
     assert_output "seguid=IdtGC8ZYgDbkA0i4u4n0tiAQwng"
 }
@@ -332,44 +332,44 @@ setup() {
 
 
 ## --------------------------------------------------------
-## Custom table
+## Custom alphabet
 ## --------------------------------------------------------
-@test "<CLI call> --table='AU,UA,CG,GC' <<< \"ACGU\"" {
-    run "${cli_call[@]}" --table='AU,UA,CG,GC' <<< "ACGU"
+@test "<CLI call> --alphabet='AU,UA,CG,GC' <<< \"ACGU\"" {
+    run "${cli_call[@]}" --alphabet='AU,UA,CG,GC' <<< "ACGU"
     assert_success
     assert_output "seguid=LLaWk2Jb8NGt20QXhgm+cSVat34"
 }
 
-@test "<CLI call> --type=seguid --table='AT,TA,CG,GC' <<< \"ACGT\"" {
-    run "${cli_call[@]}" --type=seguid --table='AT,TA,CG,GC' <<< "ACGT"
+@test "<CLI call> --type=seguid --alphabet='AT,TA,CG,GC' <<< \"ACGT\"" {
+    run "${cli_call[@]}" --type=seguid --alphabet='AT,TA,CG,GC' <<< "ACGT"
     assert_success
     assert_output "seguid=IQiZThf2zKn/I1KtqStlEdsHYDQ"
 }
 
-@test "<CLI call> --table='A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y' <<< 'ARDNAKNTLYLQMSRLRSEDTAMYYCAR'" {
-    run "${cli_call[@]}" --table='A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y' <<< "ARDNAKNTLYLQMSRLRSEDTAMYYCAR"
+@test "<CLI call> --alphabet='A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y' <<< 'ARDNAKNTLYLQMSRLRSEDTAMYYCAR'" {
+    run "${cli_call[@]}" --alphabet='A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y' <<< "ARDNAKNTLYLQMSRLRSEDTAMYYCAR"
     assert_success
     assert_output "seguid=IdtGC8ZYgDbkA0i4u4n0tiAQwng"
 }
 
 
 # Expanded epigenetic alphabet per Viner et al. (2024)
-@test "<CLI call> --type=lsseguid --table='{DNA},m1,1m,h2,2h,f3,3f,c4,4c' <<< 'AmT2C'" {
-    run "${cli_call[@]}" --type=lsseguid --table="{DNA},m1,1m,h2,2h,f3,3f,c4,4c" <<< 'AmT2C'
+@test "<CLI call> --type=lsseguid --alphabet='{DNA},m1,1m,h2,2h,f3,3f,c4,4c' <<< 'AmT2C'" {
+    run "${cli_call[@]}" --type=lsseguid --alphabet="{DNA},m1,1m,h2,2h,f3,3f,c4,4c" <<< 'AmT2C'
     assert_success
     assert_output "lsseguid=MW4Rh3lGY2mhwteaSKh1-Kn2fGA"
 }
 
 # Expanded epigenetic alphabet per Viner et al. (2024)
-@test "<CLI call> --type=ldseguid --table='{DNA},m1,1m,h2,2h,f3,3f,c4,4c' <<< \$'AmT2C\nT1AhG'" {
-    run "${cli_call[@]}" --type=ldseguid --table="{DNA},m1,1m,h2,2h,f3,3f,c4,4c" <<< $'AmT2C\nT1AhG'
+@test "<CLI call> --type=ldseguid --alphabet='{DNA},m1,1m,h2,2h,f3,3f,c4,4c' <<< \$'AmT2C\nT1AhG'" {
+    run "${cli_call[@]}" --type=ldseguid --alphabet="{DNA},m1,1m,h2,2h,f3,3f,c4,4c" <<< $'AmT2C\nT1AhG'
     assert_success
     assert_output "ldseguid=rsPDjP4SWr3-ploCeXTdTA80u0Y"
 }
 
 # Ambigous expanded epigenetic alphabet per Viner et al. (2024)
-@test "<CLI call> --type=ldseguid --table='{DNA},m1,1m,h2,2h,f3,3f,c4,4c,w6,6w,x7,7x,y8,8y,z9,9z' <<< \$'AmT2C\nT1AhG'" {
-    run "${cli_call[@]}" --type=ldseguid --table="{DNA},m1,1m,h2,2h,f3,3f,c4,4c,w6,6w,x7,7x,y8,8y,z9,9z" <<< $'AAAhyAmA\nTTT28T1T'
+@test "<CLI call> --type=ldseguid --alphabet='{DNA},m1,1m,h2,2h,f3,3f,c4,4c,w6,6w,x7,7x,y8,8y,z9,9z' <<< \$'AmT2C\nT1AhG'" {
+    run "${cli_call[@]}" --type=ldseguid --alphabet="{DNA},m1,1m,h2,2h,f3,3f,c4,4c,w6,6w,x7,7x,y8,8y,z9,9z" <<< $'AAAhyAmA\nTTT28T1T'
     assert_success
     assert_output "ldseguid=ARKoPbYshXt9atSMOfbwMdcviXA"
 }

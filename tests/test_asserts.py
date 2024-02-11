@@ -5,7 +5,7 @@ import pytest
 
 from seguid.asserts import assert_anneal
 from seguid.asserts import assert_in_alphabet
-from seguid.asserts import assert_table
+from seguid.asserts import assert_alphabet
 
 def test_assert_in_alphabet():
     """docstring."""
@@ -29,12 +29,12 @@ def test_assert_in_alphabet():
         pass
 
 
-def test_assert_table():
+def test_assert_alphabet():
     """docstring."""
-    assert_table(str.maketrans("GATC", "CTAG"))
+    assert_alphabet(str.maketrans("GATC", "CTAG"))
 
     try:
-        assert_table(str.maketrans("GATx", "CTAG"))
+        assert_alphabet(str.maketrans("GATx", "CTAG"))
         print("Should not be reached")
     except ValueError:
         pass

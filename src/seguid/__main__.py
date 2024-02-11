@@ -11,7 +11,7 @@ from seguid.reprutils import tuple_from_repr
 
 parser = ArgumentParser(prog="python -m seguid", description="seguid: Sequence Globally Unique Identifier (SEGUID) for Nucleotide and Amino-Acid Sequences")
 parser.add_argument("--version", action="store_true", help="Show version")
-parser.add_argument("--table", type=str, nargs="?", help="Type of input sequence")
+parser.add_argument("--alphabet", type=str, nargs="?", help="Type of input sequence")
 parser.add_argument("--type", type=str, nargs="?", help="Type of checksum to calculate")
 parser.add_argument("--form", type=str, nargs="?", help="Form of checksum to return")
 
@@ -29,9 +29,9 @@ else:
     if type == None:
         type="seguid"
 
-    table=args.pop("table")
-    if table == None:
-        table="{DNA}"
+    alphabet=args.pop("alphabet")
+    if alphabet == None:
+        alphabet="{DNA}"
 
     ## Read sequence data from the standard input
     lines=[]
@@ -46,17 +46,17 @@ else:
     seq="\n".join(lines)
 
     if type == "seguid":
-        res=seguid(seq, table = table, form = form)
+        res=seguid(seq, alphabet = alphabet, form = form)
     elif type == "lsseguid":
-        res=lsseguid(seq, table = table, form = form)
+        res=lsseguid(seq, alphabet = alphabet, form = form)
     elif type == "csseguid":
-        res=csseguid(seq, table = table, form = form)
+        res=csseguid(seq, alphabet = alphabet, form = form)
     elif type == "ldseguid":
-        tuple=tuple_from_repr(seq, table = table)
-        res=ldseguid(watson = tuple[0], crick = tuple[1], overhang = tuple[2], table = table, form = form)
+        tuple=tuple_from_repr(seq, alphabet = alphabet)
+        res=ldseguid(watson = tuple[0], crick = tuple[1], overhang = tuple[2], alphabet = alphabet, form = form)
     elif type == "cdseguid":
-        tuple=tuple_from_repr(seq, table = table)
-        res=cdseguid(watson = tuple[0], crick = tuple[1], table = table, form = form)
+        tuple=tuple_from_repr(seq, alphabet = alphabet)
+        res=cdseguid(watson = tuple[0], crick = tuple[1], alphabet = alphabet, form = form)
     else:
         raise ValueError("Unknown --type='" + type + "'")
 
