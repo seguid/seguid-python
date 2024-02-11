@@ -92,32 +92,35 @@ def test_ldseguid():
     # -TA
 
     dlDNA3 = ("TA", "AT", -1)
-    dlDNA3_ldseguid = "bv0UOR12eWrBeaAx79PNZvveviU"
+    assert repr_from_tuple(*dlDNA3) == "TA-\n-TA"
+    dlDNA3_ldseguid = "XBcVadfQevTW_lklW4rdqw5udQ8"
     assert ldseguid(*dlDNA3) == f"ldseguid={dlDNA3_ldseguid}"
-    assert dlDNA3_ldseguid in lsseguid("AT-\n-AT", table = table)
-    assert cs("AT-\n-AT") == dlDNA3_ldseguid
+    assert dlDNA3_ldseguid in lsseguid("-TA\nTA-", table = table)
+    assert cs("-TA\nTA-") == dlDNA3_ldseguid
 
     # CTATAG
-    #   TA
+    # --TA--
 
     dlDNA4 = ("CTATAG", "AT", -2)
-    dlDNA4_ldseguid = "np3hncfQvOh8rZ8Co1Ts_02NXg4"
+    assert repr_from_tuple(*dlDNA4) == "CTATAG\n--TA--"
+    dlDNA4_ldseguid = "_E05Xeo7KnLxrjsqDdpXNw_AIDE"
     assert ldseguid(*dlDNA4) == f"ldseguid={dlDNA4_ldseguid}"
-    assert dlDNA4_ldseguid in lsseguid("--AT--\nGATATC", table = table)
-    assert cs("--AT--\nGATATC") == dlDNA4_ldseguid
+    assert dlDNA4_ldseguid in lsseguid("--TA--\nCTATAG", table = table)
+    assert cs("--TA--\nCTATAG") == dlDNA4_ldseguid
 
-    #   AT
+    # --AT--
     # GATATC
 
     dlDNA5 = ("AT", "CTATAG", 2)
+    assert repr_from_tuple(*dlDNA5) == "--AT--\nGATATC"
     dlDNA5_ldseguid = "np3hncfQvOh8rZ8Co1Ts_02NXg4"
-    assert ldseguid(*dlDNA5) == f"ldseguid={dlDNA4_ldseguid}"
+    assert ldseguid(*dlDNA5) == f"ldseguid={dlDNA5_ldseguid}"
     assert dlDNA5_ldseguid in lsseguid("--AT--\nGATATC", table = table)
     assert cs("--AT--\nGATATC") == dlDNA5_ldseguid
 
     repr_from_tuple("AT", "CTATAG", 2)
 
-    assert ldseguid("TATGCC", "GCATAC", 1) == 'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
+    assert ldseguid("TATGCC", "GCATAC", 1) == 'ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo'
     assert ldseguid("GCATAC", "TATGCC", 1) == 'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
 
 
