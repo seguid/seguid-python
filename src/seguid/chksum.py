@@ -30,6 +30,7 @@ from seguid.tables import tablefactory
 from seguid.asserts import assert_in_alphabet
 from seguid.asserts import assert_anneal
 from seguid.reprutils import repr_from_tuple
+from seguid.reprutils import dsseq_to_tuple
 
 seguid_prefix: str = "seguid="
 lsseguid_prefix: str = "lsseguid="
@@ -158,7 +159,7 @@ def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
                  form)
 
 
-def ldseguid(watson: str, crick: str, overhang: int, alphabet: str = "{DNA}", form: str = "long") -> str:
+def ldseguid(watson: str, crick: str, overhang: int = 0, alphabet: str = "{DNA}", form: str = "long") -> str:
     r"""SEGUID checksum for double stranded linear DNA (ldSEGUID).
 
     Calculates the ldSEGUID checksum for a dsDNA sequence defined by two
@@ -243,8 +244,10 @@ def ldseguid(watson: str, crick: str, overhang: int, alphabet: str = "{DNA}", fo
     assert crick, "Crick sequence must not be empty"
 
     tb = tablefactory(alphabet)
+    assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
 
-    assert len(set(tb.values())) > 1, "Was a protein alphabet used by mistake?"
+    watson, crick, overhang = dsseq_to_tuple(watson = watson, crick = crick, overhang = overhang)
+    
     assert_anneal(watson, crick, overhang, alphabet=tb)
 
     watson_crick_repr = repr_from_tuple(watson=watson, crick=crick, overhang=overhang, alphabet=alphabet, space="-")
@@ -276,8 +279,8 @@ def cdseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
     assert crick, "Crick sequence must not be empty"
 
     tb = tablefactory(alphabet)
-
-    assert len(set(tb.values())) > 1, "Was a protein alphabet used by mistake?"
+    assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
+    
     assert len(watson) == len(crick)
 
     assert_anneal(watson, crick, 0, alphabet=tb)

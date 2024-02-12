@@ -75,49 +75,59 @@ def test_ldseguid():
 
     dlDNA = "AT"
     dlDNA_ldseguid = "AWD-dt5-TEua8RbOWfnctJIu9nA"
-    assert ldseguid(dlDNA, rc(dlDNA), 0) == f"ldseguid={dlDNA_ldseguid}"
+    truth = f"ldseguid={dlDNA_ldseguid}"
+    assert ldseguid(dlDNA, rc(dlDNA), 0) == truth
     assert dlDNA_ldseguid in lsseguid("AT\nTA", alphabet = alphabet)
     assert cs("AT\nTA") == dlDNA_ldseguid
+    assert ldseguid(dlDNA, rc(dlDNA)) == truth
 
     #  -AT
     #  AT-
 
     dlDNA2 = ("AT", "TA", 1)
     dlDNA2_ldseguid = "JwB2eUmZkCNjyWAv471JeUbiSDM"
-    assert ldseguid(*dlDNA2) == f"ldseguid={dlDNA2_ldseguid}"
+    truth = f"ldseguid={dlDNA2_ldseguid}"
+    assert ldseguid(*dlDNA2) == truth
     assert dlDNA2_ldseguid in lsseguid("-AT\nAT-", alphabet = alphabet)
     assert cs("-AT\nAT-") == dlDNA2_ldseguid
-
+    assert ldseguid("-AT", "-TA") == truth
+    
     # TA-
     # -TA
 
     dlDNA3 = ("TA", "AT", -1)
     assert repr_from_tuple(*dlDNA3) == "TA-\n-TA"
     dlDNA3_ldseguid = "XBcVadfQevTW_lklW4rdqw5udQ8"
-    assert ldseguid(*dlDNA3) == f"ldseguid={dlDNA3_ldseguid}"
+    truth = f"ldseguid={dlDNA3_ldseguid}"
+    assert ldseguid(*dlDNA3) == truth
     assert dlDNA3_ldseguid in lsseguid("-TA\nTA-", alphabet = alphabet)
     assert cs("-TA\nTA-") == dlDNA3_ldseguid
-
+    assert ldseguid("-TA", "-AT") == truth
+    
     # CTATAG
     # --TA--
 
     dlDNA4 = ("CTATAG", "AT", -2)
     assert repr_from_tuple(*dlDNA4) == "CTATAG\n--TA--"
     dlDNA4_ldseguid = "_E05Xeo7KnLxrjsqDdpXNw_AIDE"
-    assert ldseguid(*dlDNA4) == f"ldseguid={dlDNA4_ldseguid}"
+    truth = f"ldseguid={dlDNA4_ldseguid}"
+    assert ldseguid(*dlDNA4) == truth
     assert dlDNA4_ldseguid in lsseguid("--TA--\nCTATAG", alphabet = alphabet)
     assert cs("--TA--\nCTATAG") == dlDNA4_ldseguid
-
+    assert ldseguid("CTATAG", "--AT--") == truth
+    
     # --AT--
     # GATATC
 
     dlDNA5 = ("AT", "CTATAG", 2)
     assert repr_from_tuple(*dlDNA5) == "--AT--\nGATATC"
     dlDNA5_ldseguid = "np3hncfQvOh8rZ8Co1Ts_02NXg4"
-    assert ldseguid(*dlDNA5) == f"ldseguid={dlDNA5_ldseguid}"
+    truth = f"ldseguid={dlDNA5_ldseguid}"
+    assert ldseguid(*dlDNA5) == truth
     assert dlDNA5_ldseguid in lsseguid("--AT--\nGATATC", alphabet = alphabet)
     assert cs("--AT--\nGATATC") == dlDNA5_ldseguid
-
+    ldseguid("--AT--", "CTATAG") == truth
+    
     repr_from_tuple("AT", "CTATAG", 2)
 
     assert ldseguid("TATGCC", "GCATAC", 1) == 'ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo'

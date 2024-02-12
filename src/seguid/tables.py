@@ -105,7 +105,7 @@ def tablefactory(argument: str):
         elif len(tb) == 2:
             alphabet = {tb[0]: tb[1]}
         else:
-            raise ValueError("First element not a alphabet category, symbol or basepair.")
+            raise ValueError("First element not an alphabet category, symbol or basepair.")
 
     if ext and all(len(e) == 1 for e in ext):
         assert set(alphabet.values()) == {""}  # extension is an alphabet

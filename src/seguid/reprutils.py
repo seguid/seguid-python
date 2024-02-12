@@ -5,6 +5,7 @@ from seguid.asserts import assert_in_alphabet
 from seguid.asserts import assert_anneal
 from seguid.manip import reverse
 from seguid.tables import tablefactory
+import re
 
 def tuple_from_repr(
     rpr: str,
@@ -112,3 +113,44 @@ def repr_from_tuple(
     ).rstrip()
 
     return msg
+
+
+
+def dsseq_to_tuple(
+    watson: str,
+    crick: str,
+    overhang: int,
+) -> str:
+    """docstring."""
+    
+    ## Staggeredness specified via dash symbols ('-')?
+    if not "-" in watson and not "-" in crick:
+        return watson, crick, overhang
+
+    assert len(watson) == len(crick)
+    pattern = r"^([-]*)([^-]*)([-]*)$"
+    assert re.search(pattern, watson)
+    assert re.search(pattern, crick)
+    
+    match = re.match(pattern, watson)
+    watson_trim = match.group(2)
+    watson_pad_left = match.group(1)
+    watson_pad_right = match.group(3)
+    
+    match = re.match(pattern, crick)
+    crick_trim = match.group(2)
+    crick_pad_left = match.group(1)
+    crick_pad_right = match.group(3)
+    
+    if len(watson_pad_left) > 0:
+        assert len(crick_pad_right) == 0
+        overhang = len(watson_pad_left)
+    elif len(crick_pad_left) > 0:
+        assert len(watson_pad_right) == 0
+        overhang = -len(crick_pad_left)
+  
+    watson = watson_trim
+    crick = crick_trim
+
+    return watson, crick, overhang
+
