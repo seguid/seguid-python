@@ -8,6 +8,7 @@ from seguid.chksum import ldseguid
 from seguid.chksum import cdseguid
 from seguid.manip import reverse
 from seguid.reprutils import tuple_from_repr
+from seguid.reprutils import watson_crick_from_tuple
 
 parser = ArgumentParser(prog="python -m seguid", description="seguid: Sequence Globally Unique Identifier (SEGUID) for Nucleotide and Amino-Acid Sequences")
 parser.add_argument("--version", action="store_true", help="Show version")
@@ -53,7 +54,8 @@ else:
         res=csseguid(seq, alphabet = alphabet, form = form)
     elif type == "ldseguid":
         tuple=tuple_from_repr(seq, alphabet = alphabet)
-        res=ldseguid(watson = tuple[0], crick = tuple[1], overhang = tuple[2], alphabet = alphabet, form = form)
+        watson, crick = watson_crick_from_tuple(watson = tuple[0], crick = tuple[1], overhang = tuple[2])
+        res=ldseguid(watson = watson, crick = crick, alphabet = alphabet, form = form)
     elif type == "cdseguid":
         tuple=tuple_from_repr(seq, alphabet = alphabet)
         res=cdseguid(watson = tuple[0], crick = tuple[1], alphabet = alphabet, form = form)

@@ -159,7 +159,7 @@ def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
                  form)
 
 
-def ldseguid(watson: str, crick: str, overhang: int = 0, alphabet: str = "{DNA}", form: str = "long") -> str:
+def ldseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     r"""SEGUID checksum for double stranded linear DNA (ldSEGUID).
 
     Calculates the ldSEGUID checksum for a dsDNA sequence defined by two
@@ -167,64 +167,26 @@ def ldseguid(watson: str, crick: str, overhang: int = 0, alphabet: str = "{DNA}"
     complementary DNA strands and an integer value describing the stagger
     between the two strands in the 5' (left) end of the molecule.
 
-    The overhang is defined as the amount of 3' overhang at the start side
-    of the molecule. A molecule with 5' overhang has a negative
-    overhang value.
-
-    See examples below:
-
-    ::
-
-
-        dsDNA       overhang
-
-        --nnn...    2
-        nnnnn...
-
-        -nnnn...    1
-        nnnnn...
-
-        nnnnn...    0
-        nnnnn...
-
-        nnnnn...   -1
-        -nnnn...
-
-        nnnnn...   -2
-        --nnn...
-
-
     The algorithm first selects the lexicographically smallest
     of the top or bottom strands.
-
-    For positive overhang, the top strand is is left padded with the number
-    of hyphen characters (ASCII 45) indicated by the overhang value.
-
-    For negative overhang the reverse of the bottom strand is similarly padded.
-
-    The string pair is similarly padded on the other side, so that two eaqual
-    length strings are formed.
 
     The two string are joined, separated by a line break (ASCII 10) and the
     lsSEGUID function is used on the resulting string.
 
     ::
+        dsDNA    ldSEGUID
 
-        dsDNA       overhang  ldSEGUID
-
-        -TATGCC     1        Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU
+        -TATGCC  Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU
          |||||
-        catacg-
+        CATACG-
 
-        -gcatac     1        Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU
+        -GCATAC  Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU
          |||||
         CCGTAT-
 
-    For the linear dsDNA sequence defined by Watson = "TATGCC", Crick ="gcatac"
-    and overhang = 1 (see figures above), The "gcatac" strand is selected as
-    "gcatac" < "TATGCC".
-
-    Overhang is positive, so the first strand is padded to "-gcatac".
+    For the linear dsDNA sequence defined by watson = "-TATGCC", crick ="-gcatac"
+    (see figures above), The "-gcatac" strand is selected as
+    "-gcatac" < "-TATGCC".
 
     A string is constructed like so:
     ::
@@ -235,9 +197,9 @@ def ldseguid(watson: str, crick: str, overhang: int = 0, alphabet: str = "{DNA}"
 
     Examples
     --------
-    >>> ldseguid("TATGCC", "GCATAC", 1)
+    >>> ldseguid("-TATGCC", "-GCATAC")
     'ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo'
-    >>> ldseguid("GCATAC", "TATGCC", 1)
+    >>> ldseguid("-GCATAC", "-TATGCC")
     'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
     """
     assert watson, "Watson sequence must not be empty"
@@ -246,7 +208,7 @@ def ldseguid(watson: str, crick: str, overhang: int = 0, alphabet: str = "{DNA}"
     tb = tablefactory(alphabet)
     assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
 
-    watson, crick, overhang = dsseq_to_tuple(watson = watson, crick = crick, overhang = overhang)
+    watson, crick, overhang = dsseq_to_tuple(watson = watson, crick = crick, overhang = 0)
     
     assert_anneal(watson, crick, overhang, alphabet=tb)
 
@@ -295,5 +257,5 @@ def cdseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
         w = crick_min
 
     return _form(cdseguid_prefix,
-                 ldseguid(watson=w, crick=rc(w, alphabet=tb), overhang=0, alphabet=alphabet, form="long")[len(ldseguid_prefix):],
+                 ldseguid(watson=w, crick=rc(w, alphabet=tb), alphabet=alphabet, form="long")[len(ldseguid_prefix):],
                  form)

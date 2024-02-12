@@ -115,6 +115,36 @@ def repr_from_tuple(
     return msg
 
 
+def watson_crick_from_tuple(
+    watson: str,
+    crick: str,
+    overhang: int,
+    space: str = "-"
+) -> tuple:
+    """docstring."""
+    
+    ## Nothing to do?
+    if overhang == 0:
+        return watson, crick
+
+    
+    if overhang > 0:
+        watson_pad_left  = f"{+overhang*space}"
+        watson_pad_right = f"{space*(-overhang+len(crick)-len(watson))}"
+        crick_pad_left   = f"{space*(+overhang+len(watson)-len(crick))}"
+        crick_pad_right  = f"{-overhang*space}"
+    elif overhang < 0:
+        crick_pad_left   = f"{-overhang*space}"
+        crick_pad_right  = f"{space*(+overhang+len(watson)-len(crick))}"
+        watson_pad_left  = f"{space*(-overhang+len(crick)-len(watson))}"
+        watson_pad_right = f"{+overhang*space}"
+
+    watson = f"{watson_pad_left}{watson}{watson_pad_right}"
+    crick  = f"{crick_pad_left}{crick}{crick_pad_right}"
+
+    return watson, crick
+
+
 
 def dsseq_to_tuple(
     watson: str,
