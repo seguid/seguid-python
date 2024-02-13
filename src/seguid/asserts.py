@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from seguid.tables import COMPLEMENT_ALPHABET_DNA
+from seguid.tables import tablefactory
 import seguid.manip
 from string import ascii_letters
 from string import digits
@@ -46,30 +47,44 @@ def assert_alphabet(alphabet: dict):
             "Detected values (" f"{missing}) in 'alphabet' that are not in the keys"
         )
 
-
-def assert_anneal(watson: str,
-                  crick: str,
-                  overhang: int,
-                  alphabet: dict = COMPLEMENT_ALPHABET_DNA) -> bool:
-    """docstring."""
-    assert_alphabet(alphabet)
-    assert_in_alphabet(watson, alphabet=set(alphabet.keys()))
-    assert_in_alphabet(crick, alphabet=set(alphabet.keys()))
-
-    assert isinstance(overhang, int), "overhang must be an integer"
-    assert -len(watson) < overhang, "watson and crick has to anneal with at least one bp"
-    assert overhang < len(crick), "watson and crick has to anneal with at least one bp"
-
-    up = watson[max(-overhang, 0): len(crick) - overhang]
-    dn = seguid.manip.rc(crick, alphabet=alphabet)[max(overhang, 0): len(watson) + overhang]
-
-    if up != dn:
-        raise ValueError("Mismatched basepairs.")
-
-
 # def assert_checksum(checksum):
 #     checksum = "cdseguid:AWD-dt5-TEua8RbOWfnctJIu9nA"
 #     mobj = re.match("(?:|sl|sc|ds|dc)seguid:(.+)", checksum)
 #     assert len(mobj.group(1)) == 27
 #     b64 = set('ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/_-')
 #     assert set(mobj.group(1)).issubset(b64)
+
+
+def reverse(seq) -> str:
+    """Reverses a DNA sequence"""
+    assert isinstance(seq, str), "Argument 'seq' must be an string"
+    return seq[::-1]
+
+def assert_complementary(watson: str, crick: str, alphabet: dict = COMPLEMENT_ALPHABET_DNA):
+    ## Validate 'alphabet':
+    tb = tablefactory(alphabet)
+    assert_alphabet(tb)
+    
+    keys   = tb.keys()
+    values = tb.values()
+
+    if not "-" in keys:
+        tb["-"] = "-"
+        keys   = tb.keys()
+        values = tb.values()
+  
+    ## Validate 'watson' and 'crick':
+    assert len(watson) == len(crick)
+#    assert_in_alphabet(watson, alphabet = set(keys))
+#    assert_in_alphabet(crick, alphabet = set(keys))
+    crick = reverse(crick)
+#    print(watson + "-" + crick)
+    
+    for kk in range(0, len(watson)):
+#        print(str(kk) + ": " + watson[kk] + "-" + crick[kk])
+        if (watson[kk] == "-" or crick[kk] == "-"):
+            continue
+        set = tb[watson[kk]]
+        if not crick[kk] in set:
+            raise ValueError("Non-complementary basepair (%s,%s) detected at position %d" % (watson[kk], crick[kk], kk + 1))
+

@@ -20,13 +20,6 @@ from seguid.chksum import seguid
 from seguid.manip import reverse
 from seguid.manip import rc
 
-from seguid.reprutils import repr_from_tuple
-
-# from seguid.tables import COMPLEMENT_ALPHABET_DNA
-# from seguid.tables import COMPLEMENT_ALPHABET_RNA
-# from seguid.tables import COMPLEMENT_ALPHABET_IUPAC
-# from seguid.tables import ALPHABET_IUPAC_PROTEIN
-
 
 def test_seguid():
     assert seguid("AT") == "seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4"
@@ -91,8 +84,6 @@ def test_ldseguid():
     # TA-
     # -TA
 
-    dlDNA3 = ("TA", "AT", -1)
-    assert repr_from_tuple(*dlDNA3) == "TA-\n-TA"
     dlDNA3_ldseguid = "XBcVadfQevTW_lklW4rdqw5udQ8"
     truth = f"ldseguid={dlDNA3_ldseguid}"
     assert dlDNA3_ldseguid in lsseguid("-TA\nTA-", alphabet = alphabet)
@@ -102,8 +93,6 @@ def test_ldseguid():
     # CTATAG
     # --TA--
 
-    dlDNA4 = ("CTATAG", "AT", -2)
-    assert repr_from_tuple(*dlDNA4) == "CTATAG\n--TA--"
     dlDNA4_ldseguid = "_E05Xeo7KnLxrjsqDdpXNw_AIDE"
     truth = f"ldseguid={dlDNA4_ldseguid}"
     assert dlDNA4_ldseguid in lsseguid("--TA--\nCTATAG", alphabet = alphabet)
@@ -113,8 +102,6 @@ def test_ldseguid():
     # --AT--
     # GATATC
 
-    dlDNA5 = ("AT", "CTATAG", 2)
-    assert repr_from_tuple(*dlDNA5) == "--AT--\nGATATC"
     dlDNA5_ldseguid = "np3hncfQvOh8rZ8Co1Ts_02NXg4"
     truth = f"ldseguid={dlDNA5_ldseguid}"
     assert dlDNA5_ldseguid in lsseguid("--AT--\nGATATC", alphabet = alphabet)

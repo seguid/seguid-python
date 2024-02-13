@@ -3,7 +3,6 @@
 
 import pytest
 
-from seguid.asserts import assert_anneal
 from seguid.asserts import assert_in_alphabet
 from seguid.asserts import assert_alphabet
 
@@ -38,25 +37,3 @@ def test_assert_alphabet():
         print("Should not be reached")
     except ValueError:
         pass
-
-
-def test_assert_anneal():
-
-    tuples = (("AT", "TA", 1),
-              ("CTATAG", "AT", -2),
-              ("AT", "CTATAG", 2),
-              ("AT", "AT", 0))
-
-    for watson, crick, overhang in tuples:
-        assert_anneal(watson, crick, overhang)
-
-    tuples = (("AT", "CG", 1),
-              ("CTATAG", "AT", -3),
-              ("AT", "CTATAG", 1))
-
-    for watson, crick, overhang in tuples:
-        with pytest.raises(ValueError):
-            assert_anneal(watson, crick, overhang)
-
-    with pytest.raises(AssertionError):
-        assert_anneal("AT", "AT", 4)

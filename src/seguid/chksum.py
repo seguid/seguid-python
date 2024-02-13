@@ -22,15 +22,15 @@ import hashlib
 import base64
 
 from seguid.manip import rc
+from seguid.manip import complementary
+from seguid.manip import reverse
 from seguid.manip import rotate_to_min
 
 # from seguid.manip import linearize_circular_dsDNA
 # from seguid.tables import COMPLEMENT_ALPHABET_DNA
 from seguid.tables import tablefactory
 from seguid.asserts import assert_in_alphabet
-from seguid.asserts import assert_anneal
-from seguid.reprutils import repr_from_tuple
-from seguid.reprutils import dsseq_to_tuple
+from seguid.asserts import assert_complementary
 
 seguid_prefix: str = "seguid="
 lsseguid_prefix: str = "lsseguid="
@@ -204,28 +204,27 @@ def ldseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
+    assert len(watson) == len(crick)
 
     tb = tablefactory(alphabet)
     assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
 
-    watson, crick, overhang = dsseq_to_tuple(watson = watson, crick = crick, overhang = 0)
-    
-    assert_anneal(watson, crick, overhang, alphabet=tb)
-
-    watson_crick_repr = repr_from_tuple(watson=watson, crick=crick, overhang=overhang, alphabet=alphabet, space="-")
-    crick_watson_repr = watson_crick_repr.split('\n')
-    crick_watson_repr = crick_watson_repr[::-1]
-    crick_watson_repr = '\n'.join(crick_watson_repr)
-    
-    if (watson_crick_repr < crick_watson_repr):
-        repr = watson_crick_repr
-    else:
-        repr = crick_watson_repr
-
     exalphabet = alphabet + ",--,\n\n"
+    alphabet2 = tablefactory(exalphabet)
+    
+    rcrick = reverse(crick)
+    rccrick = complementary(rcrick, alphabet = alphabet2)
+
+    assert_complementary(watson, crick, alphabet = alphabet)
+    
+    if (watson < rcrick):
+        spec = watson + "\n" + rcrick
+    else:
+        spec = rcrick + "\n" + watson
+
 
     return _form(ldseguid_prefix,
-                 _seguid(repr, alphabet=exalphabet, encoding=base64.urlsafe_b64encode),
+                 _seguid(spec, alphabet=exalphabet, encoding=base64.urlsafe_b64encode),
                  form)
 
 def cdseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long") -> str:
@@ -239,14 +238,13 @@ def cdseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
+    assert len(watson) == len(crick)
 
     tb = tablefactory(alphabet)
     assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
     
-    assert len(watson) == len(crick)
-
-    assert_anneal(watson, crick, 0, alphabet=tb)
-
+    assert_complementary(watson, crick, alphabet = alphabet)
+    
     watson_min = rotate_to_min(watson)
     crick_min = rotate_to_min(crick)
 
