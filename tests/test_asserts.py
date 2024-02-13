@@ -5,6 +5,7 @@ import pytest
 
 from seguid.asserts import assert_in_alphabet
 from seguid.asserts import assert_alphabet
+from seguid.asserts import assert_complementary
 
 def test_assert_in_alphabet():
     """docstring."""
@@ -37,3 +38,47 @@ def test_assert_alphabet():
         print("Should not be reached")
     except ValueError:
         pass
+
+
+def test_assert_complementary():
+    """docstring."""
+
+    watson = "ACGT"
+    crick = "ACGT"
+    alphabet = "{DNA}"
+    assert_complementary(watson, crick, alphabet = alphabet)
+
+    watson = "ACGU"
+    crick = "ACGU"
+    alphabet = "{RNA}"
+    assert_complementary(watson, crick, alphabet = alphabet)
+
+    watson = "-CGT"
+    crick = "ACG-"
+    alphabet = "{DNA}"
+    assert_complementary(watson, crick, alphabet = alphabet)
+
+    watson = "AT"
+    crick = "AT"
+    alphabet = "{DNA}"
+    assert_complementary(watson, crick, alphabet = alphabet)
+
+    watson = "AT"
+    crick = "AT"
+    alphabet = "{RNA}"
+    try:
+        assert_complementary(watson, crick, alphabet = alphabet)
+        print("Should not be reached")
+    except ValueError:
+        pass
+
+
+    watson = "AT"
+    crick = "AT"
+    alphabet = "{protein}"
+    try:
+        assert_complementary(watson, crick, alphabet = alphabet)
+        print("Should not be reached")
+    except AssertionError:
+        pass
+    

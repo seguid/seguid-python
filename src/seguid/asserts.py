@@ -63,10 +63,13 @@ def reverse(seq) -> str:
 def assert_complementary(watson: str, crick: str, alphabet: dict = COMPLEMENT_ALPHABET_DNA):
     ## Validate 'alphabet':
     tb = tablefactory(alphabet)
-    assert_alphabet(tb)
-    
-    keys   = tb.keys()
+    keys = tb.keys()
     values = tb.values()
+    
+    ## FIXME: Does this really work? See next line.
+    assert len(tb.values()) > 1, "Was a single-stranded alphabet used by mistake?"
+    assert len(next(iter(values))) == 1, "Was a single-stranded alphabet used by mistake?"
+    assert_alphabet(tb)
 
     if not "-" in keys:
         tb["-"] = "-"
@@ -75,16 +78,15 @@ def assert_complementary(watson: str, crick: str, alphabet: dict = COMPLEMENT_AL
   
     ## Validate 'watson' and 'crick':
     assert len(watson) == len(crick)
-#    assert_in_alphabet(watson, alphabet = set(keys))
-#    assert_in_alphabet(crick, alphabet = set(keys))
+    assert_in_alphabet(watson, alphabet = set(keys))
+    assert_in_alphabet(crick, alphabet = set(keys))
     crick = reverse(crick)
-#    print(watson + "-" + crick)
-    
+
     for kk in range(0, len(watson)):
 #        print(str(kk) + ": " + watson[kk] + "-" + crick[kk])
         if (watson[kk] == "-" or crick[kk] == "-"):
             continue
-        set = tb[watson[kk]]
-        if not crick[kk] in set:
+        set_kk = tb[watson[kk]]
+        if not crick[kk] in set_kk:
             raise ValueError("Non-complementary basepair (%s,%s) detected at position %d" % (watson[kk], crick[kk], kk + 1))
 

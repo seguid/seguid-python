@@ -24,6 +24,7 @@ import base64
 from seguid.manip import rc
 from seguid.manip import complementary
 from seguid.manip import reverse
+from seguid.manip import rotate
 from seguid.manip import rotate_to_min
 
 # from seguid.manip import linearize_circular_dsDNA
@@ -236,24 +237,29 @@ def cdseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
 
     The checksum is prefixed with "cdseguid="
     """
+    from seguid.config import _min_rotation
+    
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
     assert len(watson) == len(crick)
-
-    tb = tablefactory(alphabet)
-    assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
-    
     assert_complementary(watson, crick, alphabet = alphabet)
-    
-    watson_min = rotate_to_min(watson)
-    crick_min = rotate_to_min(crick)
+
+    amount_watson = _min_rotation(watson)
+    watson_min    = rotate(watson, amount = amount_watson)
+    amount_crick  = _min_rotation(crick)
+    crick_min     = rotate(crick , amount = amount_crick )
 
     # Keep the "minimum" of the two variants
     if watson_min < crick_min:
         w = watson_min
+        c = rotate(crick, amount = -amount_watson)
     else:
         w = crick_min
+        c = rotate(watson, amount = -amount_crick)
 
+#    print(c)
+#    print(rc(w, alphabet=tablefactory(alphabet)))
+#    print(alphabet)
     return _form(cdseguid_prefix,
-                 ldseguid(watson=w, crick=rc(w, alphabet=tb), alphabet=alphabet, form="long")[len(ldseguid_prefix):],
+                 ldseguid(watson=w, crick=c, alphabet=alphabet, form="long")[len(ldseguid_prefix):],
                  form)
