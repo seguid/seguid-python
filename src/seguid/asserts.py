@@ -36,15 +36,22 @@ def assert_alphabet(alphabet: dict):
     assert isinstance(alphabet, dict), "Argument 'alphabet' must be a dict"
     keys  = alphabet.keys()
     values = alphabet.values()
+    if isinstance(next(iter(values)), str):
+        values2 = set()
+        for value in values:
+            for ch in value:
+                values2.add(ch)
+        values = values2
+
     # Assert that the set of values are also in the set of keys
     unknown = set(
-        chr(v) for v in values if v not in (k for k in keys)
+        str(k) for k in keys if str(k) not in (str(v) for v in values)
     )
 
     if unknown:
         missing = ' '.join(unknown)
         raise ValueError(
-            "Detected values (" f"{missing}) in 'alphabet' that are not in the keys"
+            f"Detected keys ({missing}) in 'alphabet' that are not in the values"
         )
 
 # def assert_checksum(checksum):

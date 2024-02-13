@@ -107,10 +107,21 @@ def tablefactory(argument: str):
         else:
             raise ValueError("First element not an alphabet category, symbol or basepair.")
 
+    ## Here 'alphabet' is a dictionary
     if ext and all(len(e) == 1 for e in ext):
         assert set(alphabet.values()) == {""}  # extension is an alphabet
-        alphabet.update((c, "") for c in ext)
+        for k in ext:
+            if k in alphabet.values():
+                raise ValueError("Detected duplicated symbol in alphabet: %s" % k)
+            else:
+                alphabet[k] = ""
     elif ext and all(len(e) == 2 for e in ext):
         # assert_alphabet                      # extension is a translation alphabet
-        alphabet.update((k, v) for k, v in ext)
+        for k, v in ext:
+            if k in alphabet.keys():
+                ## Append symbol to already existing mapping, if not already done
+                if not v in alphabet[k]:
+                    alphabet[k] = str(alphabet[k]) + v
+            else:
+                alphabet[k] = v
     return alphabet

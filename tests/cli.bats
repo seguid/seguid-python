@@ -375,6 +375,20 @@ setup() {
 }
 
 
+# Non-bijective complementary alphabets
+@test "<CLI call> --alphabet='{DNA},AU,UA' <<< \"ACGTU\"" {
+    run "${cli_call[@]}" --alphabet='{DNA},AU,UA' <<< "ACGTU"
+    assert_success
+    assert_output "seguid=w13LHbo0Y8FHo+vaowojJkwh9nY"
+}
+
+# Non-bijective complementary alphabets
+@test "<CLI call> --type=ldseguid --alphabet='{DNA},AU,UA' <<< \$'AAT\nTUA'" {
+    run "${cli_call[@]}" --type=ldseguid --alphabet='{DNA},AU,UA' <<< $'AAT\nTUA'
+    assert_success
+    assert_output "ldseguid=9zPojNQ67iJaump8FpG70cjLGoQ"
+}
+
 ## --------------------------------------------------------
 ## Use checksums as filenames
 ## --------------------------------------------------------
