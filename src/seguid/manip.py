@@ -52,46 +52,10 @@ def rotate(seq: str, amount: int = 0) -> str:
     return seq
 
 
-def complementary(seq: str, alphabet: dict = COMPLEMENT_ALPHABET_DNA) -> str:
-    """Complement of a DNA sequence."""
-    ## Validate 'alphabet':
-    assert_alphabet(alphabet)
-
-    ## Validate 'seq':
-    assert_in_alphabet(seq, alphabet=set(alphabet.keys()))
-
-    return seq.translate({ord(k): ord(v) for k, v in alphabet.items()})
-
-
 def reverse(seq) -> str:
     """Reverses a DNA sequence"""
     assert isinstance(seq, str), "Argument 'seq' must be an string"
     return seq[::-1]
-
-
-def rc(seq: str, alphabet: dict = COMPLEMENT_ALPHABET_DNA) -> str:
-    """Reverse complement of sequence.
-
-    Returns the reverse complement for a DNA strand.
-
-    The default complement alphabet accepts GATC only.
-
-    The tables module defines and alternative alphabet containing the
-    ambiguous codes suggested by IUPAC.
-
-    Examples
-    --------
-    >>> rc("GTT")
-    'AAC'
-    >>> from seguid.manip import rc
-    >>> rc("GTa")
-    Traceback (most recent call last):
-        ...
-    ValueError: Detected symbols a in not in the 'alphabet'
-    >>> rc("GTa".upper())
-    'TAC'
-    """
-    return reverse(complementary(seq, alphabet=alphabet))
 
 
 def min_rotation_py(s: str) -> int:

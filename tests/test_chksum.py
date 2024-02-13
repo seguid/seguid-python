@@ -18,7 +18,6 @@ from seguid import cdseguid
 from seguid.chksum import seguid
 
 from seguid.manip import reverse
-from seguid.manip import rc
 
 
 def test_seguid():
@@ -115,7 +114,8 @@ def test_ldseguid():
 def test_cdseguid():
     pUC19dna = Path("test_data/pUC19.txt").read_text().strip()
     dcsg = "cdseguid=zhw8Yrxfo3FO5DDccx4PamBVPCQ"
-    assert cdseguid(pUC19dna, rc(pUC19dna)) == dcsg
+    pUC19dna_rc = reverse(pUC19dna.translate(str.maketrans("ACGT", "TGCA")))
+    assert cdseguid(pUC19dna, pUC19dna_rc) == dcsg
     w, c = Path("test_data/pUC19_minimal_rotation_watson_linebreak_crick.txt").read_text().splitlines()
     assert ldseguid(w, c[::-1]) == "ldseguid=zhw8Yrxfo3FO5DDccx4PamBVPCQ"
 

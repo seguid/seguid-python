@@ -21,8 +21,6 @@ csseguid and cdseguid are considerably faster with pydivsufsort installed.
 import hashlib
 import base64
 
-from seguid.manip import rc
-from seguid.manip import complementary
 from seguid.manip import reverse
 from seguid.manip import rotate
 from seguid.manip import rotate_to_min
@@ -206,6 +204,7 @@ def ldseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
     assert len(watson) == len(crick)
+    assert_complementary(watson, crick, alphabet = alphabet)
 
     tb = tablefactory(alphabet)
     assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
@@ -214,10 +213,6 @@ def ldseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
     alphabet2 = tablefactory(exalphabet)
     
     rcrick = reverse(crick)
-    rccrick = complementary(rcrick, alphabet = alphabet2)
-
-    assert_complementary(watson, crick, alphabet = alphabet)
-    
     if (watson < rcrick):
         spec = watson + "\n" + rcrick
     else:
@@ -257,9 +252,6 @@ def cdseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
         w = crick_min
         c = rotate(watson, amount = -amount_crick)
 
-#    print(c)
-#    print(rc(w, alphabet=tablefactory(alphabet)))
-#    print(alphabet)
     return _form(cdseguid_prefix,
                  ldseguid(watson=w, crick=c, alphabet=alphabet, form="long")[len(ldseguid_prefix):],
                  form)
