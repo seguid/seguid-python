@@ -1,7 +1,7 @@
-[![Python checks](https://github.com/MetabolicEngineeringGroupCBMA/seguid/actions/workflows/check-python.yml/badge.svg)](https://github.com/MetabolicEngineeringGroupCBMA/seguid/actions/workflows/check-python.yml)
-[![Python Code Coverage](https://codecov.io/gh/MetabolicEngineeringGroupCBMA/seguid/graph/badge.svg)](https://codecov.io/gh/MetabolicEngineeringGroupCBMA/seguid)
+[![Python checks](https://github.com/seguid/seguid-python/actions/workflows/check-python.yml/badge.svg)](https://github.com/seguid/seguid-python/actions/workflows/check-python.yml)
+[![CLI checks](https://github.com/seguid/seguid-python/actions/workflows/check-cli.yml/badge.svg)](https://github.com/seguid/seguid-python/actions/workflows/check-cli.yml)
+[![Python Code Coverage](https://codecov.io/gh/seguid/seguid-python/graph/badge.svg)](https://codecov.io/gh/seguid/seguid-python)
 [![Documentation Status](https://readthedocs.org/projects/seguid/badge/?version=latest)](https://seguid.readthedocs.io/en/latest/?badge=latest)
-
 
 
 # SEGUID v2: Checksums Circular, Linear, Single- and Double-Stranded Sequences
@@ -37,8 +37,7 @@ the original SEGUID algorithm.
 
 ## Documentation
 
-The package documentation is available on [Read the
-Docs](https://seguid.readthedocs.io/en/latest/).
+The package documentation is available on [Read the Docs].
 
 
 ## Installation
@@ -48,3 +47,6 @@ The **seguid** package requires Python 3.6 or newer. To install it, use:
 ```sh
 $ python -m pip install --user seguid
 ```
+
+
+[Read the Docs]: https://seguid.readthedocs.io/en/latest/

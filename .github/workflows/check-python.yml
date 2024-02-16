@@ -1,12 +1,4 @@
-on:
-  push:
-    paths:
-      - 'python/**/*'
-      - .github/workflows/check-python.yml
-  pull_request:
-    paths:
-      - 'python/**/*'
-      - .github/workflows/check-python.yml
+on: [push, pull_request]
 
 name: "Python checks"
 
@@ -58,7 +50,6 @@ jobs:
 
     - name: Install this Python package
       run: |
-        cd python/
         pip install .[pydivsufsort]
 
     - name: Session information
@@ -69,7 +60,6 @@ jobs:
       if: matrix.config.os == 'ubuntu-latest' && matrix.config.python == '3.10'
       run: |
         pip install flake8
-        cd python/
         flake8 --version
         # stop the build if there are Python syntax errors or undefined names
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
@@ -78,39 +68,4 @@ jobs:
 
     - name: Test with pytest
       run: |
-        cd python/
         pytest
-
-    - name: Generate coverage report
-      if: matrix.config.os == 'ubuntu-latest' && matrix.config.python == '3.10'
-      run: |
-        pip install pytest-cov
-        cd python/
-        pytest --cov=src/ ## output summarize in GitHub logs
-        pytest --cov=src/ --cov-report=xml
-
-    - name: Upload Coverage to Codecov
-      if: matrix.config.os == 'ubuntu-latest' && matrix.config.python == '3.10'
-      uses: codecov/codecov-action@v3
-      with:
-        directory: python/
-        env_vars: OS,PYTHON
-        files: coverage.xml
-        fail_ci_if_error: true
-        flags: unittests
-        name: codecov-umbrella
-        verbose: true
-
-    - name: Check CLI
-      if: runner.os != 'Windows'
-      run: |
-        cd python
-        curl -L -O https://github.com/bats-core/bats-core/archive/refs/tags/v1.10.0.tar.gz && tar xf v1.10.0.tar.gz
-        curl -L -O https://github.com/bats-core/bats-support/archive/refs/tags/v0.3.0.tar.gz && tar xf v0.3.0.tar.gz
-        curl -L -O https://github.com/bats-core/bats-assert/archive/refs/tags/v2.1.0.tar.gz && tar xf v2.1.0.tar.gz
-        export BATS_SUPPORT_HOME=$PWD/bats-support-0.3.0
-        export BATS_ASSERT_HOME=$PWD/bats-assert-2.1.0
-        export PATH=$PWD/bats-core-1.10.0/bin:$PATH
-        bash --version
-        bats --version
-        (cd tests/; bats *.bats)
