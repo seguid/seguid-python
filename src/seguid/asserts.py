@@ -27,6 +27,7 @@ def assert_in_alphabet(seq: str,
 
     if unknown:
         missing = ' '.join(unknown)
+        missing = repr(missing)  ## escape '\n', '\t', ...
         raise ValueError(
             "Detected symbols " f"{missing} in not in the 'alphabet'"
         )
@@ -50,6 +51,7 @@ def assert_alphabet(alphabet: dict):
 
     if unknown:
         missing = ' '.join(unknown)
+        missing = repr(missing)  ## escape '\n', '\t', ...
         raise ValueError(
             f"Detected keys ({missing}) in 'alphabet' that are not in the values"
         )
