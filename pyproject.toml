@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "seguid"
-version = "0.0.3"
-description = "Python implementation of SEGUID checksums for biological sequences"
+version = "0.0.3.9007"
+description = "Sequence Globally Unique Identifier (SEGUID) Checksums for Linear, Circular, Single-Stranded and Double-Stranded Biological Sequences"
 authors = ["BjornFJohansson <bjornjobb@gmail.com>"]
 license = "MIT"
 readme = "README.md"

@@ -9,7 +9,7 @@ from seguid.chksum import cdseguid
 from seguid.manip import reverse
 from seguid.reprutils import parse_sequence_string
 
-parser = ArgumentParser(prog="python -m seguid", description="seguid: Sequence Globally Unique Identifier (SEGUID) for Nucleotide and Amino-Acid Sequences")
+parser = ArgumentParser(prog="python -m seguid", description="seguid: Sequence Globally Unique Identifier (SEGUID) Checksums for Linear, Circular, Single-Stranded and Double-Stranded Biological Sequences")
 parser.add_argument("--version", action="store_true", help="Show version")
 parser.add_argument("--alphabet", type=str, nargs="?", help="Type of input sequence")
 parser.add_argument("--type", type=str, nargs="?", help="Type of checksum to calculate")

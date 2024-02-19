@@ -4,7 +4,7 @@
 [![Documentation Status](https://readthedocs.org/projects/seguid/badge/?version=latest)](https://seguid.readthedocs.io/en/latest/?badge=latest)
 
 
-# SEGUID v2: Checksums Circular, Linear, Single- and Double-Stranded Sequences
+# SEGUID v2: Checksums for Linear, Circular, Single- and Double-Stranded Biological Sequences
 
 This Python package, **seguid**, implements SEGUID v2 together with
 the original SEGUID algorithm.
