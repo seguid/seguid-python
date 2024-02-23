@@ -44,7 +44,6 @@ def _seguid(
     seq: str,
     alphabet: str = "{DNA}",
     encoding: callable = base64.standard_b64encode,
-    form: str = "long",
 ) -> str:
     assert callable(encoding)
     assert seq, "A sequence must not be empty"
