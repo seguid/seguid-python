@@ -9,7 +9,10 @@ from seguid.chksum import cdseguid
 from seguid.manip import reverse
 from seguid.reprutils import parse_sequence_string
 
-parser = ArgumentParser(prog="python -m seguid", description="seguid: Sequence Globally Unique Identifier (SEGUID) Checksums for Linear, Circular, Single-Stranded and Double-Stranded Biological Sequences")
+parser = ArgumentParser(
+    prog="python -m seguid",
+    description="seguid: Sequence Globally Unique Identifier (SEGUID) Checksums for Linear, Circular, Single-Stranded and Double-Stranded Biological Sequences",
+)
 parser.add_argument("--version", action="store_true", help="Show version")
 parser.add_argument("--alphabet", type=str, nargs="?", help="Type of input sequence")
 parser.add_argument("--type", type=str, nargs="?", help="Type of checksum to calculate")
@@ -21,20 +24,20 @@ args = vars(parser.parse_args())
 if args.pop("version"):
     print(__version__)
 else:
-    form=args.pop("form")
+    form = args.pop("form")
     if form == None:
-        form="long"
+        form = "long"
 
-    type=args.pop("type")
+    type = args.pop("type")
     if type == None:
-        type="seguid"
+        type = "seguid"
 
-    alphabet=args.pop("alphabet")
+    alphabet = args.pop("alphabet")
     if alphabet == None:
-        alphabet="{DNA}"
+        alphabet = "{DNA}"
 
     ## Read sequence data from the standard input
-    lines=[]
+    lines = []
     try:
         while True:
             line = input()
@@ -43,20 +46,20 @@ else:
             lines.append(line)
     except EOFError:
         pass
-    seq="\n".join(lines)
+    seq = "\n".join(lines)
 
     if type == "seguid":
-        res=seguid(seq, alphabet = alphabet, form = form)
+        res = seguid(seq, alphabet=alphabet, form=form)
     elif type == "lsseguid":
-        res=lsseguid(seq, alphabet = alphabet, form = form)
+        res = lsseguid(seq, alphabet=alphabet, form=form)
     elif type == "csseguid":
-        res=csseguid(seq, alphabet = alphabet, form = form)
+        res = csseguid(seq, alphabet=alphabet, form=form)
     elif type == "ldseguid":
-        void, void, watson, crick=parse_sequence_string(seq)
-        res=ldseguid(watson = watson, crick = crick, alphabet = alphabet, form = form)
+        void, void, watson, crick = parse_sequence_string(seq)
+        res = ldseguid(watson=watson, crick=crick, alphabet=alphabet, form=form)
     elif type == "cdseguid":
-        void, void, watson, crick=parse_sequence_string(seq)
-        res=cdseguid(watson = watson, crick = crick, alphabet = alphabet, form = form)
+        void, void, watson, crick = parse_sequence_string(seq)
+        res = cdseguid(watson=watson, crick=crick, alphabet=alphabet, form=form)
     else:
         raise ValueError("Unknown --type='" + type + "'")
 
