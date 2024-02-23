@@ -224,7 +224,6 @@ def ldseguid(
     assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
 
     exalphabet = alphabet + ",--,\n\n"
-    alphabet2 = tablefactory(exalphabet)
 
     rcrick = reverse(crick)
     if watson < rcrick:
