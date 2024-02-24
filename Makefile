@@ -49,7 +49,7 @@ cleanup:
 # Check CLI using 'seguid-tests' test suite
 #---------------------------------------------------------------
 seguid-tests:
-	git clone --branch=ldseguid-semicolon --depth=1 https://github.com/seguid/seguid-tests.git
+	git clone --depth=1 https://github.com/seguid/seguid-tests.git
 
 check-cli: seguid-tests
 	cd "$<" && git pull && make check-cli/seguid-python
