@@ -2,17 +2,11 @@
 # -*- coding: utf-8 -*-
 
 # Definition of Complementary DNA Symbols
-COMPLEMENT_ALPHABET_DNA = {"G": "C",
-                        "A": "T",
-                        "C": "G",
-                        "T": "A"}
+COMPLEMENT_ALPHABET_DNA = {"G": "C", "A": "T", "C": "G", "T": "A"}
 
 
 # Definition of Complementary RNA Symbols
-COMPLEMENT_ALPHABET_RNA = {"G": "C",
-                        "A": "U",
-                        "C": "G",
-                        "U": "A"}
+COMPLEMENT_ALPHABET_RNA = {"G": "C", "A": "U", "C": "G", "U": "A"}
 
 
 # Definition of Complementary IUPAC Ambigous DNA Symbols
@@ -46,41 +40,48 @@ Nucleic Acids Research, 13(9), 3021–3030.
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC341218
 """
 
-COMPLEMENT_ALPHABET_IUPAC = {**COMPLEMENT_ALPHABET_DNA,  **{"B": "V",
-                                                      "D": "H",
-                                                      "H": "D",
-                                                      "K": "M",
-                                                      "M": "K",
-                                                      "S": "S",
-                                                      "R": "Y",
-                                                      "V": "B",
-                                                      "Y": "R",
-                                                      "W": "W",
-                                                      "N": "N"}}
+COMPLEMENT_ALPHABET_IUPAC = {
+    **COMPLEMENT_ALPHABET_DNA,
+    **{
+        "B": "V",
+        "D": "H",
+        "H": "D",
+        "K": "M",
+        "M": "K",
+        "S": "S",
+        "R": "Y",
+        "V": "B",
+        "Y": "R",
+        "W": "W",
+        "N": "N",
+    },
+}
 
 # Definition of a the IUPAC Protein Symbols
 # values are empty strings since there is no concept of complementarity
 # for proteins
-ALPHABET_IUPAC_PROTEIN = {"A": "",
-                       "C": "",
-                       "D": "",
-                       "E": "",
-                       "F": "",
-                       "G": "",
-                       "H": "",
-                       "I": "",
-                       "K": "",
-                       "L": "",
-                       "M": "",
-                       "N": "",
-                       "P": "",
-                       "Q": "",
-                       "R": "",
-                       "S": "",
-                       "T": "",
-                       "V": "",
-                       "W": "",
-                       "Y": ""}
+ALPHABET_IUPAC_PROTEIN = {
+    "A": "",
+    "C": "",
+    "D": "",
+    "E": "",
+    "F": "",
+    "G": "",
+    "H": "",
+    "I": "",
+    "K": "",
+    "L": "",
+    "M": "",
+    "N": "",
+    "P": "",
+    "Q": "",
+    "R": "",
+    "S": "",
+    "T": "",
+    "V": "",
+    "W": "",
+    "Y": "",
+}
 
 
 alphabet_categories = {
@@ -105,7 +106,9 @@ def tablefactory(argument: str):
         elif len(tb) == 2:
             alphabet = {tb[0]: tb[1]}
         else:
-            raise ValueError("First element not an alphabet category, symbol or basepair.")
+            raise ValueError(
+                "First element not an alphabet category, symbol or basepair."
+            )
 
     ## Here 'alphabet' is a dictionary
     if ext and all(len(e) == 1 for e in ext):

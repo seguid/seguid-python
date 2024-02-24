@@ -40,7 +40,11 @@ b64alphabet = set("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz012345678
 short = 6
 
 
-def _seguid(seq: str, alphabet: str = "{DNA}", encoding: callable = base64.standard_b64encode, form: str = "long") -> str:
+def _seguid(
+    seq: str,
+    alphabet: str = "{DNA}",
+    encoding: callable = base64.standard_b64encode,
+) -> str:
     assert callable(encoding)
     assert seq, "A sequence must not be empty"
     assert_in_alphabet(seq, alphabet=set(tablefactory(alphabet).keys()))
@@ -100,9 +104,11 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     >>> seguid("AT")
     'seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4'
     """
-    return _form(seguid_prefix,
-                 _seguid(seq, alphabet=alphabet, encoding=base64.standard_b64encode),
-                 form)
+    return _form(
+        seguid_prefix,
+        _seguid(seq, alphabet=alphabet, encoding=base64.standard_b64encode),
+        form,
+    )
 
 
 def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
@@ -124,9 +130,11 @@ def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     >>> lsseguid("AT")
     'lsseguid=Ax_RG6hzSrMEEWoCO1IWMGska-4'
     """
-    return _form(lsseguid_prefix,
-                 _seguid(seq, alphabet=alphabet, encoding=base64.urlsafe_b64encode),
-                 form)
+    return _form(
+        lsseguid_prefix,
+        _seguid(seq, alphabet=alphabet, encoding=base64.urlsafe_b64encode),
+        form,
+    )
 
 
 def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
@@ -153,12 +161,18 @@ def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     >>> lsseguid("TTTA")
     'lsseguid=8zCvKwyQAEsbPtC4yTV-pY0H93Q'
     """
-    return _form(csseguid_prefix,
-                 _seguid(rotate_to_min(seq), alphabet=alphabet, encoding=base64.urlsafe_b64encode),
-                 form)
+    return _form(
+        csseguid_prefix,
+        _seguid(
+            rotate_to_min(seq), alphabet=alphabet, encoding=base64.urlsafe_b64encode
+        ),
+        form,
+    )
 
 
-def ldseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long") -> str:
+def ldseguid(
+    watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long"
+) -> str:
     r"""SEGUID checksum for double stranded linear DNA (ldSEGUID).
 
     Calculates the ldSEGUID checksum for a dsDNA sequence defined by two
@@ -204,26 +218,29 @@ def ldseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
     assert len(watson) == len(crick)
-    assert_complementary(watson, crick, alphabet = alphabet)
+    assert_complementary(watson, crick, alphabet=alphabet)
 
     tb = tablefactory(alphabet)
     assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
 
     exalphabet = alphabet + ",--,\n\n"
-    alphabet2 = tablefactory(exalphabet)
-    
+
     rcrick = reverse(crick)
-    if (watson < rcrick):
+    if watson < rcrick:
         spec = watson + "\n" + rcrick
     else:
         spec = rcrick + "\n" + watson
 
+    return _form(
+        ldseguid_prefix,
+        _seguid(spec, alphabet=exalphabet, encoding=base64.urlsafe_b64encode),
+        form,
+    )
 
-    return _form(ldseguid_prefix,
-                 _seguid(spec, alphabet=exalphabet, encoding=base64.urlsafe_b64encode),
-                 form)
 
-def cdseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long") -> str:
+def cdseguid(
+    watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long"
+) -> str:
     """SEGUID checksum for double stranded circular DNA (dcSEGUID).
 
     The dcSEGUID is the slSEGUID checksum calculated for the lexicographically
@@ -233,25 +250,29 @@ def cdseguid(watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long
     The checksum is prefixed with "cdseguid="
     """
     from seguid.config import _min_rotation
-    
+
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
     assert len(watson) == len(crick)
-    assert_complementary(watson, crick, alphabet = alphabet)
+    assert_complementary(watson, crick, alphabet=alphabet)
 
     amount_watson = _min_rotation(watson)
-    watson_min    = rotate(watson, amount = amount_watson)
-    amount_crick  = _min_rotation(crick)
-    crick_min     = rotate(crick , amount = amount_crick )
+    watson_min = rotate(watson, amount=amount_watson)
+    amount_crick = _min_rotation(crick)
+    crick_min = rotate(crick, amount=amount_crick)
 
     # Keep the "minimum" of the two variants
     if watson_min < crick_min:
         w = watson_min
-        c = rotate(crick, amount = -amount_watson)
+        c = rotate(crick, amount=-amount_watson)
     else:
         w = crick_min
-        c = rotate(watson, amount = -amount_crick)
+        c = rotate(watson, amount=-amount_crick)
 
-    return _form(cdseguid_prefix,
-                 ldseguid(watson=w, crick=c, alphabet=alphabet, form="long")[len(ldseguid_prefix):],
-                 form)
+    return _form(
+        cdseguid_prefix,
+        ldseguid(watson=w, crick=c, alphabet=alphabet, form="long")[
+            len(ldseguid_prefix) :
+        ],
+        form,
+    )
