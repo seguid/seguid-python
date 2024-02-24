@@ -14,7 +14,7 @@ def assert_in_alphabet(seq: str, alphabet: set):
     assert isinstance(alphabet, set), "Argument 'alphabet' must be a set"
     assert len(alphabet) > 0, "Argument 'alphabet' must not be empty"
     assert not alphabet - (
-        set(ascii_letters) | set(digits) | set("\n-")
+        set(ascii_letters) | set(digits) | set("-\n;")
     ), "Only A-Z a-z allowed"
     first = list(alphabet)[0]
     assert isinstance(first, str), "Argument 'alphabet' should contain 'str' elements"

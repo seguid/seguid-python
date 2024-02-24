@@ -14,8 +14,8 @@
 'csseguid=Ax_RG6hzSrMEEWoCO1IWMGska-4'
 
 >>> cdseguid("AT", "AT")
-'cdseguid=AWD-dt5-TEua8RbOWfnctJIu9nA'
+'cdseguid=odgytmQKSOnFEUorGIWK3NDjqUA'
 
 >>> cdseguid("TA", "TA")
-'cdseguid=AWD-dt5-TEua8RbOWfnctJIu9nA'
+'cdseguid=odgytmQKSOnFEUorGIWK3NDjqUA'
 """

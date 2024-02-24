@@ -211,9 +211,9 @@ def ldseguid(
     Examples
     --------
     >>> ldseguid("-TATGCC", "-GCATAC")
-    'ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo'
+    'ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I'
     >>> ldseguid("-GCATAC", "-TATGCC")
-    'ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4'
+    'ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I'
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
@@ -223,13 +223,12 @@ def ldseguid(
     tb = tablefactory(alphabet)
     assert len(set(tb.values())) > 1, "Was a single-stranded alphabet used by mistake?"
 
-    exalphabet = alphabet + ",--,\n\n"
+    exalphabet = alphabet + ",--,;;"
 
-    rcrick = reverse(crick)
-    if watson < rcrick:
-        spec = watson + "\n" + rcrick
+    if watson < crick:
+        spec = watson + ";" + crick
     else:
-        spec = rcrick + "\n" + watson
+        spec = crick + ";" + watson
 
     return _form(
         ldseguid_prefix,

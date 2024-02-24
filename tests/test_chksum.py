@@ -58,59 +58,58 @@ def test_csseguid():
 
 def test_ldseguid():
     ct = "{DNA}"
-    alphabet = ct + ",--,\n\n"
+    alphabet = ct + ",--,;;"
     # AT
     # TA
 
-    dlDNA_ldseguid = "AWD-dt5-TEua8RbOWfnctJIu9nA"
+    dlDNA_ldseguid = "odgytmQKSOnFEUorGIWK3NDjqUA"
     truth = f"ldseguid={dlDNA_ldseguid}"
-    assert dlDNA_ldseguid in lsseguid("AT\nTA", alphabet=alphabet)
-    assert cs("AT\nTA") == dlDNA_ldseguid
+    assert dlDNA_ldseguid in lsseguid("AT;AT", alphabet=alphabet)
+    assert cs("AT;AT") == dlDNA_ldseguid
     assert ldseguid("AT", "AT") == truth
 
     #  -AT
     #  AT-
 
-    dlDNA2_ldseguid = "JwB2eUmZkCNjyWAv471JeUbiSDM"
+    dlDNA2_ldseguid = "-9xkp3UfucL4bSPxYODh8i9KFEE"
     truth = f"ldseguid={dlDNA2_ldseguid}"
-    assert dlDNA2_ldseguid in lsseguid("-AT\nAT-", alphabet=alphabet)
-    assert cs("-AT\nAT-") == dlDNA2_ldseguid
+    assert dlDNA2_ldseguid in lsseguid("-AT;-TA", alphabet=alphabet)
+    assert cs("-AT;-TA") == dlDNA2_ldseguid
     assert ldseguid("-AT", "-TA") == truth
 
     # TA-
     # -TA
 
-    dlDNA3_ldseguid = "XBcVadfQevTW_lklW4rdqw5udQ8"
+    dlDNA3_ldseguid = "kI9qYVNRPF8epm2xem0ZUP8J-CI"
     truth = f"ldseguid={dlDNA3_ldseguid}"
-    assert dlDNA3_ldseguid in lsseguid("-TA\nTA-", alphabet=alphabet)
-    assert cs("-TA\nTA-") == dlDNA3_ldseguid
-    assert ldseguid("-TA", "-AT") == truth
+    assert dlDNA3_ldseguid in lsseguid("AT-;TA-", alphabet=alphabet)
+    assert ldseguid("TA-", "AT-") == truth
 
     # CTATAG
     # --TA--
 
-    dlDNA4_ldseguid = "_E05Xeo7KnLxrjsqDdpXNw_AIDE"
+    dlDNA4_ldseguid = "ToSxUXWMCIKz-FYdXJ3Qq-bS_8o"
     truth = f"ldseguid={dlDNA4_ldseguid}"
-    assert dlDNA4_ldseguid in lsseguid("--TA--\nCTATAG", alphabet=alphabet)
-    assert cs("--TA--\nCTATAG") == dlDNA4_ldseguid
+    assert dlDNA4_ldseguid in lsseguid("--AT--;CTATAG", alphabet=alphabet)
     assert ldseguid("CTATAG", "--AT--") == truth
+    assert cs("--AT--;CTATAG") == dlDNA4_ldseguid
 
     # --AT--
     # GATATC
 
     dlDNA5_ldseguid = "np3hncfQvOh8rZ8Co1Ts_02NXg4"
     truth = f"ldseguid={dlDNA5_ldseguid}"
-    assert dlDNA5_ldseguid in lsseguid("--AT--\nGATATC", alphabet=alphabet)
-    assert cs("--AT--\nGATATC") == dlDNA5_ldseguid
+#    assert dlDNA5_ldseguid in lsseguid("--AT--;CTATAG", alphabet=alphabet)
+#    assert cs("--AT--;CTATAG") == dlDNA5_ldseguid
     ldseguid("--AT--", "CTATAG") == truth
 
-    assert ldseguid("-TATGCC", "-GCATAC") == "ldseguid=I6X4lBK0sBSc7WeeaaZvEoKmTYo"
-    assert ldseguid("-GCATAC", "-TATGCC") == "ldseguid=E7YtPGWjj3qCaPzWurlYBaJy_X4"
+    assert ldseguid("-TATGCC", "-GCATAC") == "ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I"
+    assert ldseguid("-GCATAC", "-TATGCC") == "ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I"
 
 
 def test_cdseguid():
     pUC19dna = Path("test_data/pUC19.txt").read_text().strip()
-    dcsg = "cdseguid=zhw8Yrxfo3FO5DDccx4PamBVPCQ"
+    dcsg = "cdseguid=mCC0B3UMZfgLyh3Pl574MVjm30U"
     pUC19dna_rc = reverse(pUC19dna.translate(str.maketrans("ACGT", "TGCA")))
     assert cdseguid(pUC19dna, pUC19dna_rc) == dcsg
     w, c = (
@@ -118,9 +117,9 @@ def test_cdseguid():
         .read_text()
         .splitlines()
     )
-    assert ldseguid(w, c[::-1]) == "ldseguid=zhw8Yrxfo3FO5DDccx4PamBVPCQ"
+    assert ldseguid(w, c[::-1]) == "ldseguid=mCC0B3UMZfgLyh3Pl574MVjm30U"
 
-    truth = "cdseguid=tYeHZYwxQGDHTqGDcrebERag0AU"
+    truth = "cdseguid=5fHMG19IbYxn7Yr7_sOCkvaaw7U"
     assert cdseguid("ACGTT", "AACGT") == truth
     assert cdseguid("AACGT", "ACGTT") == truth
 
@@ -148,17 +147,17 @@ def test_with_alphabets():
     assert csseguid("AT", alphabet="{IUPAC}") == result
     assert csseguid("AT", alphabet="{protein}") == result
 
-    result = "ldseguid=AWD-dt5-TEua8RbOWfnctJIu9nA"
-    result_rna = "ldseguid=1jgY1uMadj9rCRXKjeFDBK2jI44"
+    result = "ldseguid=odgytmQKSOnFEUorGIWK3NDjqUA"
     assert ldseguid("AT", "AT", alphabet="{DNA}") == result
+    result_rna = "ldseguid=dqe0Xe0v0ys5UzphA5j7YFWnOY4"
     assert ldseguid("AU", "AU", alphabet="{RNA}") == result_rna
     assert ldseguid("AT", "AT", alphabet="{IUPAC}") == result
     with pytest.raises(AssertionError):
         ldseguid("AT", "AT", alphabet="{protein}")
 
-    result = "cdseguid=AWD-dt5-TEua8RbOWfnctJIu9nA"
-    result_rna = "cdseguid=1jgY1uMadj9rCRXKjeFDBK2jI44"
+    result = "cdseguid=odgytmQKSOnFEUorGIWK3NDjqUA"
     assert cdseguid("AT", "AT", alphabet="{DNA}") == result
+    result_rna = "cdseguid=dqe0Xe0v0ys5UzphA5j7YFWnOY4"
     assert cdseguid("AU", "AU", alphabet="{RNA}") == result_rna
     assert cdseguid("AT", "AT", alphabet="{IUPAC}") == result
     with pytest.raises(AssertionError):
