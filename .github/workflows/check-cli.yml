@@ -42,8 +42,5 @@ jobs:
         export PATH=$PWD/bats-core-1.10.0/bin:$PATH
         bash --version
         bats --version
-        mkdir tmp
-        cd tmp
-        curl -L -O https://raw.githubusercontent.com/seguid/seguid-tests/main/Makefile
-        make check-cli/seguid-python
+        make check-cli
 
