@@ -15,15 +15,26 @@ docs:
 check:
 	python -m pytest
 
-check-cli:
-	module load CBI bats-core bats-assert bats-file; \
-	(cd tests/; bats *.bats)
+check-cli: Makefile.seguid-tests tests/cli.bats
+	make MAKE="$(MAKE) -f Makefile.seguid-tests" -f Makefile.seguid-tests check-cli/seguid-python
 
 coverage:
 	python -m pytest --cov=src/
 
 coverage-html:
 	pytest --cov=src/ --cov-report=html; xdg-open htmlcov/index.html
+
+Makefile.seguid-tests: 
+	curl -H "Cache-Control: no-cache" -L -o "$@" https://raw.githubusercontent.com/seguid/seguid-tests/main/Makefile
+
+tests/cli.bats:
+	curl -H "Cache-Control: no-cache" -L -o "$@" https://raw.githubusercontent.com/seguid/seguid-tests/main/tests/cli.bats
+
+update-seguid-tests:
+	rm -f Makefile.seguid-tests
+	$(MAKE) Makefile.seguid-tests
+	rm -f tests/cli.bats
+	$(MAKE) tests/cli.bats
 
 cleanup:
 	find . -type d -name "__pycache__" -exec rm -rf {} + || true
