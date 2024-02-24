@@ -36,26 +36,6 @@ coverage:
 coverage-html:
 	pytest --cov=src/ --cov-report=html; xdg-open htmlcov/index.html
 
-
-#---------------------------------------------------------------
-# Check CLI using 'seguid-tests' test suite
-#---------------------------------------------------------------
-check-cli: Makefile.seguid-tests tests/cli.bats
-	make MAKE="$(MAKE) -f Makefile.seguid-tests" -f Makefile.seguid-tests check-cli/seguid-python
-
-Makefile.seguid-tests: 
-	curl -H "Cache-Control: no-cache" -L -o "$@" https://raw.githubusercontent.com/seguid/seguid-tests/main/Makefile
-
-tests/cli.bats:
-	curl -H "Cache-Control: no-cache" -L -o "$@" https://raw.githubusercontent.com/seguid/seguid-tests/main/tests/cli.bats
-
-update-seguid-tests:
-	rm -f Makefile.seguid-tests
-	$(MAKE) Makefile.seguid-tests
-	rm -f tests/cli.bats
-	$(MAKE) tests/cli.bats
-
-
 #---------------------------------------------------------------
 # Miscellaneous
 #---------------------------------------------------------------
@@ -64,3 +44,12 @@ cleanup:
 	[[ -d .pytest_cache ]] && rm -rf .pytest_cache || true
 	[[ -f .coverage  ]] && rm .coverage || true
 	[[ -d htmlcov ]] && rm -rf htmlcov || true
+
+#---------------------------------------------------------------
+# Check CLI using 'seguid-tests' test suite
+#---------------------------------------------------------------
+seguid-tests:
+	git clone --depth=1 https://github.com/seguid/seguid-tests.git
+
+check-cli: seguid-tests
+	cd "$<" && git pull && make check-cli/seguid-python

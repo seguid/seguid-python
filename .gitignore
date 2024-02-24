@@ -2,6 +2,4 @@
 docs/
 __pycache__/
 tests/test_helper/
-Makefile.seguid-tests
-
-
+seguid-tests
