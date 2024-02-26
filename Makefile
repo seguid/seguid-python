@@ -49,7 +49,9 @@ cleanup:
 # Check CLI using 'seguid-tests' test suite
 #---------------------------------------------------------------
 seguid-tests:
-	git clone --depth=1 https://github.com/seguid/seguid-tests.git
+	cd seguid-tests && git pull origin main
+	git submodule init
+	git submodule update
 
 check-cli: seguid-tests
-	cd "$<" && git pull && make check-cli/seguid-python
+	$(MAKE) -C seguid-tests check-cli/seguid-python
