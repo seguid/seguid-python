@@ -1,0 +1,3 @@
+[submodule "seguid-tests"]
+	path = seguid-tests
+	url = https://github.com/seguid/seguid-tests

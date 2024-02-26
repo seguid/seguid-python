@@ -48,6 +48,9 @@ cleanup:
 #---------------------------------------------------------------
 # Check CLI using 'seguid-tests' test suite
 #---------------------------------------------------------------
+add-submodules:
+	git submodule add https://github.com/seguid/seguid-tests seguid-tests
+
 seguid-tests:
 	cd seguid-tests && git pull origin main
 	git submodule init
