@@ -57,4 +57,5 @@ seguid-tests:
 	git submodule update
 
 check-cli: seguid-tests
-	$(MAKE) -C seguid-tests check-cli/seguid-python
+	cd seguid-tests; \
+	$(MAKE) check-cli/seguid-python
