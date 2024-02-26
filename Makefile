@@ -51,11 +51,12 @@ cleanup:
 add-submodules:
 	git submodule add https://github.com/seguid/seguid-tests seguid-tests
 
-seguid-tests:
-	cd seguid-tests && git pull origin main
+seguid-tests: .PHONY
 	git submodule init
 	git submodule update
+	cd "$@" && git pull origin main
 
 check-cli: seguid-tests
-	cd seguid-tests; \
-	$(MAKE) check-cli/seguid-python
+	$(MAKE) -C "$<" check-cli/seguid-python
+
+.PHONY:
