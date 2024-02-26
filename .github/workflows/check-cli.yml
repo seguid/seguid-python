@@ -32,14 +32,8 @@ jobs:
         pip install .[pydivsufsort]
 
     - name: Session information
-      run: |
-        python --version
+      run: python --version
 
     - name: Check CLI
       if: runner.os != 'Windows'
-      run: |
-        curl -L -O https://github.com/bats-core/bats-core/archive/refs/tags/v1.10.0.tar.gz && tar xf v1.10.0.tar.gz
-        export PATH=$PWD/bats-core-1.10.0/bin:$PATH
-        bash --version
-        bats --version
-        make check-cli
+      run: make check-cli
