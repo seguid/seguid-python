@@ -31,10 +31,10 @@ check:
 # Estimate test code coverage
 #---------------------------------------------------------------
 coverage:
-	python -m pytest --cov=.
+	python -m pytest --cov=src/
 
 coverage-html:
-	pytest --cov=. --cov-report=html; xdg-open htmlcov/index.html
+	pytest --cov=src/ --cov-report=html; xdg-open htmlcov/index.html
 
 #---------------------------------------------------------------
 # Miscellaneous
