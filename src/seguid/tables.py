@@ -40,8 +40,25 @@ Nucleic Acids Research, 13(9), 3021–3030.
 https://www.ncbi.nlm.nih.gov/pmc/articles/PMC341218
 """
 
-COMPLEMENT_ALPHABET_IUPAC = {
+COMPLEMENT_ALPHABET_DNA_IUPAC = {
     **COMPLEMENT_ALPHABET_DNA,
+    **{
+        "B": "V",
+        "D": "H",
+        "H": "D",
+        "K": "M",
+        "M": "K",
+        "S": "S",
+        "R": "Y",
+        "V": "B",
+        "Y": "R",
+        "W": "W",
+        "N": "N",
+    },
+}
+
+COMPLEMENT_ALPHABET_RNA_IUPAC = {
+    **COMPLEMENT_ALPHABET_RNA,
     **{
         "B": "V",
         "D": "H",
@@ -85,10 +102,11 @@ ALPHABET_IUPAC_PROTEIN = {
 
 
 alphabet_categories = {
-    "{DNA}": COMPLEMENT_ALPHABET_DNA,
-    "{RNA}": COMPLEMENT_ALPHABET_RNA,
-    "{IUPAC}": COMPLEMENT_ALPHABET_IUPAC,
-    "{protein}": ALPHABET_IUPAC_PROTEIN,
+          "{DNA}": COMPLEMENT_ALPHABET_DNA,
+    "{DNA-IUPAC}": COMPLEMENT_ALPHABET_DNA_IUPAC,
+          "{RNA}": COMPLEMENT_ALPHABET_RNA,
+    "{RNA-IUPAC}": COMPLEMENT_ALPHABET_RNA_IUPAC,
+      "{protein}": ALPHABET_IUPAC_PROTEIN,
 }
 
 
