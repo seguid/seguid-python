@@ -9,7 +9,8 @@ from seguid.tables import COMPLEMENT_ALPHABET_DNA
 from seguid.tables import COMPLEMENT_ALPHABET_RNA
 from seguid.tables import COMPLEMENT_ALPHABET_DNA_IUPAC
 from seguid.tables import COMPLEMENT_ALPHABET_RNA_IUPAC
-from seguid.tables import ALPHABET_IUPAC_PROTEIN
+from seguid.tables import ALPHABET_PROTEIN
+from seguid.tables import ALPHABET_PROTEIN_IUPAC
 
 
 def test_complementary_alphabets():

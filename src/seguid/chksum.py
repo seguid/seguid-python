@@ -25,8 +25,6 @@ from seguid.manip import reverse
 from seguid.manip import rotate
 from seguid.manip import rotate_to_min
 
-# from seguid.manip import linearize_circular_dsDNA
-# from seguid.tables import COMPLEMENT_ALPHABET_DNA
 from seguid.tables import tablefactory
 from seguid.asserts import assert_in_alphabet
 from seguid.asserts import assert_complementary

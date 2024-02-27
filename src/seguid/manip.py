@@ -2,12 +2,6 @@
 # -*- coding: utf-8 -*-
 
 from array import array
-from typing import Callable
-
-from seguid.asserts import assert_alphabet
-from seguid.asserts import assert_in_alphabet
-from seguid.tables import COMPLEMENT_ALPHABET_DNA
-
 
 def rotate(seq: str, amount: int = 0) -> str:
     """Rotates a circular, DNA sequence a certain amount.

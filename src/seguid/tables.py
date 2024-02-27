@@ -54,7 +54,7 @@ COMPLEMENT_ALPHABET_DNA_IUPAC = {
         "Y": "R",
         "W": "W",
         "N": "N",
-    },
+    }
 }
 
 COMPLEMENT_ALPHABET_RNA_IUPAC = {
@@ -71,13 +71,13 @@ COMPLEMENT_ALPHABET_RNA_IUPAC = {
         "Y": "R",
         "W": "W",
         "N": "N",
-    },
+    }
 }
 
 # Definition of a the IUPAC Protein Symbols
 # values are empty strings since there is no concept of complementarity
 # for proteins
-ALPHABET_IUPAC_PROTEIN = {
+ALPHABET_PROTEIN = {
     "A": "",
     "C": "",
     "D": "",
@@ -97,16 +97,28 @@ ALPHABET_IUPAC_PROTEIN = {
     "T": "",
     "V": "",
     "W": "",
-    "Y": "",
+    "Y": ""
 }
 
 
+ALPHABET_PROTEIN_IUPAC = {
+    **ALPHABET_PROTEIN,
+    **{
+      "B": "",
+      "J": "",
+      "X": "",
+      "Z": ""
+    }
+}
+        
+
 alphabet_categories = {
-          "{DNA}": COMPLEMENT_ALPHABET_DNA,
-    "{DNA-IUPAC}": COMPLEMENT_ALPHABET_DNA_IUPAC,
-          "{RNA}": COMPLEMENT_ALPHABET_RNA,
-    "{RNA-IUPAC}": COMPLEMENT_ALPHABET_RNA_IUPAC,
-      "{protein}": ALPHABET_IUPAC_PROTEIN,
+            "{DNA}": COMPLEMENT_ALPHABET_DNA,
+      "{DNA-IUPAC}": COMPLEMENT_ALPHABET_DNA_IUPAC,
+            "{RNA}": COMPLEMENT_ALPHABET_RNA,
+      "{RNA-IUPAC}": COMPLEMENT_ALPHABET_RNA_IUPAC,
+        "{protein}": ALPHABET_PROTEIN,
+  "{protein-IUPAC}": ALPHABET_PROTEIN_IUPAC
 }
 
 

@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from seguid.tables import COMPLEMENT_ALPHABET_DNA
 from seguid.tables import tablefactory
 import seguid.manip
 from string import ascii_letters
@@ -68,7 +67,7 @@ def reverse(seq) -> str:
 
 
 def assert_complementary(
-    watson: str, crick: str, alphabet: dict = COMPLEMENT_ALPHABET_DNA
+    watson: str, crick: str, alphabet: dict
 ):
     ## Validate 'alphabet':
     tb = tablefactory(alphabet)
