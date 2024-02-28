@@ -10,7 +10,7 @@ def test_tablefactory():
     """docstring."""
     assert_alphabet(tablefactory("{DNA}"))
     assert_alphabet(tablefactory("{RNA}"))
-    assert_alphabet(tablefactory("{DNA-IUPAC}"))
-    assert_alphabet(tablefactory("{RNA-IUPAC}"))
+    assert_alphabet(tablefactory("{DNA-extended}"))
+    assert_alphabet(tablefactory("{RNA-extended}"))
     tablefactory("{protein}")
-    tablefactory("{protein-IUPAC}")
+    tablefactory("{protein-extended}")

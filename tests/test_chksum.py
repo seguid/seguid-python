@@ -130,28 +130,28 @@ def test_with_alphabets():
     result_rna = "seguid=rN9Bc195AlLq45vug03K0N5Yfj0"
     assert seguid("AT", alphabet="{DNA}") == result
     assert seguid("AU", alphabet="{RNA}") == result_rna
-    assert seguid("AT", alphabet="{DNA-IUPAC}") == result
+    assert seguid("AT", alphabet="{DNA-extended}") == result
     assert seguid("AT", alphabet="{protein}") == result
 
     result = "lsseguid=Ax_RG6hzSrMEEWoCO1IWMGska-4"
     result_rna = "lsseguid=rN9Bc195AlLq45vug03K0N5Yfj0"
     assert lsseguid("AT", alphabet="{DNA}") == result
     assert lsseguid("AU", alphabet="{RNA}") == result_rna
-    assert lsseguid("AT", alphabet="{DNA-IUPAC}") == result
+    assert lsseguid("AT", alphabet="{DNA-extended}") == result
     assert lsseguid("AT", alphabet="{protein}") == result
 
     result = "csseguid=Ax_RG6hzSrMEEWoCO1IWMGska-4"
     result_rna = "csseguid=rN9Bc195AlLq45vug03K0N5Yfj0"
     assert csseguid("AT", alphabet="{DNA}") == result
     assert csseguid("AU", alphabet="{RNA}") == result_rna
-    assert csseguid("AT", alphabet="{DNA-IUPAC}") == result
+    assert csseguid("AT", alphabet="{DNA-extended}") == result
     assert csseguid("AT", alphabet="{protein}") == result
 
     result = "ldseguid=odgytmQKSOnFEUorGIWK3NDjqUA"
     assert ldseguid("AT", "AT", alphabet="{DNA}") == result
     result_rna = "ldseguid=dqe0Xe0v0ys5UzphA5j7YFWnOY4"
     assert ldseguid("AU", "AU", alphabet="{RNA}") == result_rna
-    assert ldseguid("AT", "AT", alphabet="{DNA-IUPAC}") == result
+    assert ldseguid("AT", "AT", alphabet="{DNA-extended}") == result
     with pytest.raises(AssertionError):
         ldseguid("AT", "AT", alphabet="{protein}")
 
@@ -159,7 +159,7 @@ def test_with_alphabets():
     assert cdseguid("AT", "AT", alphabet="{DNA}") == result
     result_rna = "cdseguid=dqe0Xe0v0ys5UzphA5j7YFWnOY4"
     assert cdseguid("AU", "AU", alphabet="{RNA}") == result_rna
-    assert cdseguid("AT", "AT", alphabet="{DNA-IUPAC}") == result
+    assert cdseguid("AT", "AT", alphabet="{DNA-extended}") == result
     with pytest.raises(AssertionError):
         assert cdseguid("AT", "AT", alphabet="{protein}") == result
 
