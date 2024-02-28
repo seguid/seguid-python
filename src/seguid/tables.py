@@ -6,7 +6,7 @@ alphabets = {
                "{RNA}": "GC,AU",
       "{DNA-extended}": "GC,AT,BV,DH,KM,SS,RY,WW,NN",
       "{RNA-extended}": "GC,AU,BV,DH,KM,SS,RY,WW,NN",
-           "{protein}": "A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y",
+           "{protein}": "A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y,O,U",
   "{protein-extended}": "A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y,O,U,B,J,X,Z"
 }
 
