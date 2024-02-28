@@ -97,11 +97,11 @@ def test_ldseguid():
     # --AT--
     # GATATC
 
-    dlDNA5_ldseguid = "np3hncfQvOh8rZ8Co1Ts_02NXg4"
+    dlDNA5_ldseguid = dlDNA4_ldseguid
     truth = f"ldseguid={dlDNA5_ldseguid}"
-#    assert dlDNA5_ldseguid in lsseguid("--AT--;CTATAG", alphabet=alphabet)
-#    assert cs("--AT--;CTATAG") == dlDNA5_ldseguid
-    ldseguid("--AT--", "CTATAG") == truth
+    assert dlDNA5_ldseguid in lsseguid("--AT--;CTATAG", alphabet=alphabet)
+    assert cs("--AT--;CTATAG") == dlDNA5_ldseguid
+    # ldseguid("--AT--", "CTATAG") == truth  # FIXME
 
     assert ldseguid("-TATGCC", "-GCATAC") == "ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I"
     assert ldseguid("-GCATAC", "-TATGCC") == "ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I"
