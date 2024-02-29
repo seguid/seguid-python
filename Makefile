@@ -16,9 +16,12 @@ install:
 #---------------------------------------------------------------
 # Build documentation (drop?!?)
 #---------------------------------------------------------------
-docs:
+docs-install-deps:
+	python -m pip install sphinx numpydoc sphinx-autobuild sphinx-rtd-theme
+
+docs: .PHONY
 	cd docs; \
-	make
+	make html
 
 #---------------------------------------------------------------
 # Check package
