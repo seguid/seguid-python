@@ -1,12 +1,12 @@
 on: [push, pull_request]
 
-name: "Build and Publish Documentation"
+name: "Documentation Status"
 
 permissions:
   contents: write
   
 jobs:
-  check:
+  build-and-publish:
     if: "! contains(github.event.head_commit.message, '[ci skip]')"
 
     timeout-minutes: 10
