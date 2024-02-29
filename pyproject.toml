@@ -6,24 +6,16 @@ authors = ["BjornFJohansson <bjornjobb@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 [tool.poetry.dependencies]
-python = ">=3.3, <4.0"
+python = ">=3.3,<4.0"
 pydivsufsort = { version = "^0.0.14", optional = true }
 [tool.poetry.extras]
 pydivsufsort =  ["pydivsufsort"]
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-[build-system]
 build-backend = "poetry_dynamic_versioning.backend"
 requires = [
   "poetry-core",
-  "poetry-dynamic-versioning",
-]
+  "poetry-dynamic-versioning"]
 [tool.poetry-dynamic-versioning]
 enable = true
 style = "semver"
-vcs = "git
-#[tool.poetry-dynamic-versioning.substitution]
-#folders = [
-#  {path = "src"},
-#]
+vcs = "git"
