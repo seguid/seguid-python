@@ -7,8 +7,8 @@
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
 project = 'seguid'
-copyright = '2023, bjorn'
-author = 'bjorn'
+copyright = '2024, Bjorn Johansson, Henrik Bengtsson, Louis Abraham'
+author = 'Bjorn Johansson, Henrik Bengtsson, Louis Abraham'
 
 import os
 import sys

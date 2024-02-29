@@ -1,5 +1,5 @@
 *~
-docs/
+docs/_build/
 __pycache__/
 tests/test_helper/
 .coverage
