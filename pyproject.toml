@@ -3,7 +3,9 @@ name = "seguid"
 version = "0.0.3.9008"
 description = "Sequence Globally Unique Identifier (SEGUID) Checksums for Linear, Circular, Single-Stranded and Double-Stranded Biological Sequences"
 authors = [
-  { name="Bjorn Johansson, Henrik Bengtsson, Louis Abraham", email="bjornjobb@gmail.com" }
+  "Bjorn Johansson <bjornjobb@gmail.com>",
+  "Henrik Bengtsson",
+  "Louis Abraham"
 ]
 license = "MIT"
 readme = "README.md"
