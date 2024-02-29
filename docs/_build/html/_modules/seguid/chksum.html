@@ -97,8 +97,6 @@
     <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">shortform</span><span class="p">,</span> <span class="n">longform</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
 
-<div class="viewcode-block" id="seguid">
-<a class="viewcode-back" href="../../index.html#seguid.chksum.seguid">[docs]</a>
 <span class="k">def</span> <span class="nf">seguid</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID checksum for protein or single stranded linear DNA.</span>
 
@@ -140,12 +138,11 @@
         <span class="n">seguid_prefix</span><span class="p">,</span>
         <span class="n">_seguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="n">alphabet</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="n">base64</span><span class="o">.</span><span class="n">standard_b64encode</span><span class="p">),</span>
         <span class="n">form</span><span class="p">,</span>
-    <span class="p">)</span></div>
-
+    <span class="p">)</span>
 
 
 <div class="viewcode-block" id="lsseguid">
-<a class="viewcode-back" href="../../index.html#seguid.chksum.lsseguid">[docs]</a>
+<a class="viewcode-back" href="../../index.html#seguid.lsseguid">[docs]</a>
 <span class="k">def</span> <span class="nf">lsseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID checksum for single stranded linear DNA (slSEGUID).</span>
 
@@ -174,7 +171,7 @@
 
 
 <div class="viewcode-block" id="csseguid">
-<a class="viewcode-back" href="../../index.html#seguid.chksum.csseguid">[docs]</a>
+<a class="viewcode-back" href="../../index.html#seguid.csseguid">[docs]</a>
 <span class="k">def</span> <span class="nf">csseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;SEGUID checksum for single stranded circular DNA (csSEGUID).</span>
 
@@ -182,9 +179,6 @@
 <span class="sd">    smallest string rotation of a ssDNA sequence.</span>
 
 <span class="sd">    Only defined for circular sequences.</span>
-
-<span class="sd">    The srfun argument has to take a string as an argument and</span>
-<span class="sd">    return another string.</span>
 
 <span class="sd">    The checksum is prefixed with &quot;csseguid=&quot;</span>
 
@@ -210,42 +204,42 @@
 
 
 <div class="viewcode-block" id="ldseguid">
-<a class="viewcode-back" href="../../index.html#seguid.chksum.ldseguid">[docs]</a>
+<a class="viewcode-back" href="../../index.html#seguid.ldseguid">[docs]</a>
 <span class="k">def</span> <span class="nf">ldseguid</span><span class="p">(</span>
     <span class="n">watson</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">crick</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;SEGUID checksum for double stranded linear DNA (ldSEGUID).</span>
 
 <span class="sd">    Calculates the ldSEGUID checksum for a dsDNA sequence defined by two</span>
-<span class="sd">    strings representing the upper (Watson) and lower (Crick) strand</span>
-<span class="sd">    complementary DNA strands and an integer value describing the stagger</span>
-<span class="sd">    between the two strands in the 5&#39; (left) end of the molecule.</span>
+<span class="sd">    strings representing the upper (Watson) and the complementary (Crick) DNA strands.</span>
+<span class="sd">    Optional ssDNA regions in the ends are indicated by a dash &quot;-&quot; in eather strand.</span>
+<span class="sd">    Watson and Crick strands are always equal in length.</span>
 
-<span class="sd">    The algorithm first selects the lexicographically smallest</span>
-<span class="sd">    of the top or bottom strands.</span>
+<span class="sd">    The algorithm first selects the lexicographically smallest of the Watson and Crick strands.</span>
 
-<span class="sd">    The two string are joined, separated by a line break (ASCII 10) and the</span>
-<span class="sd">    lsSEGUID function is used on the resulting string.</span>
+<span class="sd">    The two string are joined 5&#39;-3&#39;, separated by a semicolon &quot;;&quot; and the lsSEGUID function</span>
+<span class="sd">    is used on the resulting string.</span>
 
 <span class="sd">    ::</span>
+
 <span class="sd">        dsDNA    ldSEGUID</span>
 
-<span class="sd">        -TATGCC  Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU</span>
+<span class="sd">        -TATGCC  ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I</span>
 <span class="sd">         |||||</span>
 <span class="sd">        CATACG-</span>
 
-<span class="sd">        -GCATAC  Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU</span>
+<span class="sd">        -GCATAC  ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I</span>
 <span class="sd">         |||||</span>
 <span class="sd">        CCGTAT-</span>
 
-<span class="sd">    For the linear dsDNA sequence defined by watson = &quot;-TATGCC&quot;, crick =&quot;-gcatac&quot;</span>
-<span class="sd">    (see figures above), The &quot;-gcatac&quot; strand is selected as</span>
-<span class="sd">    &quot;-gcatac&quot; &lt; &quot;-TATGCC&quot;.</span>
+<span class="sd">    For the linear dsDNA sequence defined by watson = &quot;-TATGCC&quot;, crick =&quot;-GCATAC&quot;</span>
+<span class="sd">    (see figures above), The &quot;-GCATAC&quot; strand is selected since lexicographically,</span>
+<span class="sd">    &quot;-GCATAC&quot; &lt; &quot;-TATGCC&quot;.</span>
 
 <span class="sd">    A string is constructed like so:</span>
 <span class="sd">    ::</span>
 
-<span class="sd">        &quot;-gcatac&quot; + chr(10) + &quot;CCGTAT-&quot;</span>
+<span class="sd">        &quot;-GCATAC&quot; + &quot;;&quot; + &quot;-TATGCC&quot;</span>
 
 <span class="sd">    The checksum is prefixed with &quot;ldseguid=&quot;</span>
 
@@ -280,7 +274,7 @@
 
 
 <div class="viewcode-block" id="cdseguid">
-<a class="viewcode-back" href="../../index.html#seguid.chksum.cdseguid">[docs]</a>
+<a class="viewcode-back" href="../../index.html#seguid.cdseguid">[docs]</a>
 <span class="k">def</span> <span class="nf">cdseguid</span><span class="p">(</span>
     <span class="n">watson</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">crick</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>

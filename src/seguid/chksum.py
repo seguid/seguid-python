@@ -143,9 +143,6 @@ def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 
     Only defined for circular sequences.
 
-    The srfun argument has to take a string as an argument and
-    return another string.
-
     The checksum is prefixed with "csseguid="
 
     Examples
@@ -174,35 +171,35 @@ def ldseguid(
     r"""SEGUID checksum for double stranded linear DNA (ldSEGUID).
 
     Calculates the ldSEGUID checksum for a dsDNA sequence defined by two
-    strings representing the upper (Watson) and lower (Crick) strand
-    complementary DNA strands and an integer value describing the stagger
-    between the two strands in the 5' (left) end of the molecule.
+    strings representing the upper (Watson) and the complementary (Crick) DNA strands.
+    Optional ssDNA regions in the ends are indicated by a dash "-" in eather strand.
+    Watson and Crick strands are always equal in length.
 
-    The algorithm first selects the lexicographically smallest
-    of the top or bottom strands.
+    The algorithm first selects the lexicographically smallest of the Watson and Crick strands.
 
-    The two string are joined, separated by a line break (ASCII 10) and the
-    lsSEGUID function is used on the resulting string.
+    The two string are joined 5'-3', separated by a semicolon ";" and the lsSEGUID function
+    is used on the resulting string.
 
     ::
+
         dsDNA    ldSEGUID
 
-        -TATGCC  Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU
+        -TATGCC  ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I
          |||||
         CATACG-
 
-        -GCATAC  Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU
+        -GCATAC  ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I
          |||||
         CCGTAT-
 
-    For the linear dsDNA sequence defined by watson = "-TATGCC", crick ="-gcatac"
-    (see figures above), The "-gcatac" strand is selected as
-    "-gcatac" < "-TATGCC".
+    For the linear dsDNA sequence defined by watson = "-TATGCC", crick ="-GCATAC"
+    (see figures above), The "-GCATAC" strand is selected since lexicographically,
+    "-GCATAC" < "-TATGCC".
 
     A string is constructed like so:
     ::
 
-        "-gcatac" + chr(10) + "CCGTAT-"
+        "-GCATAC" + ";" + "-TATGCC"
 
     The checksum is prefixed with "ldseguid="
 

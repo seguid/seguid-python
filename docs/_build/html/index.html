@@ -57,8 +57,6 @@ Can also be used for protein sequences.</p>
 <p>The csSEGUID is the lsSEGUID checksum calculated for the lexicographically
 smallest string rotation of a ssDNA sequence.</p>
 <p>Only defined for circular sequences.</p>
-<p>The srfun argument has to take a string as an argument and
-return another string.</p>
 <p>The checksum is prefixed with “csseguid=”</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">csseguid</span><span class="p">(</span><span class="s2">&quot;ATTT&quot;</span><span class="p">)</span>
@@ -78,32 +76,28 @@ return another string.</p>
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">ldseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watson</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crick</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/chksum.html#ldseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.ldseguid" title="Link to this definition">¶</a></dt>
 <dd><p>SEGUID checksum for double stranded linear DNA (ldSEGUID).</p>
 <p>Calculates the ldSEGUID checksum for a dsDNA sequence defined by two
-strings representing the upper (Watson) and lower (Crick) strand
-complementary DNA strands and an integer value describing the stagger
-between the two strands in the 5’ (left) end of the molecule.</p>
-<p>The algorithm first selects the lexicographically smallest
-of the top or bottom strands.</p>
-<p>The two string are joined, separated by a line break (ASCII 10) and the
-lsSEGUID function is used on the resulting string.</p>
-<dl>
-<dt>::</dt><dd><p>dsDNA    ldSEGUID</p>
-<dl class="option-list">
-<dt><kbd><span class="option">-T<var>ATGCC</var></span></kbd></dt>
-<dd></dd>
-</dl>
-<p>CATACG-</p>
-<dl class="option-list">
-<dt><kbd><span class="option">-G<var>CATAC</var></span></kbd></dt>
-<dd></dd>
-</dl>
-<p>CCGTAT-</p>
-</dd>
-</dl>
-<p>For the linear dsDNA sequence defined by watson = “-TATGCC”, crick =”-gcatac”
-(see figures above), The “-gcatac” strand is selected as
-“-gcatac” &lt; “-TATGCC”.</p>
+strings representing the upper (Watson) and the complementary (Crick) DNA strands.
+Optional ssDNA regions in the ends are indicated by a dash “-” in eather strand.
+Watson and Crick strands are always equal in length.</p>
+<p>The algorithm first selects the lexicographically smallest of the Watson and Crick strands.</p>
+<p>The two string are joined 5’-3’, separated by a semicolon “;” and the lsSEGUID function
+is used on the resulting string.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dsDNA</span>    <span class="n">ldSEGUID</span>
+
+<span class="o">-</span><span class="n">TATGCC</span>  <span class="n">ldseguid</span><span class="o">=</span><span class="n">rr65d6AYuP</span><span class="o">-</span><span class="n">CdMaVmdw3L9FPt6I</span>
+ <span class="o">|||||</span>
+<span class="n">CATACG</span><span class="o">-</span>
+
+<span class="o">-</span><span class="n">GCATAC</span>  <span class="n">ldseguid</span><span class="o">=</span><span class="n">rr65d6AYuP</span><span class="o">-</span><span class="n">CdMaVmdw3L9FPt6I</span>
+ <span class="o">|||||</span>
+<span class="n">CCGTAT</span><span class="o">-</span>
+</pre></div>
+</div>
+<p>For the linear dsDNA sequence defined by watson = “-TATGCC”, crick =”-GCATAC”
+(see figures above), The “-GCATAC” strand is selected since lexicographically,
+“-GCATAC” &lt; “-TATGCC”.</p>
 <p>A string is constructed like so:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;-gcatac&quot;</span> <span class="o">+</span> <span class="nb">chr</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;CCGTAT-&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;-GCATAC&quot;</span> <span class="o">+</span> <span class="s2">&quot;;&quot;</span> <span class="o">+</span> <span class="s2">&quot;-TATGCC&quot;</span>
 </pre></div>
 </div>
 <p>The checksum is prefixed with “ldseguid=”</p>
