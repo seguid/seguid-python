@@ -37,7 +37,7 @@ the original SEGUID algorithm.
 
 ## Documentation
 
-The package documentation is available on [Read the Docs].
+The package documentation is available on <https://seguid-python.seguid.org>.
 
 
 ## Installation
