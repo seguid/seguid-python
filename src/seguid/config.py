@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import warnings
-from seguid._manip import min_rotation_py
+from seguid.manip import min_rotation_py
 
 ## The min_rotation() function
 _min_rotation = min_rotation_py

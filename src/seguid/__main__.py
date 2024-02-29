@@ -6,7 +6,7 @@ from seguid.chksum import lsseguid
 from seguid.chksum import csseguid
 from seguid.chksum import ldseguid
 from seguid.chksum import cdseguid
-from seguid._manip import reverse
+from seguid.manip import reverse
 from seguid.reprutils import parse_sequence_string
 
 parser = ArgumentParser(

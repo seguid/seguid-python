@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html lang="en" data-content_root="../../">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>seguid.reprutils &#8212; seguid  documentation</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=4f649999" />
+    <link rel="stylesheet" type="text/css" href="../../_static/alabaster.css?v=039e1c02" />
+    <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for seguid.reprutils</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">seguid.tables</span> <span class="kn">import</span> <span class="n">COMPLEMENT_TABLE_DNA</span>
+<span class="c1"># from textwrap import dedent</span>
+<span class="kn">from</span> <span class="nn">inspect</span> <span class="kn">import</span> <span class="n">cleandoc</span>
+<span class="kn">from</span> <span class="nn">seguid.asserts</span> <span class="kn">import</span> <span class="n">assert_in_alphabet</span>
+<span class="kn">from</span> <span class="nn">seguid.asserts</span> <span class="kn">import</span> <span class="n">assert_anneal</span>
+<span class="kn">from</span> <span class="nn">seguid.manip</span> <span class="kn">import</span> <span class="n">reverse</span>
+
+
+<div class="viewcode-block" id="tuple_from_repr">
+<a class="viewcode-back" href="../../index.html#seguid.reprutils.tuple_from_repr">[docs]</a>
+<span class="k">def</span> <span class="nf">tuple_from_repr</span><span class="p">(</span>
+    <span class="n">rpr</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">table</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">COMPLEMENT_TABLE_DNA</span><span class="p">,</span>
+    <span class="n">space</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a (watson, crick, overhang) tuple from dsDNA text representation.</span>
+
+<span class="sd">    This function can generate a tuple (watson, crick, overhang)</span>
+<span class="sd">    from a dsDNA figure such as the ones depicted below. The resulting</span>
+<span class="sd">    tuple can be used as an argument for the lSEGUID_sticky or nseguid</span>
+<span class="sd">    functions. See these functions for the definition of watson, crick and</span>
+<span class="sd">    overhang. Example inputs can be:</span>
+<span class="sd">    ::</span>
+
+<span class="sd">              -TATGCC</span>
+<span class="sd">              CATACG-</span>
+
+
+<span class="sd">              GTATGCC</span>
+<span class="sd">              CATACGG</span>
+
+
+<span class="sd">              GTATGC-</span>
+<span class="sd">              -ATACGG</span>
+
+
+<span class="sd">    The first and last figure above represent DNA with single</span>
+<span class="sd">    stranded ends, 3&#39; and 5&#39; respectively. The dash represent</span>
+<span class="sd">    an empty space in the DNA sequence. This is only allowed</span>
+<span class="sd">    on one of the adjacent positions. The following is *not*</span>
+<span class="sd">    allowed:</span>
+<span class="sd">    ::</span>
+
+<span class="sd">              -TATGCC</span>
+<span class="sd">              -ATACGG</span>
+
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+<span class="sd">    &gt;&gt;&gt; rpr1 = \&quot;&quot;&quot;</span><span class="o">-</span><span class="n">TATGCC</span>
+    <span class="o">...</span>           <span class="n">CATACG</span><span class="o">-</span>\<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    &gt;&gt;&gt; tuple_from_repr(rpr1)</span>
+<span class="s2">    (&#39;TATGCC&#39;, &#39;GCATAC&#39;, 1)</span>
+<span class="s2">    &gt;&gt;&gt; rpr2 = </span><span class="se">\&quot;</span><span class="s2">&quot;&quot;GTATGCC</span>
+<span class="s2">    ...            CATACGG</span><span class="se">\&quot;</span><span class="s2">&quot;&quot;</span>
+<span class="s2">    &gt;&gt;&gt; tuple_from_repr(rpr2)</span>
+<span class="s2">    (&#39;GTATGCC&#39;, &#39;GGCATAC&#39;, 0)</span>
+<span class="s2">    &gt;&gt;&gt; rpr3 = </span><span class="se">\&quot;</span><span class="s2">&quot;&quot;GTATGC-</span>
+<span class="s2">    ...            -ATACGG</span><span class="se">\&quot;</span><span class="s2">&quot;&quot;</span>
+<span class="s2">    &gt;&gt;&gt; tuple_from_repr(rpr3)</span>
+<span class="s2">    (&#39;GTATGC&#39;, &#39;GGCATA&#39;, -1)</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">space</span> <span class="o">!=</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="s2">&quot;Space can not be &#39;space&#39; (ASCII 32)&quot;</span>
+    <span class="n">linebreak</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">assert_in_alphabet</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">linebreak</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">ValueError</span><span class="p">:</span>
+        <span class="k">pass</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;space was set to </span><span class="si">{</span><span class="n">space</span><span class="si">}</span><span class="s2"> which is already in the alphabet&quot;</span><span class="p">)</span>
+
+    <span class="n">cleaned_rpr</span> <span class="o">=</span> <span class="n">cleandoc</span><span class="p">(</span><span class="n">rpr</span><span class="p">)</span>
+
+    <span class="n">assert_in_alphabet</span><span class="p">(</span><span class="n">cleaned_rpr</span><span class="p">,</span>
+                       <span class="n">alphabet</span><span class="o">=</span><span class="nb">set</span><span class="p">(</span><span class="n">table</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="o">|</span> <span class="nb">set</span><span class="p">(</span><span class="n">linebreak</span><span class="p">))</span>
+
+    <span class="n">watson</span><span class="p">,</span> <span class="n">crickrv</span> <span class="o">=</span> <span class="n">cleaned_rpr</span><span class="o">.</span><span class="n">splitlines</span><span class="p">()</span>
+
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">watson</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">crickrv</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">watson</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="ow">and</span> <span class="n">crickrv</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">space</span><span class="p">))</span>
+    <span class="k">assert</span> <span class="ow">not</span> <span class="p">(</span><span class="n">watson</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="ow">and</span> <span class="n">crickrv</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">space</span><span class="p">))</span>
+
+    <span class="n">overhang</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="nb">len</span><span class="p">(</span><span class="n">watson</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">watson</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">space</span><span class="p">))</span> <span class="o">-</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">crickrv</span><span class="p">)</span> <span class="o">-</span> <span class="nb">len</span><span class="p">(</span><span class="n">crickrv</span><span class="o">.</span><span class="n">lstrip</span><span class="p">(</span><span class="n">space</span><span class="p">)))</span>
+    <span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">watson</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">space</span><span class="p">),</span> <span class="n">crickrv</span><span class="o">.</span><span class="n">strip</span><span class="p">(</span><span class="n">space</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="n">overhang</span>
+    <span class="n">assert_anneal</span><span class="p">(</span><span class="o">*</span><span class="n">result</span><span class="p">,</span> <span class="n">table</span><span class="o">=</span><span class="n">table</span> <span class="o">|</span> <span class="p">{</span><span class="n">space</span><span class="p">:</span> <span class="n">space</span><span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">result</span></div>
+
+
+
+<div class="viewcode-block" id="repr_from_tuple">
+<a class="viewcode-back" href="../../index.html#seguid.reprutils.repr_from_tuple">[docs]</a>
+<span class="k">def</span> <span class="nf">repr_from_tuple</span><span class="p">(</span>
+    <span class="n">watson</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">crick</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">overhang</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span>
+    <span class="n">table</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="n">COMPLEMENT_TABLE_DNA</span><span class="p">,</span>
+    <span class="n">space</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;docstring.&quot;&quot;&quot;</span>
+    <span class="n">assert_anneal</span><span class="p">(</span><span class="n">watson</span><span class="p">,</span> <span class="n">crick</span><span class="p">,</span> <span class="n">overhang</span> <span class="o">=</span> <span class="n">overhang</span><span class="p">,</span> <span class="n">table</span> <span class="o">=</span> <span class="n">table</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">space</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">space</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+
+    <span class="n">msg</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">overhang</span><span class="o">*</span><span class="n">space</span><span class="si">}{</span><span class="n">watson</span><span class="si">}{</span><span class="n">space</span><span class="o">*</span><span class="p">(</span><span class="o">-</span><span class="n">overhang</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">crick</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">watson</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="o">-</span><span class="n">overhang</span><span class="o">*</span><span class="n">space</span><span class="si">}{</span><span class="n">reverse</span><span class="p">(</span><span class="n">crick</span><span class="p">)</span><span class="si">}{</span><span class="n">space</span><span class="o">*</span><span class="p">(</span><span class="n">overhang</span><span class="o">+</span><span class="nb">len</span><span class="p">(</span><span class="n">watson</span><span class="p">)</span><span class="o">-</span><span class="nb">len</span><span class="p">(</span><span class="n">crick</span><span class="p">))</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span><span class="o">.</span><span class="n">rstrip</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">msg</span></div>
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">seguid</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2023, bjorn.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 7.2.6</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.13</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

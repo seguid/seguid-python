@@ -3,9 +3,9 @@
 
 import pytest
 
-from seguid._asserts import assert_in_alphabet
-from seguid._asserts import assert_alphabet
-from seguid._asserts import assert_complementary
+from seguid.asserts import assert_in_alphabet
+from seguid.asserts import assert_alphabet
+from seguid.asserts import assert_complementary
 
 
 def test_assert_in_alphabet():

@@ -17,7 +17,7 @@ from seguid import cdseguid
 
 from seguid.chksum import seguid
 
-from seguid._manip import reverse
+from seguid.manip import reverse
 
 
 def test_seguid():

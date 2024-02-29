@@ -1,14 +1,6 @@
-try:
-    # importlib only avaliable in Python 3.8 and up
-    from importlib.metadata import version as _version
-except ModuleNotFoundError:
-    __version__ = "0.0.0"
-else:
-    __version__ = _version(__package__)
+__version__ = "0.0.3.9013"
 
 from seguid.chksum import lsseguid
 from seguid.chksum import csseguid
 from seguid.chksum import ldseguid
 from seguid.chksum import cdseguid
-
-__all__ = ["lsseguid", "csseguid", "ldseguid", "cdseguid"]

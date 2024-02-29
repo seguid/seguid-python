@@ -3,8 +3,8 @@
 
 import pytest
 
-from seguid._manip import rotate
-from seguid._manip import rotate_to_min
+from seguid.manip import rotate
+from seguid.manip import rotate_to_min
 from seguid.config import set_min_rotation
 from seguid.config import _min_rotation
 
