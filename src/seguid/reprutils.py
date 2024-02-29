@@ -1,4 +1,4 @@
-from seguid.manip import reverse
+from seguid._manip import reverse
 import re
 
 

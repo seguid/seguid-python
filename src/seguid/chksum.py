@@ -21,13 +21,13 @@ csseguid and cdseguid are considerably faster with pydivsufsort installed.
 import hashlib
 import base64
 
-from seguid.manip import reverse
-from seguid.manip import rotate
-from seguid.manip import rotate_to_min
+from seguid._manip import reverse
+from seguid._manip import rotate
+from seguid._manip import rotate_to_min
 
-from seguid.tables import tablefactory
-from seguid.asserts import assert_in_alphabet
-from seguid.asserts import assert_complementary
+from seguid._tables import tablefactory
+from seguid._asserts import assert_in_alphabet
+from seguid._asserts import assert_complementary
 
 seguid_prefix: str = "seguid="
 lsseguid_prefix: str = "lsseguid="
