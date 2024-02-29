@@ -42,3 +42,11 @@ autodoc_preserve_defaults = True
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+
+html_theme_options = {
+    'extra_nav_links': {
+        "Home page": "https://www.seguid.org",
+        "Source code": "https://github.com/seguid/seguid-python",
+        "Issue Tracker": "https://github.com/seguid/seguid-python/issues"
+    }
+}
