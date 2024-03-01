@@ -3,8 +3,8 @@
 
 import pytest
 
-from seguid.asserts import assert_alphabet
-from seguid.tables import tablefactory
+from seguid._asserts import assert_alphabet
+from seguid._tables import tablefactory
 
 def test_tablefactory():
     """docstring."""

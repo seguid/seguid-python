@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-from seguid.tables import tablefactory
-import seguid.manip
+from seguid._tables import tablefactory
+import seguid._manip
 from string import ascii_letters
 from string import digits
 import re
