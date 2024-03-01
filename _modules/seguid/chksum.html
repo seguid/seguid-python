@@ -53,13 +53,13 @@
 <span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="kn">import</span> <span class="nn">base64</span>
 
-<span class="kn">from</span> <span class="nn">seguid.manip</span> <span class="kn">import</span> <span class="n">reverse</span>
-<span class="kn">from</span> <span class="nn">seguid.manip</span> <span class="kn">import</span> <span class="n">rotate</span>
-<span class="kn">from</span> <span class="nn">seguid.manip</span> <span class="kn">import</span> <span class="n">rotate_to_min</span>
+<span class="kn">from</span> <span class="nn">seguid._manip</span> <span class="kn">import</span> <span class="n">reverse</span>
+<span class="kn">from</span> <span class="nn">seguid._manip</span> <span class="kn">import</span> <span class="n">rotate</span>
+<span class="kn">from</span> <span class="nn">seguid._manip</span> <span class="kn">import</span> <span class="n">rotate_to_min</span>
 
-<span class="kn">from</span> <span class="nn">seguid.tables</span> <span class="kn">import</span> <span class="n">tablefactory</span>
-<span class="kn">from</span> <span class="nn">seguid.asserts</span> <span class="kn">import</span> <span class="n">assert_in_alphabet</span>
-<span class="kn">from</span> <span class="nn">seguid.asserts</span> <span class="kn">import</span> <span class="n">assert_complementary</span>
+<span class="kn">from</span> <span class="nn">seguid._tables</span> <span class="kn">import</span> <span class="n">tablefactory</span>
+<span class="kn">from</span> <span class="nn">seguid._asserts</span> <span class="kn">import</span> <span class="n">assert_in_alphabet</span>
+<span class="kn">from</span> <span class="nn">seguid._asserts</span> <span class="kn">import</span> <span class="n">assert_complementary</span>
 
 <span class="n">seguid_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;seguid=&quot;</span>
 <span class="n">lsseguid_prefix</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;lsseguid=&quot;</span>
@@ -183,9 +183,6 @@
 
 <span class="sd">    Only defined for circular sequences.</span>
 
-<span class="sd">    The srfun argument has to take a string as an argument and</span>
-<span class="sd">    return another string.</span>
-
 <span class="sd">    The checksum is prefixed with &quot;csseguid=&quot;</span>
 
 <span class="sd">    Examples</span>
@@ -217,35 +214,35 @@
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;SEGUID checksum for double stranded linear DNA (ldSEGUID).</span>
 
 <span class="sd">    Calculates the ldSEGUID checksum for a dsDNA sequence defined by two</span>
-<span class="sd">    strings representing the upper (Watson) and lower (Crick) strand</span>
-<span class="sd">    complementary DNA strands and an integer value describing the stagger</span>
-<span class="sd">    between the two strands in the 5&#39; (left) end of the molecule.</span>
+<span class="sd">    strings representing the upper (Watson) and the complementary (Crick) DNA strands.</span>
+<span class="sd">    Optional ssDNA regions in the ends are indicated by a dash &quot;-&quot; in eather strand.</span>
+<span class="sd">    Watson and Crick strands are always equal in length.</span>
 
-<span class="sd">    The algorithm first selects the lexicographically smallest</span>
-<span class="sd">    of the top or bottom strands.</span>
+<span class="sd">    The algorithm first selects the lexicographically smallest of the Watson and Crick strands.</span>
 
-<span class="sd">    The two string are joined, separated by a line break (ASCII 10) and the</span>
-<span class="sd">    lsSEGUID function is used on the resulting string.</span>
+<span class="sd">    The two string are joined 5&#39;-3&#39;, separated by a semicolon &quot;;&quot; and the lsSEGUID function</span>
+<span class="sd">    is used on the resulting string.</span>
 
 <span class="sd">    ::</span>
+
 <span class="sd">        dsDNA    ldSEGUID</span>
 
-<span class="sd">        -TATGCC  Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU</span>
+<span class="sd">        -TATGCC  ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I</span>
 <span class="sd">         |||||</span>
 <span class="sd">        CATACG-</span>
 
-<span class="sd">        -GCATAC  Jv9Z9JJ0IYnG-dTPBGwhDyAqnmU</span>
+<span class="sd">        -GCATAC  ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I</span>
 <span class="sd">         |||||</span>
 <span class="sd">        CCGTAT-</span>
 
-<span class="sd">    For the linear dsDNA sequence defined by watson = &quot;-TATGCC&quot;, crick =&quot;-gcatac&quot;</span>
-<span class="sd">    (see figures above), The &quot;-gcatac&quot; strand is selected as</span>
-<span class="sd">    &quot;-gcatac&quot; &lt; &quot;-TATGCC&quot;.</span>
+<span class="sd">    For the linear dsDNA sequence defined by watson = &quot;-TATGCC&quot;, crick =&quot;-GCATAC&quot;</span>
+<span class="sd">    (see figures above), The &quot;-GCATAC&quot; strand is selected since lexicographically,</span>
+<span class="sd">    &quot;-GCATAC&quot; &lt; &quot;-TATGCC&quot;.</span>
 
 <span class="sd">    A string is constructed like so:</span>
 <span class="sd">    ::</span>
 
-<span class="sd">        &quot;-gcatac&quot; + chr(10) + &quot;CCGTAT-&quot;</span>
+<span class="sd">        &quot;-GCATAC&quot; + &quot;;&quot; + &quot;-TATGCC&quot;</span>
 
 <span class="sd">    The checksum is prefixed with &quot;ldseguid=&quot;</span>
 
