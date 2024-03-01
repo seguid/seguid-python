@@ -1,21 +1,22 @@
 [tool.poetry]
 name = "seguid"
-version = "0.0.5"
+version = "0.0.3.9008"
 description = "Sequence Globally Unique Identifier (SEGUID) Checksums for Linear, Circular, Single-Stranded and Double-Stranded Biological Sequences"
-authors = ["BjornFJohansson <bjornjobb@gmail.com>"]
+authors = [
+  "Bjorn Johansson <bjornjobb@gmail.com>",
+  "Henrik Bengtsson",
+  "Louis Abraham"
+]
 license = "MIT"
 readme = "README.md"
+
 [tool.poetry.dependencies]
-python = ">=3.3,<4.0"
+python = ">=3.6, <4.0"
 pydivsufsort = { version = "^0.0.14", optional = true }
+
 [tool.poetry.extras]
 pydivsufsort =  ["pydivsufsort"]
+
 [build-system]
-build-backend = "poetry_dynamic_versioning.backend"
-requires = [
-  "poetry-core",
-  "poetry-dynamic-versioning"]
-[tool.poetry-dynamic-versioning]
-enable = true
-style = "semver"
-vcs = "git"
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
