@@ -1,11 +1,11 @@
 from argparse import ArgumentParser
 from seguid import __version__
 
-from seguid.chksum import seguid
-from seguid.chksum import lsseguid
-from seguid.chksum import csseguid
-from seguid.chksum import ldseguid
-from seguid.chksum import cdseguid
+from seguid._chksum import seguid
+from seguid._chksum import lsseguid
+from seguid._chksum import csseguid
+from seguid._chksum import ldseguid
+from seguid._chksum import cdseguid
 from seguid._manip import reverse
 from seguid.reprutils import parse_sequence_string
 
