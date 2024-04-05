@@ -10,12 +10,11 @@ from pathlib import Path
 from hashlib import sha1
 from base64 import urlsafe_b64encode as b64us
 
+from seguid import seguid
 from seguid import lsseguid
 from seguid import csseguid
 from seguid import ldseguid
 from seguid import cdseguid
-
-from seguid.chksum import seguid
 
 from seguid._manip import reverse
 

@@ -12,9 +12,10 @@ except ModuleNotFoundError:
 else:
     __version__ = _version(__package__)
 
-from seguid.chksum import lsseguid
-from seguid.chksum import csseguid
-from seguid.chksum import ldseguid
-from seguid.chksum import cdseguid
+from seguid._chksum import seguid
+from seguid._chksum import lsseguid
+from seguid._chksum import csseguid
+from seguid._chksum import ldseguid
+from seguid._chksum import cdseguid
 
-__all__ = ["lsseguid", "csseguid", "ldseguid", "cdseguid"]
+__all__ = ["seguid", "lsseguid", "csseguid", "ldseguid", "cdseguid"]
