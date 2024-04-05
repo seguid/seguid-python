@@ -1,0 +1,86 @@
+on:
+  push:
+  
+  pull_request:
+  
+  schedule:
+    ## Run every 12 hours
+    - cron:  '0 */12 * * *'
+
+name: "R CLI check"
+
+jobs:
+  check:
+    if: "! contains(github.event.head_commit.message, '[ci skip]')"    
+
+    timeout-minutes: 15
+
+    runs-on: ${{ matrix.config.os }}
+
+    name: R ${{ matrix.config.r }} on ${{ matrix.config.os }} [${{ matrix.config.language }}]
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        config:
+          - {os: macOS-latest,   r: 'devel'    }
+          - {os: macOS-latest,   r: 'release'  }
+          - {os: ubuntu-latest,  r: 'devel'    }
+          - {os: ubuntu-latest,  r: 'release'  }
+          - {os: ubuntu-latest,  r: 'oldrel'   }
+          - {os: ubuntu-latest,  r: '4.0'      }
+          - {os: ubuntu-latest,  r: 'release', language: 'C'          }
+          - {os: ubuntu-latest,  r: 'release', language: 'en_US.utf8' }
+          - {os: ubuntu-latest,  r: 'release', language: 'et_EE.utf8' }
+
+    env:
+      LANGUAGE: ${{ matrix.config.language }}
+      LC_COLLATE: ${{ matrix.config.language }}
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+      R_KEEP_PKG_SOURCE: yes
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      
+    steps:
+    - name: Assert LANGUAGE availabilities
+      if: runner.os == 'Linux'
+      run: |
+        sudo locale-gen et_EE.utf8
+        locale -a | grep "${LANGUAGE}" || { >&2 echo "ERROR: LANGUAGE=${LANGUAGE} not installed"; exit 1; }
+      
+    - uses: actions/checkout@v4
+
+    - uses: r-lib/actions/setup-r@v2
+      with:
+        r-version: ${{ matrix.config.r }}
+
+    - name: Install R dependencies
+      run: |
+        install.packages(c("remotes", "sessioninfo"))
+      shell: Rscript {0}
+
+    - name: Install the 'seguid' R package
+      run: |
+        remotes::install_github("seguid/seguid-r", dependencies = TRUE)
+      shell: Rscript {0}
+
+    - name: Session info
+      run: |
+        options(width = 100)
+        capabilities()
+        pkgs <- installed.packages()[, "Package"]
+        sessioninfo::session_info(pkgs, include_base = TRUE)
+        message(paste("LANGUAGE:", Sys.getenv("LANGUAGE")))
+        message(paste("LC_COLLATE:", Sys.getenv("LC_COLLATE")))
+      shell: Rscript {0}
+
+    - name: Check CLI
+      if: runner.os != 'Windows'
+      run: make check-cli/seguid-r
+
+    - name: Upload check results
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+        path: check

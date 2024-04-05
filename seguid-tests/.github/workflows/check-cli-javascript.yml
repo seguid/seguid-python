@@ -1,0 +1,66 @@
+on:
+  push:
+  
+  pull_request:
+  
+  schedule:
+    ## Run every 12 hours
+    - cron:  '0 */12 * * *'
+
+name: "JavaScript CLI check"
+
+jobs:
+  check:
+    if: "! contains(github.event.head_commit.message, '[ci skip]')"
+
+    timeout-minutes: 10
+
+    runs-on: ubuntu-latest
+
+    name: Node ${{ matrix.config.node }} [${{ matrix.config.language }}]
+
+    strategy:
+      fail-fast: false
+
+      matrix:
+        config:
+          - { node: '19' }
+          - { node: '20' }
+          - { node: '21' }
+          - { node: '20', language: 'C'          }
+          - { node: '20', language: 'en_US.utf8' }
+          - { node: '20', language: 'et_EE.utf8' }
+
+    env:
+      LANGUAGE: ${{ matrix.config.language }}
+      LC_COLLATE: ${{ matrix.config.language }}
+
+    steps:
+    - name: Assert LANGUAGE availabilities
+      if: runner.os == 'Linux'
+      run: |
+        sudo locale-gen et_EE.utf8
+        locale -a | grep "${LANGUAGE}" || { >&2 echo "ERROR: LANGUAGE=${LANGUAGE} not installed"; exit 1; }
+        
+    - uses: actions/checkout@v4
+
+    - name: Use Node.js ${{ matrix.config.node }}
+      uses: actions/setup-node@v4
+      with:
+        node-version: ${{ matrix.config.node }}
+
+    - name: Session information
+      run: |
+        node --version
+        npm --version
+        echo "LANGUAGE: ${LANGUAGE:-<not set>}"
+        echo "LC_COLLATE: ${LC_COLLATE:-<not set>}"
+
+    - name: Install package
+      run: |
+        npm install seguid/seguid-javascript
+        npm list
+
+    - name: Check CLI
+      if: runner.os != 'Windows'
+      run: make check-cli/seguid-javascript
