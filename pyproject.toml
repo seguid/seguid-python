@@ -21,7 +21,6 @@ setuptools = [
 [tool.poetry.extras]
 pydivsufsort =  ["pydivsufsort"]
 
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
