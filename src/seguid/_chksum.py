@@ -243,7 +243,7 @@ def cdseguid(
 
     The checksum is prefixed with "cdseguid="
     """
-    from seguid.config import _min_rotation
+    from seguid._config import _min_rotation
 
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"

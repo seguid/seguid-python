@@ -5,8 +5,8 @@ import pytest
 
 from seguid._manip import rotate
 from seguid._manip import rotate_to_min
-from seguid.config import set_min_rotation
-from seguid.config import _min_rotation
+from seguid._config import set_min_rotation
+from seguid._config import _min_rotation
 
 
 def test_sort_order():

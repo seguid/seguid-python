@@ -3,7 +3,7 @@
 
 import pytest
 
-from seguid.reprutils import parse_sequence_string
+from seguid._reprutils import parse_sequence_string
 
 
 def test_parse_sequence_string():
