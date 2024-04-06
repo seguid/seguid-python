@@ -42,21 +42,15 @@
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">seguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#seguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.seguid" title="Link to this definition">¶</a></dt>
 <dd><p>SEGUID checksum for protein or single stranded linear DNA.</p>
 <p>OBSOLETE, use lsseguid instead.</p>
-<p>Given a nucleotide or amino-acid sequence <cite>seq</cite>, the function returns
+<p>Given a nucleotide or amino-acid sequence <cite>seq</cite> in uppercase, the function returns
 a string containing the SEquence Globally Unique IDentifier (SEGUID).</p>
-<p>The optional ´encoding` argument expects a function accepting a
-byte string an returning another byte string. Several such functions are
-available from the standard library:</p>
-<p><a class="reference external" href="https://docs.python.org/3/library/base64.html">https://docs.python.org/3/library/base64.html</a></p>
 <p>The SEGUID is defined as the Base64 encoded sha1 checksum calculated for
-the sequence in upercase with the trailing “=” character removed. This
-means that upper or lower case symbols in <cite>seq</cite> do not affect the result.</p>
-<p>The resulting string is not url-safe as the Base64 encoding it potentially
-produces / and + characters, carrying special meaning in a Uniform Resource
-Locator (URL). It can also not be used as an identifier or variable name in
-programming languanges such as Python.</p>
-<p>This implementation follows the original SEGUID definition by
-Babnigg et al. 2006. For more information:</p>
+the sequence in uppercase with the trailing “=” character removed.</p>
+<p>The resulting string may contain “/” (forward slash) and “+” (plus) characters.
+These characters cannot be a part of a Uniform Resource Locator (URL) or
+a filename on some operating systems. The lsseguid checksum is identical to
+seguid, but uses the Base64url encoding that do not produce these characters.</p>
+<p>This implementation follows the original SEGUID defined in:</p>
 <p>Babnigg, G., &amp; Giometti, C. S. (2006). A database of unique protein
 sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
 <a class="reference external" href="https://doi.org/10.1002/pmic.200600032">https://doi.org/10.1002/pmic.200600032</a></p>
@@ -74,10 +68,12 @@ sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
 <dd><p>SEGUID checksum for single stranded linear DNA (slSEGUID).</p>
 <p>Identical to the seguid function except for that the ‘+’ and ‘/’ characters
 of standard Base64 encoding are replaced by ‘-’ and ‘_’, respectively
-following the standard in RFC 4648 section 5.</p>
+following the Base64url standard in RFC 4648 section 5.</p>
 <p>The base64.urlsafe_b64encode from the Python standard libary is used.</p>
-<p>This checksum is applicable to single stranded linear DNA sequences.
-Can also be used for protein sequences.</p>
+<p>This checksum is applicable to single stranded linear DNA sequences or
+protein sequences. If protein sequences are analyzed, the alphabet
+argument should be {protein} or {protein-extended}. See _tables
+module for details.</p>
 <p>The checksum is prefixed with “lsseguid=”</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lsseguid</span><span class="p">(</span><span class="s2">&quot;AT&quot;</span><span class="p">)</span>
@@ -89,10 +85,10 @@ Can also be used for protein sequences.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="seguid.csseguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">csseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#csseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.csseguid" title="Link to this definition">¶</a></dt>
-<dd><p>SEGUID checksum for single stranded circular DNA (csSEGUID).</p>
-<p>The csSEGUID is the lsSEGUID checksum calculated for the lexicographically
-smallest string rotation of a ssDNA sequence.</p>
-<p>Only defined for circular sequences.</p>
+<dd><p>SEGUID checksum for single stranded circular DNA (csseguid).</p>
+<p>The csseguid is the lsseguid checksum calculated for the lexicographically
+smallest string rotation of a sequence.</p>
+<p>Only defined for circular single-stranded sequences.</p>
 <p>The checksum is prefixed with “csseguid=”</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">csseguid</span><span class="p">(</span><span class="s2">&quot;ATTT&quot;</span><span class="p">)</span>
@@ -110,13 +106,13 @@ smallest string rotation of a ssDNA sequence.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="seguid.ldseguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">ldseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watson</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crick</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#ldseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.ldseguid" title="Link to this definition">¶</a></dt>
-<dd><p>SEGUID checksum for double stranded linear DNA (ldSEGUID).</p>
-<p>Calculates the ldSEGUID checksum for a dsDNA sequence defined by two
+<dd><p>SEGUID checksum for double stranded linear DNA (ldseguid).</p>
+<p>Calculates the ldseguid checksum for a dsDNA sequence defined by two
 strings representing the upper (Watson) and the complementary (Crick) DNA strands.
-Optional ssDNA regions in the ends are indicated by a dash “-” in eather strand.
+Optional ssDNA regions in the ends are indicated by a dash “-” in either strand.
 Watson and Crick strands are always equal in length.</p>
 <p>The algorithm first selects the lexicographically smallest of the Watson and Crick strands.</p>
-<p>The two string are joined 5’-3’, separated by a semicolon “;” and the lsSEGUID function
+<p>The two string are joined 5’-3’, separated by a semicolon “;” and the lsseguid function
 is used on the resulting string.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dsDNA</span>    <span class="n">ldSEGUID</span>
 
@@ -149,8 +145,8 @@ is used on the resulting string.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="seguid.cdseguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">cdseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watson</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crick</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#cdseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.cdseguid" title="Link to this definition">¶</a></dt>
-<dd><p>SEGUID checksum for double stranded circular DNA (dcSEGUID).</p>
-<p>The dcSEGUID is the slSEGUID checksum calculated for the lexicographically
+<dd><p>SEGUID checksum for double stranded circular DNA (dcseguid).</p>
+<p>The dcseguid is the slseguid checksum calculated for the lexicographically
 smallest string rotation of a dsDNA sequence. Only defined for circular
 sequences.</p>
 <p>The checksum is prefixed with “cdseguid=”</p>
