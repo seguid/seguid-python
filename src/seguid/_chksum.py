@@ -70,26 +70,18 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 
     OBSOLETE, use lsseguid instead.
 
-    Given a nucleotide or amino-acid sequence `seq`, the function returns
+    Given a nucleotide or amino-acid sequence `seq` in uppercase, the function returns
     a string containing the SEquence Globally Unique IDentifier (SEGUID).
 
-    The optional ´encoding` argument expects a function accepting a
-    byte string an returning another byte string. Several such functions are
-    available from the standard library:
-
-    https://docs.python.org/3/library/base64.html
-
     The SEGUID is defined as the Base64 encoded sha1 checksum calculated for
-    the sequence in upercase with the trailing "=" character removed. This
-    means that upper or lower case symbols in `seq` do not affect the result.
+    the sequence in uppercase with the trailing "=" character removed.
 
-    The resulting string is not url-safe as the Base64 encoding it potentially
-    produces / and + characters, carrying special meaning in a Uniform Resource
-    Locator (URL). It can also not be used as an identifier or variable name in
-    programming languanges such as Python.
+    The resulting string may contain "/" (forward slash) and "+" (plus) characters.
+    These characters cannot be a part of a Uniform Resource Locator (URL) or
+    a filename on some operating systems. The lsseguid checksum is identical to
+    seguid, but uses the Base64url encoding that do not produce these characters.
 
-    This implementation follows the original SEGUID definition by
-    Babnigg et al. 2006. For more information:
+    This implementation follows the original SEGUID defined in:
 
     Babnigg, G., & Giometti, C. S. (2006). A database of unique protein
     sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
@@ -114,12 +106,14 @@ def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 
     Identical to the seguid function except for that the '+' and '/' characters
     of standard Base64 encoding are replaced by '-' and '_', respectively
-    following the standard in RFC 4648 section 5.
+    following the Base64url standard in RFC 4648 section 5.
 
     The base64.urlsafe_b64encode from the Python standard libary is used.
 
-    This checksum is applicable to single stranded linear DNA sequences.
-    Can also be used for protein sequences.
+    This checksum is applicable to single stranded linear DNA sequences or
+    protein sequences. If protein sequences are analyzed, the alphabet
+    argument should be {protein} or {protein-extended}. See _tables
+    module for details.
 
     The checksum is prefixed with "lsseguid="
 
@@ -136,12 +130,12 @@ def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 
 
 def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
-    r"""SEGUID checksum for single stranded circular DNA (csSEGUID).
+    r"""SEGUID checksum for single stranded circular DNA (csseguid).
 
-    The csSEGUID is the lsSEGUID checksum calculated for the lexicographically
-    smallest string rotation of a ssDNA sequence.
+    The csseguid is the lsseguid checksum calculated for the lexicographically
+    smallest string rotation of a sequence.
 
-    Only defined for circular sequences.
+    Only defined for circular single-stranded sequences.
 
     The checksum is prefixed with "csseguid="
 
@@ -168,16 +162,16 @@ def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 def ldseguid(
     watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long"
 ) -> str:
-    r"""SEGUID checksum for double stranded linear DNA (ldSEGUID).
+    r"""SEGUID checksum for double stranded linear DNA (ldseguid).
 
-    Calculates the ldSEGUID checksum for a dsDNA sequence defined by two
+    Calculates the ldseguid checksum for a dsDNA sequence defined by two
     strings representing the upper (Watson) and the complementary (Crick) DNA strands.
-    Optional ssDNA regions in the ends are indicated by a dash "-" in eather strand.
+    Optional ssDNA regions in the ends are indicated by a dash "-" in either strand.
     Watson and Crick strands are always equal in length.
 
     The algorithm first selects the lexicographically smallest of the Watson and Crick strands.
 
-    The two string are joined 5'-3', separated by a semicolon ";" and the lsSEGUID function
+    The two string are joined 5'-3', separated by a semicolon ";" and the lsseguid function
     is used on the resulting string.
 
     ::
@@ -235,9 +229,9 @@ def ldseguid(
 def cdseguid(
     watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long"
 ) -> str:
-    """SEGUID checksum for double stranded circular DNA (dcSEGUID).
+    """SEGUID checksum for double stranded circular DNA (dcseguid).
 
-    The dcSEGUID is the slSEGUID checksum calculated for the lexicographically
+    The dcseguid is the slseguid checksum calculated for the lexicographically
     smallest string rotation of a dsDNA sequence. Only defined for circular
     sequences.
 
