@@ -109,7 +109,7 @@ def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     of the standard Base64 encoding are replaced by underscores (``_``) and minus signs (``-``), respectively
     following the Base64url standard in RFC 4648 section 5.
 
-    The ``base64.urlsafe_b64encode()`` from the Python standard libary is used.
+    The ``base64.urlsafe_b64encode()`` from the Python standard library is used.
 
     This checksum is applicable to linear single-stranded DNA sequences or
     protein sequences. If protein sequences are analyzed, the alphabet
