@@ -36,12 +36,12 @@
 <span class="sd">seguid.</span>
 
 <span class="sd">The seguid module provides four functions for calculations of SEGUID checksums</span>
-<span class="sd">for biological sequences with varying topologies</span>
+<span class="sd">for biological sequences with varying topologies:</span>
 
-<span class="sd">lsseguid (l)inear   (s)ingle-stranded SEGUID</span>
-<span class="sd">csseguid (c)ircular (s)ingle-stranded SEGUID</span>
-<span class="sd">ldseguid (l)inear   (d)ouble-stranded SGUID</span>
-<span class="sd">cdseguid (c)ircular (d)ouble-stranded SEGUID</span>
+<span class="sd"> * lsseguid: (l)inear   (s)ingle-stranded SEGUID</span>
+<span class="sd"> * csseguid: (c)ircular (s)ingle-stranded SEGUID</span>
+<span class="sd"> * ldseguid: (l)inear   (d)ouble-stranded SEGUID</span>
+<span class="sd"> * cdseguid: (c)ircular (d)ouble-stranded SEGUID</span>
 
 <span class="sd">Some auxillary functions are also provided.</span>
 
@@ -100,33 +100,34 @@
 <div class="viewcode-block" id="seguid">
 <a class="viewcode-back" href="../../index.html#seguid.seguid">[docs]</a>
 <span class="k">def</span> <span class="nf">seguid</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID checksum for protein or single-stranded linear DNA.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID v1 checksum for linear protein or single-stranded DNA.</span>
 
-<span class="sd">    OBSOLETE, use lsseguid instead.</span>
+<span class="sd">    OBSOLETE, use ``lsseguid()`` instead.</span>
 
-<span class="sd">    Given a nucleotide or amino-acid sequence `seq` in uppercase, the function returns</span>
-<span class="sd">    a string containing the SEquence Globally Unique IDentifier (SEGUID).</span>
+<span class="sd">    Given a nucleotide or amino-acid sequence ``seq`` in uppercase, the function returns</span>
+<span class="sd">    a string containing the SEquence Globally Unique IDentifier (SEGUID) (Babnigg &amp; Giometti, 2006).</span>
 
-<span class="sd">    The SEGUID is defined as the Base64 encoded sha1 checksum calculated for</span>
-<span class="sd">    the sequence in uppercase with the trailing &quot;=&quot; character removed.</span>
+<span class="sd">    The SEGUID is defined as the Base64 encoded SHA1 checksum calculated for</span>
+<span class="sd">    the sequence in uppercase with the trailing padding symbol (``=``) removed.</span>
 
-<span class="sd">    The resulting string may contain &quot;/&quot; (forward slash) and &quot;+&quot; (plus) characters.</span>
+<span class="sd">    The resulting string may contain forward slash (``/``) and plus-sign (``+``) symbols.</span>
 <span class="sd">    These characters cannot be a part of a Uniform Resource Locator (URL) or</span>
-<span class="sd">    a filename on some operating systems. The lsseguid checksum is identical to</span>
-<span class="sd">    seguid, but uses the Base64url encoding that do not produce these characters.</span>
+<span class="sd">    a filename on some operating systems. The SEGUID v2 checksum produced by ``lsseguid()`` is similar to the</span>
+<span class="sd">    SEGUID v1 checksum by ``seguid()``, but uses the Base64url encoding that do not produce these characters.</span>
 
-<span class="sd">    This implementation follows the original SEGUID defined in:</span>
-
-<span class="sd">    Babnigg, G., &amp; Giometti, C. S. (2006). A database of unique protein</span>
-<span class="sd">    sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.</span>
-<span class="sd">    https://doi.org/10.1002/pmic.200600032</span>
-
-<span class="sd">    The checksum is prefixed with &quot;seguid=&quot;</span>
+<span class="sd">    The checksum is prefixed with ``seguid=``.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; seguid(&quot;AT&quot;)</span>
 <span class="sd">    &#39;seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4&#39;</span>
+<span class="sd">    </span>
+<span class="sd">    References</span>
+<span class="sd">    ----------</span>
+
+<span class="sd">    * Babnigg, G., &amp; Giometti, C. S. (2006). A database of unique protein</span>
+<span class="sd">      sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.</span>
+<span class="sd">      https://doi.org/10.1002/pmic.200600032</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_form</span><span class="p">(</span>
         <span class="n">seguid_prefix</span><span class="p">,</span>
@@ -139,20 +140,20 @@
 <div class="viewcode-block" id="lsseguid">
 <a class="viewcode-back" href="../../index.html#seguid.lsseguid">[docs]</a>
 <span class="k">def</span> <span class="nf">lsseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID checksum for single-stranded linear DNA (slSEGUID).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID checksum for linear single-stranded DNA.</span>
 
-<span class="sd">    Identical to the seguid function except for that the &#39;+&#39; and &#39;/&#39; characters</span>
-<span class="sd">    of standard Base64 encoding are replaced by &#39;-&#39; and &#39;_&#39;, respectively</span>
+<span class="sd">    Identical to the ``seguid()`` function except for that the forward slashes (``/``) and plus signs (``+``)</span>
+<span class="sd">    of the standard Base64 encoding are replaced by underscores (``_``) and minus signs (``-``), respectively</span>
 <span class="sd">    following the Base64url standard in RFC 4648 section 5.</span>
 
-<span class="sd">    The base64.urlsafe_b64encode from the Python standard libary is used.</span>
+<span class="sd">    The ``base64.urlsafe_b64encode()`` from the Python standard libary is used.</span>
 
-<span class="sd">    This checksum is applicable to single-stranded linear DNA sequences or</span>
+<span class="sd">    This checksum is applicable to linear single-stranded DNA sequences or</span>
 <span class="sd">    protein sequences. If protein sequences are analyzed, the alphabet</span>
-<span class="sd">    argument should be {protein} or {protein-extended}. See _tables</span>
+<span class="sd">    argument should be ``&quot;{protein}&quot;`` or ``&quot;{protein-extended}&quot;``. See _tables</span>
 <span class="sd">    module for details.</span>
 
-<span class="sd">    The checksum is prefixed with &quot;lsseguid=&quot;</span>
+<span class="sd">    The checksum is prefixed with ``lsseguid=``.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -170,14 +171,14 @@
 <div class="viewcode-block" id="csseguid">
 <a class="viewcode-back" href="../../index.html#seguid.csseguid">[docs]</a>
 <span class="k">def</span> <span class="nf">csseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;SEGUID checksum for single-stranded circular DNA (csseguid).</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;SEGUID checksum for circular single-stranded DNA.</span>
 
-<span class="sd">    The csseguid is the lsseguid checksum calculated for the lexicographically</span>
+<span class="sd">    The ``csseguid()`` is the ``lsseguid()`` checksum calculated for the lexicographically</span>
 <span class="sd">    smallest string rotation of a sequence.</span>
 
 <span class="sd">    Only defined for circular single-stranded sequences.</span>
 
-<span class="sd">    The checksum is prefixed with &quot;csseguid=&quot;</span>
+<span class="sd">    The checksum is prefixed with ``csseguid=``.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -205,21 +206,21 @@
 <span class="k">def</span> <span class="nf">ldseguid</span><span class="p">(</span>
     <span class="n">watson</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">crick</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;SEGUID checksum for double-stranded linear DNA (ldseguid).</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;SEGUID checksum for linear double-stranded DNA.</span>
 
-<span class="sd">    Calculates the ldseguid checksum for a double-stranded DNA (dsDNA) sequence defined by two</span>
+<span class="sd">    Calculates the ``ldseguid()`` checksum for a double-stranded DNA (dsDNA) sequence defined by two</span>
 <span class="sd">    strings representing the upper (Watson) and the complementary (Crick) DNA strands.</span>
-<span class="sd">    Optional single-stranded DNA regions in the ends are indicated by a dash &quot;-&quot; in either strand.</span>
+<span class="sd">    Optional single-stranded DNA regions in the ends are indicated by a dash (``-``) in either strand.</span>
 <span class="sd">    Watson and Crick strands are always equal in length.</span>
 
 <span class="sd">    The algorithm first selects the lexicographically smallest of the Watson and Crick strands.</span>
 
-<span class="sd">    The two string are joined 5&#39;-3&#39;, separated by a semicolon &quot;;&quot; and the lsseguid function</span>
+<span class="sd">    The two string are joined 5&#39;-3&#39;, separated by a semicolon (``;``) and the ``lsseguid()`` function</span>
 <span class="sd">    is used on the resulting string.</span>
 
 <span class="sd">    ::</span>
 
-<span class="sd">        dsDNA    ldSEGUID</span>
+<span class="sd">        dsDNA    SEGUID checksum</span>
 
 <span class="sd">        -TATGCC  ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I</span>
 <span class="sd">         |||||</span>
@@ -229,16 +230,16 @@
 <span class="sd">         |||||</span>
 <span class="sd">        CCGTAT-</span>
 
-<span class="sd">    For the linear dsDNA sequence defined by watson = &quot;-TATGCC&quot;, crick =&quot;-GCATAC&quot;</span>
-<span class="sd">    (see figures above), The &quot;-GCATAC&quot; strand is selected since lexicographically,</span>
-<span class="sd">    &quot;-GCATAC&quot; &lt; &quot;-TATGCC&quot;.</span>
+<span class="sd">    For the linear dsDNA sequence defined by ``watson=&quot;-TATGCC&quot;``, ``crick=&quot;-GCATAC&quot;``</span>
+<span class="sd">    (see figures above), The ``&quot;-GCATAC&quot;`` strand is selected since lexicographically,</span>
+<span class="sd">    ``&quot;-GCATAC&quot;`` &lt; ``&quot;-TATGCC&quot;``.</span>
 
 <span class="sd">    A string is constructed like so:</span>
 <span class="sd">    ::</span>
 
 <span class="sd">        &quot;-GCATAC&quot; + &quot;;&quot; + &quot;-TATGCC&quot;</span>
 
-<span class="sd">    The checksum is prefixed with &quot;ldseguid=&quot;</span>
+<span class="sd">    The checksum is prefixed with ``ldseguid=``.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -275,13 +276,13 @@
 <span class="k">def</span> <span class="nf">cdseguid</span><span class="p">(</span>
     <span class="n">watson</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">crick</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID checksum for double-stranded circular DNA (dcseguid).</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID checksum for circular double-stranded DNA.</span>
 
-<span class="sd">    The dcseguid is the slseguid checksum calculated for the lexicographically</span>
+<span class="sd">    The ``dcseguid()`` is the ``slseguid()`` checksum calculated for the lexicographically</span>
 <span class="sd">    smallest string rotation of a double-stranded DNA sequence. Only defined for circular</span>
 <span class="sd">    sequences.</span>
 
-<span class="sd">    The checksum is prefixed with &quot;cdseguid=&quot;</span>
+<span class="sd">    The checksum is prefixed with ``cdseguid=``.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="kn">from</span> <span class="nn">seguid._config</span> <span class="kn">import</span> <span class="n">_min_rotation</span>
 
