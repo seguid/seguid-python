@@ -66,7 +66,7 @@ def _form(prefix, csum, form):
 
 
 def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
-    """SEGUID checksum for protein or single stranded linear DNA.
+    """SEGUID checksum for protein or single-stranded linear DNA.
 
     OBSOLETE, use lsseguid instead.
 
@@ -102,7 +102,7 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 
 
 def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
-    """SEGUID checksum for single stranded linear DNA (slSEGUID).
+    """SEGUID checksum for single-stranded linear DNA (slSEGUID).
 
     Identical to the seguid function except for that the '+' and '/' characters
     of standard Base64 encoding are replaced by '-' and '_', respectively
@@ -110,7 +110,7 @@ def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 
     The base64.urlsafe_b64encode from the Python standard libary is used.
 
-    This checksum is applicable to single stranded linear DNA sequences or
+    This checksum is applicable to single-stranded linear DNA sequences or
     protein sequences. If protein sequences are analyzed, the alphabet
     argument should be {protein} or {protein-extended}. See _tables
     module for details.
@@ -130,7 +130,7 @@ def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 
 
 def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
-    r"""SEGUID checksum for single stranded circular DNA (csseguid).
+    r"""SEGUID checksum for single-stranded circular DNA (csseguid).
 
     The csseguid is the lsseguid checksum calculated for the lexicographically
     smallest string rotation of a sequence.
@@ -162,11 +162,11 @@ def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 def ldseguid(
     watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long"
 ) -> str:
-    r"""SEGUID checksum for double stranded linear DNA (ldseguid).
+    r"""SEGUID checksum for double-stranded linear DNA (ldseguid).
 
-    Calculates the ldseguid checksum for a dsDNA sequence defined by two
+    Calculates the ldseguid checksum for a double-stranded DNA (dsDNA) sequence defined by two
     strings representing the upper (Watson) and the complementary (Crick) DNA strands.
-    Optional ssDNA regions in the ends are indicated by a dash "-" in either strand.
+    Optional single-stranded DNA regions in the ends are indicated by a dash "-" in either strand.
     Watson and Crick strands are always equal in length.
 
     The algorithm first selects the lexicographically smallest of the Watson and Crick strands.
@@ -229,10 +229,10 @@ def ldseguid(
 def cdseguid(
     watson: str, crick: str, alphabet: str = "{DNA}", form: str = "long"
 ) -> str:
-    """SEGUID checksum for double stranded circular DNA (dcseguid).
+    """SEGUID checksum for double-stranded circular DNA (dcseguid).
 
     The dcseguid is the slseguid checksum calculated for the lexicographically
-    smallest string rotation of a dsDNA sequence. Only defined for circular
+    smallest string rotation of a double-stranded DNA sequence. Only defined for circular
     sequences.
 
     The checksum is prefixed with "cdseguid="
