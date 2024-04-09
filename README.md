@@ -1,5 +1,5 @@
 [![Python checks](https://github.com/seguid/seguid-python/actions/workflows/check-python.yml/badge.svg)](https://github.com/seguid/seguid-python/actions/workflows/check-python.yml)
-[![seguid-tests](https://github.com/seguid/seguid-python/actions/workflows/check-cli.yml/badge.svg)](https://github.com/seguid/seguid-python/actions/workflows/check-cli.yml)
+[![seguid-tests](https://github.com/seguid/seguid-python/actions/workflows/seguid-tests.yml/badge.svg)](https://github.com/seguid/seguid-python/actions/workflows/seguid-tests.yml)
 [![Python Code Coverage](https://codecov.io/gh/seguid/seguid-python/graph/badge.svg)](https://codecov.io/gh/seguid/seguid-python)
 [![Documentation Status](https://github.com/seguid/seguid-python/actions/workflows/publish-docs.yml/badge.svg)](https://github.com/seguid/seguid-python/actions/workflows/publish-docs.yml)
 
