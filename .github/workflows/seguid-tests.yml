@@ -1,6 +1,6 @@
 on: [push, pull_request]
 
-name: "CLI check"
+name: "seguid-tests"
 
 permissions:
   contents: read
@@ -37,3 +37,6 @@ jobs:
     - name: Check CLI
       if: runner.os != 'Windows'
       run: make check-cli
+
+    - name: Check API
+      run: make check-api
