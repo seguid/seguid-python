@@ -68,18 +68,29 @@ def _form(prefix, csum, form):
 def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     """SEGUID v1 checksum for linear protein or single-stranded DNA.
 
-    OBSOLETE, use ``lsseguid()`` instead.
+    OBSOLETE, use ``lsseguid()`` instead unless for a specific reason.
 
     Given a nucleotide or amino-acid sequence ``seq`` in uppercase, the function returns
-    a string containing the SEquence Globally Unique IDentifier (SEGUID) (Babnigg & Giometti, 2006).
+    a string containing the SEquence Globally Unique IDentifier (SEGUID). The SEGUID is
+    defined as the Base64 encoded SHA1 checksum calculated for the sequence in uppercase
+    with the trailing padding symbol (``=``) removed.
 
-    The SEGUID is defined as the Base64 encoded SHA1 checksum calculated for
-    the sequence in uppercase with the trailing padding symbol (``=``) removed.
+    The original definition of the SEGUID checksum algorithm (Babnigg & Giometti, 2006)
+    included transformation to uppercase before calculating the checksum.
 
-    The resulting string may contain forward slash (``/``) and plus-sign (``+``) symbols.
-    These characters cannot be a part of a Uniform Resource Locator (URL) or
-    a filename on some operating systems. The SEGUID v2 checksum produced by ``lsseguid()`` is similar to the
-    SEGUID v1 checksum by ``seguid()``, but uses the Base64url encoding that do not produce these characters.
+    `seguid()` does _not_ coerce the input sequence to upper case. If your input sequence
+    has lower-case symbols, you can use `seq.upper()` to emulate what the original method does.
+
+    `seguid()` only accepts symbols as specified by the `alphabet` argument.
+
+    Thus, our implementation is more conservative, which has the benefit of
+    lowering the risk of passing the incorrect sequence by mistake.
+
+    The resulting checksum string may contain forward slash (``/``) and plus-sign (``+``) symbols.
+    These characters cannot be a part of a Uniform Resource Locator (URL) or a filename on
+    some operating systems. The SEGUID v2 checksum produced by ``lsseguid()`` is similar to the
+    SEGUID v1 checksum by ``seguid()``, but uses the Base64url encoding that do not produce
+    these characters.
 
     The checksum is prefixed with ``seguid=``.
 
@@ -87,7 +98,7 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     --------
     >>> seguid("AT")
     'seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4'
-    
+
     References
     ----------
 
