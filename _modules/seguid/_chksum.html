@@ -102,18 +102,29 @@
 <span class="k">def</span> <span class="nf">seguid</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID v1 checksum for linear protein or single-stranded DNA.</span>
 
-<span class="sd">    OBSOLETE, use ``lsseguid()`` instead.</span>
+<span class="sd">    OBSOLETE, use ``lsseguid()`` instead unless for a specific reason.</span>
 
 <span class="sd">    Given a nucleotide or amino-acid sequence ``seq`` in uppercase, the function returns</span>
-<span class="sd">    a string containing the SEquence Globally Unique IDentifier (SEGUID) (Babnigg &amp; Giometti, 2006).</span>
+<span class="sd">    a string containing the SEquence Globally Unique IDentifier (SEGUID). The SEGUID is</span>
+<span class="sd">    defined as the Base64 encoded SHA1 checksum calculated for the sequence in uppercase</span>
+<span class="sd">    with the trailing padding symbol (``=``) removed.</span>
 
-<span class="sd">    The SEGUID is defined as the Base64 encoded SHA1 checksum calculated for</span>
-<span class="sd">    the sequence in uppercase with the trailing padding symbol (``=``) removed.</span>
+<span class="sd">    The original definition of the SEGUID checksum algorithm (Babnigg &amp; Giometti, 2006)</span>
+<span class="sd">    included transformation to uppercase before calculating the checksum.</span>
 
-<span class="sd">    The resulting string may contain forward slash (``/``) and plus-sign (``+``) symbols.</span>
-<span class="sd">    These characters cannot be a part of a Uniform Resource Locator (URL) or</span>
-<span class="sd">    a filename on some operating systems. The SEGUID v2 checksum produced by ``lsseguid()`` is similar to the</span>
-<span class="sd">    SEGUID v1 checksum by ``seguid()``, but uses the Base64url encoding that do not produce these characters.</span>
+<span class="sd">    `seguid()` does _not_ coerce the input sequence to upper case. If your input sequence</span>
+<span class="sd">    has lower-case symbols, you can use `seq.upper()` to emulate what the original method does.</span>
+
+<span class="sd">    `seguid()` only accepts symbols as specified by the `alphabet` argument.</span>
+
+<span class="sd">    Thus, our implementation is more conservative, which has the benefit of</span>
+<span class="sd">    lowering the risk of passing the incorrect sequence by mistake.</span>
+
+<span class="sd">    The resulting checksum string may contain forward slash (``/``) and plus-sign (``+``) symbols.</span>
+<span class="sd">    These characters cannot be a part of a Uniform Resource Locator (URL) or a filename on</span>
+<span class="sd">    some operating systems. The SEGUID v2 checksum produced by ``lsseguid()`` is similar to the</span>
+<span class="sd">    SEGUID v1 checksum by ``seguid()``, but uses the Base64url encoding that do not produce</span>
+<span class="sd">    these characters.</span>
 
 <span class="sd">    The checksum is prefixed with ``seguid=``.</span>
 
@@ -121,7 +132,7 @@
 <span class="sd">    --------</span>
 <span class="sd">    &gt;&gt;&gt; seguid(&quot;AT&quot;)</span>
 <span class="sd">    &#39;seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4&#39;</span>
-<span class="sd">    </span>
+
 <span class="sd">    References</span>
 <span class="sd">    ----------</span>
 

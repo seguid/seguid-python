@@ -41,15 +41,23 @@
 <dt class="sig sig-object py" id="seguid.seguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">seguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#seguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.seguid" title="Link to this definition">¶</a></dt>
 <dd><p>SEGUID v1 checksum for linear protein or single-stranded DNA.</p>
-<p>OBSOLETE, use <code class="docutils literal notranslate"><span class="pre">lsseguid()</span></code> instead.</p>
+<p>OBSOLETE, use <code class="docutils literal notranslate"><span class="pre">lsseguid()</span></code> instead unless for a specific reason.</p>
 <p>Given a nucleotide or amino-acid sequence <code class="docutils literal notranslate"><span class="pre">seq</span></code> in uppercase, the function returns
-a string containing the SEquence Globally Unique IDentifier (SEGUID) (Babnigg &amp; Giometti, 2006).</p>
-<p>The SEGUID is defined as the Base64 encoded SHA1 checksum calculated for
-the sequence in uppercase with the trailing padding symbol (<code class="docutils literal notranslate"><span class="pre">=</span></code>) removed.</p>
-<p>The resulting string may contain forward slash (<code class="docutils literal notranslate"><span class="pre">/</span></code>) and plus-sign (<code class="docutils literal notranslate"><span class="pre">+</span></code>) symbols.
-These characters cannot be a part of a Uniform Resource Locator (URL) or
-a filename on some operating systems. The SEGUID v2 checksum produced by <code class="docutils literal notranslate"><span class="pre">lsseguid()</span></code> is similar to the
-SEGUID v1 checksum by <code class="docutils literal notranslate"><span class="pre">seguid()</span></code>, but uses the Base64url encoding that do not produce these characters.</p>
+a string containing the SEquence Globally Unique IDentifier (SEGUID). The SEGUID is
+defined as the Base64 encoded SHA1 checksum calculated for the sequence in uppercase
+with the trailing padding symbol (<code class="docutils literal notranslate"><span class="pre">=</span></code>) removed.</p>
+<p>The original definition of the SEGUID checksum algorithm (Babnigg &amp; Giometti, 2006)
+included transformation to uppercase before calculating the checksum.</p>
+<p><cite>seguid()</cite> does _not_ coerce the input sequence to upper case. If your input sequence
+has lower-case symbols, you can use <cite>seq.upper()</cite> to emulate what the original method does.</p>
+<p><cite>seguid()</cite> only accepts symbols as specified by the <cite>alphabet</cite> argument.</p>
+<p>Thus, our implementation is more conservative, which has the benefit of
+lowering the risk of passing the incorrect sequence by mistake.</p>
+<p>The resulting checksum string may contain forward slash (<code class="docutils literal notranslate"><span class="pre">/</span></code>) and plus-sign (<code class="docutils literal notranslate"><span class="pre">+</span></code>) symbols.
+These characters cannot be a part of a Uniform Resource Locator (URL) or a filename on
+some operating systems. The SEGUID v2 checksum produced by <code class="docutils literal notranslate"><span class="pre">lsseguid()</span></code> is similar to the
+SEGUID v1 checksum by <code class="docutils literal notranslate"><span class="pre">seguid()</span></code>, but uses the Base64url encoding that do not produce
+these characters.</p>
 <p>The checksum is prefixed with <code class="docutils literal notranslate"><span class="pre">seguid=</span></code>.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">seguid</span><span class="p">(</span><span class="s2">&quot;AT&quot;</span><span class="p">)</span>
