@@ -10,7 +10,7 @@ authors = [
 license = "MIT"
 readme = "README.md"
 documentation = "https://seguid-python.seguid.org"
-homepage = "https://github.com/seguid/seguid-python?tab=readme-ov-file#seguid-v2-checksums-for-linear-circular-single--and-double-stranded-biological-sequences"
+homepage = "https://www.seguid.org"
 repository = "https://github.com/seguid/seguid-python"
 
 [tool.poetry.dependencies]
