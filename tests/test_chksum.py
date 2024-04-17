@@ -186,7 +186,7 @@ def test_checksum_as_filename():
     seq = "GATTACA"
     ## Comment:
     ## The   SEGUID check is seguid=tp2jzeCM2e3W4yxtrrx09CMKa/8
-    ## The slSEGUID check is seguid=tp2jzeCM2e3W4yxtrrx09CMKa_8
+    ## The lsSEGUID check is seguid=tp2jzeCM2e3W4yxtrrx09CMKa_8
     with tempfile.TemporaryDirectory() as temp_dir:
         filename = os.path.join(temp_dir, lsseguid(seq))
         with open(filename, "w") as file:

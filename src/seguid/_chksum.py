@@ -68,7 +68,7 @@ def _form(prefix, csum, form):
 def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     """SEGUID v1 checksum for linear protein or single-stranded DNA.
 
-    OBSOLETE, use ``lsseguid()`` instead unless for a specific reason.
+    'Warning: seguid() (obsolete) is superseded by lsseguid() (recommended).'
 
     Given a nucleotide or amino-acid sequence ``seq`` in uppercase, the function returns
     a string containing the SEquence Globally Unique IDentifier (SEGUID). The SEGUID is

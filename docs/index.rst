@@ -6,8 +6,8 @@ This python package, seguid, implements SEGUID v2 together with the original SEG
 .. image:: _static/seguid-figure.png
 
 
-Single-stranded DNA examples:
------------------------------
+Single-stranded DNA examples
+----------------------------
 ::
 
     import seguid
@@ -66,7 +66,7 @@ Double-stranded DNA examples:
 Installation
 ------------
 
-The seguid package is available on pypi and can be installed as:
+The seguid package is available on PyPI and can be installed as:
 ::
 
     pip install seguid
