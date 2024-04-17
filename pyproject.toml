@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "seguid"
-version = "0.0.6"
+version = "0.1.0-alpha"
 description = "Sequence Globally Unique Identifier (SEGUID) Checksums for Linear, Circular, Single-Stranded and Double-Stranded Biological Sequences"
 authors = [
   "Bjorn Johansson <bjornjobb@gmail.com>",
