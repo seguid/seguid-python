@@ -112,7 +112,7 @@ defined as the Base64 encoded SHA1 checksum calculated for the sequence in upper
 with the trailing padding symbol (<code class="docutils literal notranslate"><span class="pre">=</span></code>) removed.</p>
 <p>The original definition of the SEGUID checksum algorithm (Babnigg &amp; Giometti, 2006)
 included transformation to uppercase before calculating the checksum.</p>
-<p><cite>seguid()</cite> does _not_ coerce the input sequence to upper case. If your input sequence
+<p><cite>seguid()</cite> does <em>not</em> coerce the input sequence to upper case. If your input sequence
 has lower-case symbols, you can use <cite>seq.upper()</cite> to emulate what the original method does.</p>
 <p><cite>seguid()</cite> only accepts symbols as specified by the <cite>alphabet</cite> argument.</p>
 <p>Thus, our implementation is more conservative, which has the benefit of
