@@ -3,6 +3,9 @@ SEGUID v2: Checksums for Linear, Circular, Single- and Double-Stranded Biologica
 
 This python package, seguid, implements SEGUID v2 together with the original SEGUID algorithm.
 
+.. image:: _static/seguid-figure.png
+
+
 Single-stranded DNA examples:
 -----------------------------
 ::
