@@ -105,6 +105,11 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     * Babnigg, G., & Giometti, C. S. (2006). A database of unique protein
       sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
       https://doi.org/10.1002/pmic.200600032
+
+    * Pereira, Humberto, Paulo César Silva, Wayne M Davis, Louis Abraham, Gyorgy Babnigg,
+      Henrik Bengtsson, and Bjorn Johansson. 2024. “SEGUID v2: Extending SEGUID Checksums
+      for Circular, Linear, Single- and Double-Stranded Biological Sequences.” bioRxiv.
+      https://doi.org/10.1101/2024.02.28.582384.
     """
     return _form(
         seguid_prefix,
