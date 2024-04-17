@@ -32,8 +32,8 @@ Single-stranded DNA examples
     seguid.csseguid("GCCAATAT")
     Out[5]: 'csseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw'
 
-Double-stranded DNA examples:
------------------------------
+Double-stranded DNA examples
+----------------------------
 ::
 
     import seguid
