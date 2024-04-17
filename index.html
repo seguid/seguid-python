@@ -37,7 +37,7 @@
 <p>This python package, seguid, implements SEGUID v2 together with the original SEGUID algorithm.</p>
 <img alt="_images/seguid-figure.png" src="_images/seguid-figure.png" />
 <section id="single-stranded-dna-examples">
-<h2>Single-stranded DNA examples:<a class="headerlink" href="#single-stranded-dna-examples" title="Link to this heading"></a></h2>
+<h2>Single-stranded DNA examples<a class="headerlink" href="#single-stranded-dna-examples" title="Link to this heading"></a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seguid</span>
 
 <span class="c1">## Linear single-stranded DNA</span>
@@ -95,7 +95,7 @@
 </section>
 <section id="installation">
 <h2>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h2>
-<p>The seguid package is available on pypi and can be installed as:</p>
+<p>The seguid package is available on PyPI and can be installed as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">seguid</span>
 </pre></div>
 </div>
@@ -106,7 +106,7 @@
 <dt class="sig sig-object py" id="seguid.seguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">seguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#seguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.seguid" title="Link to this definition"></a></dt>
 <dd><p>SEGUID v1 checksum for linear protein or single-stranded DNA.</p>
-<p>OBSOLETE, use <code class="docutils literal notranslate"><span class="pre">lsseguid()</span></code> instead unless for a specific reason.</p>
+<p>‘Warning: seguid() (obsolete) is superseded by lsseguid() (recommended).’</p>
 <p>Given a nucleotide or amino-acid sequence <code class="docutils literal notranslate"><span class="pre">seq</span></code> in uppercase, the function returns
 a string containing the SEquence Globally Unique IDentifier (SEGUID). The SEGUID is
 defined as the Base64 encoded SHA1 checksum calculated for the sequence in uppercase
