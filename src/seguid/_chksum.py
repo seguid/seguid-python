@@ -248,7 +248,7 @@ def cdseguid(
 ) -> str:
     """SEGUID checksum for circular double-stranded DNA.
 
-    The ``dcseguid()`` is the ``slseguid()`` checksum calculated for the lexicographically
+    The ``cdseguid()`` is the ``lsseguid()`` checksum calculated for the lexicographically
     smallest string rotation of a double-stranded DNA sequence. Only defined for circular
     sequences.
 
