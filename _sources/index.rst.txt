@@ -1,44 +1,73 @@
-seguid package
-==============
+SEGUID v2: Checksums for Linear, Circular, Single- and Double-Stranded Biological Sequences
+===========================================================================================
 
-Submodules
-----------
+This python package, seguid, implements SEGUID v2 together with the original SEGUID algorithm.
 
+Single-stranded DNA examples:
+-----------------------------
+::
 
-.. automodule:: seguid.asserts
-   :members:
-   :undoc-members:
-   :show-inheritance:
+    import seguid
 
+    ## Linear single-stranded DNA
 
-.. automodule:: seguid.chksum
-   :members:
-   :undoc-members:
-   :show-inheritance:
+    seguid.lsseguid("TATGCCAA")
+    Out[2]: 'lsseguid=EevrucUNYjqlsxrTEK8JJxPYllk'
 
+    ## Linear single-stranded DNA
 
-.. automodule:: seguid.config
-   :members:
-   :undoc-members:
-   :show-inheritance:
+    seguid.lsseguid("AATATGCC")
+    Out[3]: 'lsseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw'
 
+    ## Circular single-stranded DNA
 
-.. automodule:: seguid.manip
-   :members:
-   :undoc-members:
-   :show-inheritance:
+    seguid.csseguid("TATGCCAA")
+    Out[4]: 'csseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw'
 
+    ## Same rotating two basepairs
 
-.. automodule:: seguid.reprutils
-   :members:
-   :undoc-members:
-   :show-inheritance:
+    seguid.csseguid("GCCAATAT")
+    Out[5]: 'csseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw'
 
+Double-stranded DNA examples:
+-----------------------------
+::
 
-.. automodule:: seguid.tables
-   :members:
-   :undoc-members:
-   :show-inheritance:
+    import seguid
+
+    ## Linear double-stranded DNA
+
+    seguid.ldseguid("AATATGCC", "GGCATATT")
+    Out[2]: 'ldseguid=dUxN7YQyVInv3oDcvz8ByupL44A'
+
+    ## Same swapping Watson and Crick
+
+    seguid.ldseguid("GGCATATT", "AATATGCC")
+    Out[3]: 'ldseguid=dUxN7YQyVInv3oDcvz8ByupL44A'
+
+    ## Circular double-stranded DNA
+
+    seguid.cdseguid("TATGCCAA", "TTGGCATA")
+    Out[3]: 'cdseguid=dUxN7YQyVInv3oDcvz8ByupL44A'
+
+    ## Same swapping Watson and Crick
+
+    seguid.cdseguid("TTGGCATA", "TATGCCAA")
+    Out[4]: 'cdseguid=dUxN7YQyVInv3oDcvz8ByupL44A'
+
+    ## Same rotating two basepairs (= minimal rotation by Watson)
+
+    seguid.cdseguid("AATATGCC", "GGCATATT")
+    Out[5]: 'cdseguid=dUxN7YQyVInv3oDcvz8ByupL44A'
+
+Installation
+------------
+
+The seguid package is available on pypi and can be installed as:
+::
+
+    pip install seguid
+
 
 Module contents
 ---------------
