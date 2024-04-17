@@ -30,7 +30,6 @@ templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 intersphinx_mapping = {
-	"biopython": ("https://biopython.org/docs/latest/api/", None),
 	"python": ("http://docs.python.org/3.8", None),
 }
 
