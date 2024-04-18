@@ -34,23 +34,7 @@
   <h1>Source code for seguid._chksum</h1><div class="highlight"><pre>
 <span></span><span class="ch">#!/usr/bin/env python3</span>
 <span class="c1"># -*- coding: utf-8 -*-</span>
-<span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">seguid.</span>
 
-<span class="sd">The seguid module provides four functions for calculations of SEGUID checksums</span>
-<span class="sd">for biological sequences with varying topologies:</span>
-
-<span class="sd"> * lsseguid: (l)inear   (s)ingle-stranded SEGUID</span>
-<span class="sd"> * csseguid: (c)ircular (s)ingle-stranded SEGUID</span>
-<span class="sd"> * ldseguid: (l)inear   (d)ouble-stranded SEGUID</span>
-<span class="sd"> * cdseguid: (c)ircular (d)ouble-stranded SEGUID</span>
-
-<span class="sd">Some auxillary functions are also provided.</span>
-
-<span class="sd">The functions can be made to work without external dependencies, but</span>
-<span class="sd">csseguid and cdseguid are considerably faster with pydivsufsort installed.</span>
-
-<span class="sd">&quot;&quot;&quot;</span>
 
 <span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="kn">import</span> <span class="nn">base64</span>
@@ -135,17 +119,6 @@
 <span class="sd">    &gt;&gt;&gt; seguid(&quot;AT&quot;)</span>
 <span class="sd">    &#39;seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4&#39;</span>
 
-<span class="sd">    References</span>
-<span class="sd">    ----------</span>
-
-<span class="sd">    * Babnigg, G., &amp; Giometti, C. S. (2006). A database of unique protein</span>
-<span class="sd">      sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.</span>
-<span class="sd">      https://doi.org/10.1002/pmic.200600032</span>
-
-<span class="sd">    * Pereira, Humberto, Paulo César Silva, Wayne M Davis, Louis Abraham, Gyorgy Babnigg,</span>
-<span class="sd">      Henrik Bengtsson, and Bjorn Johansson. 2024. “SEGUID v2: Extending SEGUID Checksums</span>
-<span class="sd">      for Circular, Linear, Single- and Double-Stranded Biological Sequences.” bioRxiv.</span>
-<span class="sd">      https://doi.org/10.1101/2024.02.28.582384.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="n">_form</span><span class="p">(</span>
         <span class="n">seguid_prefix</span><span class="p">,</span>
@@ -395,7 +368,7 @@
       &#169;2024, Bjorn Johansson, Henrik Bengtsson, Louis Abraham.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.5</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.6</a>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
     </div>

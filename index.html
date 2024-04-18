@@ -40,58 +40,58 @@ or the SEGUID v2 algorithm (Pereira et al., 2024).</p>
 <img alt="_images/seguid-figure.png" src="_images/seguid-figure.png" />
 <section id="single-stranded-dna-examples">
 <h2>Single-stranded DNA examples<a class="headerlink" href="#single-stranded-dna-examples" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seguid</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">seguid</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="c1">## Linear single-stranded DNA</span>
+<span class="go">## Linear single-stranded DNA</span>
 
-<span class="n">seguid</span><span class="o">.</span><span class="n">lsseguid</span><span class="p">(</span><span class="s2">&quot;TATGCCAA&quot;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s1">&#39;lsseguid=EevrucUNYjqlsxrTEK8JJxPYllk&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lsseguid</span><span class="p">(</span><span class="s2">&quot;TATGCCAA&quot;</span><span class="p">)</span>
+<span class="go">&#39;lsseguid=EevrucUNYjqlsxrTEK8JJxPYllk&#39;</span>
 
-<span class="c1">## Linear single-stranded DNA</span>
+<span class="go">## Linear single-stranded DNA</span>
 
-<span class="n">seguid</span><span class="o">.</span><span class="n">lsseguid</span><span class="p">(</span><span class="s2">&quot;AATATGCC&quot;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="s1">&#39;lsseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">lsseguid</span><span class="p">(</span><span class="s2">&quot;AATATGCC&quot;</span><span class="p">)</span>
+<span class="go">&#39;lsseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw&#39;</span>
 
-<span class="c1">## Circular single-stranded DNA</span>
+<span class="go">## Circular single-stranded DNA</span>
 
-<span class="n">seguid</span><span class="o">.</span><span class="n">csseguid</span><span class="p">(</span><span class="s2">&quot;TATGCCAA&quot;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="s1">&#39;csseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">csseguid</span><span class="p">(</span><span class="s2">&quot;TATGCCAA&quot;</span><span class="p">)</span>
+<span class="go">&#39;csseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw&#39;</span>
 
-<span class="c1">## Same rotating two basepairs</span>
+<span class="go">## Same rotating two basepairs</span>
 
-<span class="n">seguid</span><span class="o">.</span><span class="n">csseguid</span><span class="p">(</span><span class="s2">&quot;GCCAATAT&quot;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="s1">&#39;csseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">csseguid</span><span class="p">(</span><span class="s2">&quot;GCCAATAT&quot;</span><span class="p">)</span>
+<span class="go">&#39;csseguid=XsJzXMxgv7sbpqIzFH9dgrHUpWw&#39;</span>
 </pre></div>
 </div>
 </section>
 <section id="double-stranded-dna-examples">
 <h2>Double-stranded DNA examples<a class="headerlink" href="#double-stranded-dna-examples" title="Link to this heading"></a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">seguid</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">seguid</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="c1">## Linear double-stranded DNA</span>
+<span class="go">## Linear double-stranded DNA</span>
 
-<span class="n">seguid</span><span class="o">.</span><span class="n">ldseguid</span><span class="p">(</span><span class="s2">&quot;AATATGCC&quot;</span><span class="p">,</span> <span class="s2">&quot;GGCATATT&quot;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="s1">&#39;ldseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ldseguid</span><span class="p">(</span><span class="s2">&quot;AATATGCC&quot;</span><span class="p">,</span> <span class="s2">&quot;GGCATATT&quot;</span><span class="p">)</span>
+<span class="go">&#39;ldseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
 
-<span class="c1">## Same swapping Watson and Crick</span>
+<span class="go">## Same swapping Watson and Crick</span>
 
-<span class="n">seguid</span><span class="o">.</span><span class="n">ldseguid</span><span class="p">(</span><span class="s2">&quot;GGCATATT&quot;</span><span class="p">,</span> <span class="s2">&quot;AATATGCC&quot;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="s1">&#39;ldseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ldseguid</span><span class="p">(</span><span class="s2">&quot;GGCATATT&quot;</span><span class="p">,</span> <span class="s2">&quot;AATATGCC&quot;</span><span class="p">)</span>
+<span class="go">&#39;ldseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
 
-<span class="c1">## Circular double-stranded DNA</span>
+<span class="go">## Circular double-stranded DNA</span>
 
-<span class="n">seguid</span><span class="o">.</span><span class="n">cdseguid</span><span class="p">(</span><span class="s2">&quot;TATGCCAA&quot;</span><span class="p">,</span> <span class="s2">&quot;TTGGCATA&quot;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="s1">&#39;cdseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdseguid</span><span class="p">(</span><span class="s2">&quot;TATGCCAA&quot;</span><span class="p">,</span> <span class="s2">&quot;TTGGCATA&quot;</span><span class="p">)</span>
+<span class="go">&#39;cdseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
 
-<span class="c1">## Same swapping Watson and Crick</span>
+<span class="go">## Same swapping Watson and Crick</span>
 
-<span class="n">seguid</span><span class="o">.</span><span class="n">cdseguid</span><span class="p">(</span><span class="s2">&quot;TTGGCATA&quot;</span><span class="p">,</span> <span class="s2">&quot;TATGCCAA&quot;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="s1">&#39;cdseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdseguid</span><span class="p">(</span><span class="s2">&quot;TTGGCATA&quot;</span><span class="p">,</span> <span class="s2">&quot;TATGCCAA&quot;</span><span class="p">)</span>
+<span class="go">&#39;cdseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
 
-<span class="c1">## Same rotating two basepairs (= minimal rotation by Watson)</span>
+<span class="go">## Same rotating two basepairs (= minimal rotation by Watson)</span>
 
-<span class="n">seguid</span><span class="o">.</span><span class="n">cdseguid</span><span class="p">(</span><span class="s2">&quot;AATATGCC&quot;</span><span class="p">,</span> <span class="s2">&quot;GGCATATT&quot;</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="s1">&#39;cdseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cdseguid</span><span class="p">(</span><span class="s2">&quot;AATATGCC&quot;</span><span class="p">,</span> <span class="s2">&quot;GGCATATT&quot;</span><span class="p">)</span>
+<span class="go">&#39;cdseguid=dUxN7YQyVInv3oDcvz8ByupL44A&#39;</span>
 </pre></div>
 </div>
 </section>
@@ -112,6 +112,35 @@ studies. Proteomics (2006) 6 (16): 4514–22. <a class="reference external" href
 </section>
 <section id="module-seguid">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-seguid" title="Link to this heading"></a></h2>
+<p>The seguid module provides four functions for calculations of SEGUID checksums
+for biological sequences with varying topologies:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>lsseguid: (l)inear   (s)ingle-stranded SEGUID</p></li>
+<li><p>csseguid: (c)ircular (s)ingle-stranded “</p></li>
+<li><p>ldseguid: (l)inear   (d)ouble-stranded “</p></li>
+<li><p>cdseguid: (c)ircular (d)ouble-stranded “</p></li>
+</ul>
+</div></blockquote>
+<p>A detailed description of the algorithms can be found in Pereira et al. 2024.
+Implementations of these functions in other programming languages cand be found
+at <a class="reference external" href="https://www.seguid.org/">seguid.org</a>.</p>
+<p>The original seguid function (Babnigg &amp; Giometti, 2006) is also provided along
+with some auxillary functions.</p>
+<p>This package works without external dependencies, but csseguid and cdseguid
+can be made considerably faster by installing <a class="reference external" href="https://pypi.org/project/pydivsufsort/">pydivsufsort</a>
+since a faster algorithm for finding the <a class="reference external" href="https://en.wikipedia.org/wiki/Lexicographically_minimal_string_rotation">smallest string
+rotation</a> is provided.</p>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>Pereira, Humberto, Paulo César Silva, Wayne M Davis, Louis Abraham, Gyorgy Babnigg,
+Henrik Bengtsson, and Bjorn Johansson. 2024. “SEGUID v2: Extending SEGUID Checksums
+for Circular, Linear, Single- and Double-Stranded Biological Sequences.” bioRxiv.
+<a class="reference external" href="https://doi.org/10.1101/2024.02.28.582384">https://doi.org/10.1101/2024.02.28.582384</a>.</p></li>
+<li><p>Babnigg, G., &amp; Giometti, C. S. (2006). A database of unique protein
+sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
+<a class="reference external" href="https://doi.org/10.1002/pmic.200600032">https://doi.org/10.1002/pmic.200600032</a></p></li>
+</ul>
 <dl class="py function">
 <dt class="sig sig-object py" id="seguid.seguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">seguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3.8/library/stdtypes.html#str" title="(in Python v3.8)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#seguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.seguid" title="Link to this definition"></a></dt>
@@ -139,16 +168,6 @@ these characters.</p>
 <span class="go">&#39;seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4&#39;</span>
 </pre></div>
 </div>
-<p class="rubric">References</p>
-<ul class="simple">
-<li><p>Babnigg, G., &amp; Giometti, C. S. (2006). A database of unique protein
-sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
-<a class="reference external" href="https://doi.org/10.1002/pmic.200600032">https://doi.org/10.1002/pmic.200600032</a></p></li>
-<li><p>Pereira, Humberto, Paulo César Silva, Wayne M Davis, Louis Abraham, Gyorgy Babnigg,
-Henrik Bengtsson, and Bjorn Johansson. 2024. “SEGUID v2: Extending SEGUID Checksums
-for Circular, Linear, Single- and Double-Stranded Biological Sequences.” bioRxiv.
-<a class="reference external" href="https://doi.org/10.1101/2024.02.28.582384">https://doi.org/10.1101/2024.02.28.582384</a>.</p></li>
-</ul>
 </dd></dl>
 
 <dl class="py function">
@@ -306,7 +325,7 @@ sequences.</p>
       &#169;2024, Bjorn Johansson, Henrik Bengtsson, Louis Abraham.
       
       |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.5</a>
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.6</a>
       &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
       
       |
