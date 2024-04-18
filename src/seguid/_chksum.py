@@ -1,22 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-"""
-seguid.
 
-The seguid module provides four functions for calculations of SEGUID checksums
-for biological sequences with varying topologies:
-
- * lsseguid: (l)inear   (s)ingle-stranded SEGUID
- * csseguid: (c)ircular (s)ingle-stranded SEGUID
- * ldseguid: (l)inear   (d)ouble-stranded SEGUID
- * cdseguid: (c)ircular (d)ouble-stranded SEGUID
-
-Some auxillary functions are also provided.
-
-The functions can be made to work without external dependencies, but
-csseguid and cdseguid are considerably faster with pydivsufsort installed.
-
-"""
 
 import hashlib
 import base64
@@ -99,17 +83,6 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     >>> seguid("AT")
     'seguid=Ax/RG6hzSrMEEWoCO1IWMGska+4'
 
-    References
-    ----------
-
-    * Babnigg, G., & Giometti, C. S. (2006). A database of unique protein
-      sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
-      https://doi.org/10.1002/pmic.200600032
-
-    * Pereira, Humberto, Paulo César Silva, Wayne M Davis, Louis Abraham, Gyorgy Babnigg,
-      Henrik Bengtsson, and Bjorn Johansson. 2024. “SEGUID v2: Extending SEGUID Checksums
-      for Circular, Linear, Single- and Double-Stranded Biological Sequences.” bioRxiv.
-      https://doi.org/10.1101/2024.02.28.582384.
     """
     return _form(
         seguid_prefix,
