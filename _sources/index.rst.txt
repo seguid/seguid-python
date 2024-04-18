@@ -77,7 +77,7 @@ Installation
 The seguid package is available on PyPI and can be installed as:
 ::
 
-	pip install seguid
+	python -m pip install --user seguid
 
 
 References
