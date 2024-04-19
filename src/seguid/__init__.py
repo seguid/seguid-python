@@ -1,29 +1,33 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-The seguid module provides four functions for calculations of SEGUID checksums
-for biological sequences with varying topologies:
+Four functions for calculations of SEGUID checksums for biological sequences with varying topologies.
 
- * lsseguid: (l)inear   (s)ingle-stranded SEGUID
- * csseguid: (c)ircular (s)ingle-stranded "
- * ldseguid: (l)inear   (d)ouble-stranded "
- * cdseguid: (c)ircular (d)ouble-stranded "
+================ ================ ============== ====================
+ Function         Topology         Strandedness   Algorithm
+================ ================ ============== ====================
+ ``lsseguid()``   **l**\ inear     *s*\ ingle     **l**\ *s*\ SEGUID
+ ``csseguid()``   **c**\ ircular   *s*\ ingle     **c**\ *s*\  "
+ ``ldseguid()``   **l**\ inear     *d*\ ouble     **l**\ *d*\  "
+ ``cdseguid()``   **c**\ ircular   *d*\ ouble     **c**\ *d*\  "
+================ ================ ============== ====================
+
+
 
 A detailed description of the algorithms can be found in Pereira et al. 2024.
 Implementations of these functions in other programming languages cand be found
 at `seguid.org <https://www.seguid.org/>`_.
 
-The original seguid function (Babnigg & Giometti, 2006) is also provided along
+The original SEGUID v1 (Babnigg & Giometti, 2006) :func:`seguid.seguid` is also provided along
 with some auxillary functions.
 
 This package works without external dependencies, but csseguid and cdseguid
-can be made considerably faster by installing `pydivsufsort <https://pypi.org/project/pydivsufsort/>`_
-since a faster algorithm for finding the `smallest string
-rotation <https://en.wikipedia.org/wiki/Lexicographically_minimal_string_rotation>`_ is provided.
+can be made faster by installing `pydivsufsort <https://pypi.org/project/pydivsufsort/>`_
+since a faster algorithm for finding the
+`smallest string rotation <https://en.wikipedia.org/wiki/Lexicographically_minimal_string_rotation>`_ is provided.
 
 References
-==========
-
+----------
 * Pereira, Humberto, Paulo César Silva, Wayne M Davis, Louis Abraham, Gyorgy Babnigg,
   Henrik Bengtsson, and Bjorn Johansson. 2024. “SEGUID v2: Extending SEGUID Checksums
   for Circular, Linear, Single- and Double-Stranded Biological Sequences.” bioRxiv.

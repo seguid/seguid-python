@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "seguid"
-version = "0.1.0a01"
+version = "0.1.0"
 description = "Sequence Globally Unique Identifier (SEGUID) Checksums for Linear, Circular, Single-Stranded and Double-Stranded Biological Sequences"
 authors = [
   "Bjorn Johansson <bjornjobb@gmail.com>",
@@ -12,7 +12,8 @@ readme = "README.md"
 documentation = "https://seguid-python.seguid.org"
 homepage = "https://www.seguid.org"
 repository = "https://github.com/seguid/seguid-python"
-
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/seguid/seguid-python/issues"
 [tool.poetry.dependencies]
 python = ">=3.6, <4.0"
 pydivsufsort = { version = "^0.0.14", optional = true }

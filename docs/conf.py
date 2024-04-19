@@ -29,9 +29,7 @@ extensions = ['sphinx.ext.autodoc',
 templates_path = ['_templates']
 exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
-intersphinx_mapping = {
-	"python": ("http://docs.python.org/3.8", None),
-}
+intersphinx_mapping = {'python': ('https://docs.python.org/3', None)}
 
 autodoc_member_order = 'bysource'
 autodoc_preserve_defaults = True
@@ -44,8 +42,8 @@ html_static_path = ['_static']
 
 html_theme_options = {
     'extra_nav_links': {
-        "Home page": "https://www.seguid.org",
-        "Source code": "https://github.com/seguid/seguid-python",
-        "Issue Tracker": "https://github.com/seguid/seguid-python/issues"
+        "Home page": "https://github.com/BjornFJohansson/pydna",
+        "Source code": "https://github.com/BjornFJohansson/pydna?tab=readme-ov-file#-pydna",
+        "Issue Tracker": "https://github.com/BjornFJohansson/pydna/issues"
     }
 }

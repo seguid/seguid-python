@@ -47,6 +47,10 @@ Double-stranded DNA examples
 
 	## Linear double-stranded DNA
 
+	## AATATGCC
+	## ||||||||
+	## TTATACGG
+
 	>>> ldseguid("AATATGCC", "GGCATATT")
 	'ldseguid=dUxN7YQyVInv3oDcvz8ByupL44A'
 
