@@ -1,14 +1,12 @@
 SEGUID v2: Checksums for Linear, Circular, Single- and Double-Stranded Biological Sequences
 ===========================================================================================
 
-Functions for calculating sequence checksums for linear, circular, single- and double-stranded
-sequences based on either the original SEGUID (SEGUID v1) algorithm (Babnigg & Giometti, 2006)
-or the SEGUID v2 algorithm (Pereira et al., 2024).
+The **seguid** Python package implements functions for calculating biological sequence checksums for
+linear, circular, single- and double-stranded sequences based on either the SEGUID v2 algorithm (1)
+or the original SEGUID v1 (2).
 
 
 .. image:: _static/seguid-figure.png
-
-
 
 
 
@@ -78,21 +76,10 @@ Double-stranded DNA examples
 Installation
 ------------
 
-The seguid package is available on PyPI and can be installed as:
+The seguid package is available on `PyPI <https://pypi.org/project/seguid/>`_ and can be installed as:
 ::
 
 	python -m pip install --user seguid
-
-
-References
-----------
-
-Pereira, Humberto, Paulo César Silva, Wayne M Davis, Louis Abraham, Gyorgy Babnigg, Henrik Bengtsson,
-and Bjorn Johansson. SEGUID v2: Extending SEGUID Checksums for Circular, Linear, Single- and Double-Stranded
-Biological Sequences. bioRxiv (2024). https://doi.org/10.1101/2024.02.28.582384
-
-Babnigg, György, and Carol S Giometti. A database of unique protein sequence identifiers for proteome
-studies. Proteomics (2006) 6 (16): 4514–22. https://doi.org/10.1002/pmic.200600032
 
 
 Module contents
