@@ -20,7 +20,7 @@ A detailed description of the algorithms can be found in Pereira et al. 2024 (1)
 Implementations of these functions in other programming languages cand be found
 at `seguid.org <https://www.seguid.org/>`_.
 
-A function ``seguid()`` that calculates checksum according to the original SEGUID v1 specification (2)
+The function ``seguid()`` that calculates checksum according to the original SEGUID v1 specification (2)
 is also provided.
 
 This package works without external dependencies, but ``csseguid()`` and ``cdseguid()``
@@ -98,23 +98,17 @@ length is a multiple of four character. We relax this requirement, by dropping t
 
 References
 ----------
-1. Pereira, Humberto, Paulo César Silva, Wayne M Davis, Louis Abraham, Gyorgy Babnigg,
-   Henrik Bengtsson, and Bjorn Johansson. 2024. “SEGUID v2: Extending SEGUID Checksums
-   for Circular, Linear, Single- and Double-Stranded Biological Sequences.” bioRxiv.
-   https://doi.org/10.1101/2024.02.28.582384.
+1. G Babnigg & CS Giometti, A database of unique protein sequence identifiers for proteome studies. Proteomics. 2006 Aug;6(16):4514-22, doi:10.1002/pmic.200600032 .
 
-2. Babnigg, G., & Giometti, C. S. (2006). A database of unique protein
-   sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
-   https://doi.org/10.1002/pmic.200600032
+2. H Pereira, PC Silva, WM Davis, L Abraham, G Babnigg, H Bengtsson & B Johansson, SEGUID v2: Extending SEGUID Checksums for Circular, Linear, Single- and Double-Stranded Biological Sequences, bioRxiv, doi:10.1101/2024.02.28.582384 .
 
 3. S Josefsson, The Base16, Base32, and Base64 Data Encodings, RFC 4648, October 2006, doi:10.17487/RFC4648 .
 
-4. Wikipedia article 'Nucleic acid notation', February 2024, https://en.wikipedia.org/wiki/Nucleic_acid_notation .
+4. Wikipedia article 'Nucleic acid notation', February 2024, https://en.wikipedia.org/wiki/Nucleic_acid_notation.
 
-5. Wikipedia article 'Amino acids', February 2024, https://en.wikipedia.org/wiki/Amino_acid .
+5. Wikipedia article 'Amino acids', February 2024, https://en.wikipedia.org/wiki/Amino_acid.
 
-6. Wikipedia article 'SHA-1' (Secure Hash Algorithm 1), December 2023, https://en.wikipedia.org/wiki/SHA-1 .
-
+6. Wikipedia article 'SHA-1' (Secure Hash Algorithm 1), December 2023, https://en.wikipedia.org/wiki/SHA-1.
 
 """
 
