@@ -50,6 +50,16 @@ def _form(prefix, csum, form):
         return csum[:short]
 
 
+def _form(prefix, csum, form):
+    longform = ""
+    shortform = ""
+    if form != "short":
+        longform = prefix + csum
+    if form != "long":
+        shortform = csum[:short]
+    return " ".join((shortform, longform)).strip()
+
+
 def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     """SEGUID v1 checksum for linear protein or single-stranded DNA.
 
