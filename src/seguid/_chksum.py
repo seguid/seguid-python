@@ -84,7 +84,7 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 
     The resulting checksum string may contain forward slash (``/``) and plus-sign (``+``) symbols.
     These characters cannot be a part of a Uniform Resource Locator (URL) or a filename on
-    some operating systems. The SEGUID v2 checksum produced by ``lsseguid()`` is similar to the
+    some operating systems. The SEGUID v2 checksum produced by :func:`lsseguid()` is similar to the
     SEGUID v1 checksum by ``seguid()``, but uses the Base64url encoding that do not produce
     these characters.
 
@@ -106,7 +106,7 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     """SEGUID checksum for linear single-stranded DNA.
 
-    Identical to the ``seguid()`` function except for that forward slashes (``/``) and plus signs (``+``)
+    Identical to the :func:`seguid()` function except for that forward slashes (``/``) and plus signs (``+``)
     in the resulting checksum are replaced by underscores (``_``) and minus signs (``-``), respectively
     following the Base64url standard in RFC 4648 section 5.
 
@@ -231,7 +231,7 @@ def cdseguid(
 ) -> str:
     """SEGUID checksum for circular double-stranded DNA.
 
-    The ``cdseguid()`` is the ``lsseguid()`` checksum calculated for the lexicographically
+    The ``cdseguid()`` is the :func:`lsseguid()` checksum calculated for the lexicographically
     smallest string rotation of a double-stranded DNA sequence. Only defined for circular
     sequences.
 
