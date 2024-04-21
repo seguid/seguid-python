@@ -42,11 +42,12 @@ def _seguid(
 def _form(prefix, csum, form):
     longform = ""
     shortform = ""
-    if form != "short":
-        longform = prefix + csum
-    if form != "long":
-        shortform = csum[:short]
-    return " ".join((shortform, longform)).strip()
+    if form == "both":
+        return csum[:short], prefix + csum
+    elif form == "long":
+        return prefix + csum
+    if form == "short":
+        return csum[:short]
 
 
 def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
