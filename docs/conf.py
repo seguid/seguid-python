@@ -47,3 +47,9 @@ html_theme_options = {
         "Issue Tracker": "https://github.com/BjornFJohansson/pydna/issues"
     }
 }
+
+rst_prolog = """
+.. role:: python(code)
+    :language: python
+    :class: highlight
+"""
