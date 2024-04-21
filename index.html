@@ -139,7 +139,7 @@ linear or circular topologies and a single of two complementary strands are prov
 <p>A detailed description of the algorithms can be found in Pereira et al. 2024 (1).
 Implementations of these functions in other programming languages cand be found
 at <a class="reference external" href="https://www.seguid.org/">seguid.org</a>.</p>
-<p>A function <code class="docutils literal notranslate"><span class="pre">seguid()</span></code> that calculates checksum according to the original SEGUID v1 specification (2)
+<p>The function <code class="docutils literal notranslate"><span class="pre">seguid()</span></code> that calculates checksum according to the original SEGUID v1 specification (2)
 is also provided.</p>
 <p>This package works without external dependencies, but <code class="docutils literal notranslate"><span class="pre">csseguid()</span></code> and <code class="docutils literal notranslate"><span class="pre">cdseguid()</span></code>
 can be made faster by installing <a class="reference external" href="https://pypi.org/project/pydivsufsort/">pydivsufsort</a>
@@ -199,17 +199,12 @@ reason, a Base64 checksum cannot safely be used as a file or directory name, bec
 length is a multiple of four character. We relax this requirement, by dropping the padding character.</p>
 <p class="rubric">References</p>
 <ol class="arabic simple">
-<li><p>Pereira, Humberto, Paulo César Silva, Wayne M Davis, Louis Abraham, Gyorgy Babnigg,
-Henrik Bengtsson, and Bjorn Johansson. 2024. “SEGUID v2: Extending SEGUID Checksums
-for Circular, Linear, Single- and Double-Stranded Biological Sequences.” bioRxiv.
-<a class="reference external" href="https://doi.org/10.1101/2024.02.28.582384">https://doi.org/10.1101/2024.02.28.582384</a>.</p></li>
-<li><p>Babnigg, G., &amp; Giometti, C. S. (2006). A database of unique protein
-sequence identifiers for proteome studies. Proteomics, 6(16), 4514–4522.
-<a class="reference external" href="https://doi.org/10.1002/pmic.200600032">https://doi.org/10.1002/pmic.200600032</a></p></li>
+<li><p>G Babnigg &amp; CS Giometti, A database of unique protein sequence identifiers for proteome studies. Proteomics. 2006 Aug;6(16):4514-22, doi:10.1002/pmic.200600032 .</p></li>
+<li><p>H Pereira, PC Silva, WM Davis, L Abraham, G Babnigg, H Bengtsson &amp; B Johansson, SEGUID v2: Extending SEGUID Checksums for Circular, Linear, Single- and Double-Stranded Biological Sequences, bioRxiv, doi:10.1101/2024.02.28.582384 .</p></li>
 <li><p>S Josefsson, The Base16, Base32, and Base64 Data Encodings, RFC 4648, October 2006, doi:10.17487/RFC4648 .</p></li>
-<li><p>Wikipedia article ‘Nucleic acid notation’, February 2024, <a class="reference external" href="https://en.wikipedia.org/wiki/Nucleic_acid_notation">https://en.wikipedia.org/wiki/Nucleic_acid_notation</a> .</p></li>
-<li><p>Wikipedia article ‘Amino acids’, February 2024, <a class="reference external" href="https://en.wikipedia.org/wiki/Amino_acid">https://en.wikipedia.org/wiki/Amino_acid</a> .</p></li>
-<li><p>Wikipedia article ‘SHA-1’ (Secure Hash Algorithm 1), December 2023, <a class="reference external" href="https://en.wikipedia.org/wiki/SHA-1">https://en.wikipedia.org/wiki/SHA-1</a> .</p></li>
+<li><p>Wikipedia article ‘Nucleic acid notation’, February 2024, <a class="reference external" href="https://en.wikipedia.org/wiki/Nucleic_acid_notation">https://en.wikipedia.org/wiki/Nucleic_acid_notation</a>.</p></li>
+<li><p>Wikipedia article ‘Amino acids’, February 2024, <a class="reference external" href="https://en.wikipedia.org/wiki/Amino_acid">https://en.wikipedia.org/wiki/Amino_acid</a>.</p></li>
+<li><p>Wikipedia article ‘SHA-1’ (Secure Hash Algorithm 1), December 2023, <a class="reference external" href="https://en.wikipedia.org/wiki/SHA-1">https://en.wikipedia.org/wiki/SHA-1</a>.</p></li>
 </ol>
 </section>
 <dl class="py function">
@@ -233,7 +228,7 @@ has lower-case symbols, you can use <a class="reference external" href="https://
 lowering the risk of passing the incorrect sequence by mistake.</p>
 <p>The resulting checksum string may contain forward slash (<code class="docutils literal notranslate"><span class="pre">/</span></code>) and plus-sign (<code class="docutils literal notranslate"><span class="pre">+</span></code>) symbols.
 These characters cannot be a part of a Uniform Resource Locator (URL) or a filename on
-some operating systems. The SEGUID v2 checksum produced by <code class="docutils literal notranslate"><span class="pre">lsseguid()</span></code> is similar to the
+some operating systems. The SEGUID v2 checksum produced by <a class="reference internal" href="#seguid.lsseguid" title="seguid.lsseguid"><code class="xref py py-func docutils literal notranslate"><span class="pre">lsseguid()</span></code></a> is similar to the
 SEGUID v1 checksum by <code class="docutils literal notranslate"><span class="pre">seguid()</span></code>, but uses the Base64url encoding that do not produce
 these characters.</p>
 <p>The checksum is prefixed with <code class="docutils literal notranslate"><span class="pre">seguid=</span></code>.</p>
@@ -248,7 +243,7 @@ these characters.</p>
 <dt class="sig sig-object py" id="seguid.lsseguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">lsseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#lsseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.lsseguid" title="Link to this definition">¶</a></dt>
 <dd><p>SEGUID checksum for linear single-stranded DNA.</p>
-<p>Identical to the <code class="docutils literal notranslate"><span class="pre">seguid()</span></code> function except for that forward slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>) and plus signs (<code class="docutils literal notranslate"><span class="pre">+</span></code>)
+<p>Identical to the <a class="reference internal" href="#module-seguid" title="seguid"><code class="xref py py-func docutils literal notranslate"><span class="pre">seguid()</span></code></a> function except for that forward slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>) and plus signs (<code class="docutils literal notranslate"><span class="pre">+</span></code>)
 in the resulting checksum are replaced by underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>) and minus signs (<code class="docutils literal notranslate"><span class="pre">-</span></code>), respectively
 following the Base64url standard in RFC 4648 section 5.</p>
 <p>This checksum is applicable to linear single-stranded DNA sequences or
@@ -326,7 +321,7 @@ is used on the resulting string.</p>
 <dt class="sig sig-object py" id="seguid.cdseguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">cdseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watson</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crick</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#cdseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.cdseguid" title="Link to this definition">¶</a></dt>
 <dd><p>SEGUID checksum for circular double-stranded DNA.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">cdseguid()</span></code> is the <code class="docutils literal notranslate"><span class="pre">lsseguid()</span></code> checksum calculated for the lexicographically
+<p>The <code class="docutils literal notranslate"><span class="pre">cdseguid()</span></code> is the <a class="reference internal" href="#seguid.lsseguid" title="seguid.lsseguid"><code class="xref py py-func docutils literal notranslate"><span class="pre">lsseguid()</span></code></a> checksum calculated for the lexicographically
 smallest string rotation of a double-stranded DNA sequence. Only defined for circular
 sequences.</p>
 <p>The checksum is prefixed with <code class="docutils literal notranslate"><span class="pre">cdseguid=</span></code>.</p>

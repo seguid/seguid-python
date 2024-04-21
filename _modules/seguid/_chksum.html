@@ -118,7 +118,7 @@
 
 <span class="sd">    The resulting checksum string may contain forward slash (``/``) and plus-sign (``+``) symbols.</span>
 <span class="sd">    These characters cannot be a part of a Uniform Resource Locator (URL) or a filename on</span>
-<span class="sd">    some operating systems. The SEGUID v2 checksum produced by ``lsseguid()`` is similar to the</span>
+<span class="sd">    some operating systems. The SEGUID v2 checksum produced by :func:`lsseguid()` is similar to the</span>
 <span class="sd">    SEGUID v1 checksum by ``seguid()``, but uses the Base64url encoding that do not produce</span>
 <span class="sd">    these characters.</span>
 
@@ -143,7 +143,7 @@
 <span class="k">def</span> <span class="nf">lsseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">alphabet</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;long&quot;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID checksum for linear single-stranded DNA.</span>
 
-<span class="sd">    Identical to the ``seguid()`` function except for that forward slashes (``/``) and plus signs (``+``)</span>
+<span class="sd">    Identical to the :func:`seguid()` function except for that forward slashes (``/``) and plus signs (``+``)</span>
 <span class="sd">    in the resulting checksum are replaced by underscores (``_``) and minus signs (``-``), respectively</span>
 <span class="sd">    following the Base64url standard in RFC 4648 section 5.</span>
 
@@ -277,7 +277,7 @@
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;SEGUID checksum for circular double-stranded DNA.</span>
 
-<span class="sd">    The ``cdseguid()`` is the ``lsseguid()`` checksum calculated for the lexicographically</span>
+<span class="sd">    The ``cdseguid()`` is the :func:`lsseguid()` checksum calculated for the lexicographically</span>
 <span class="sd">    smallest string rotation of a double-stranded DNA sequence. Only defined for circular</span>
 <span class="sd">    sequences.</span>
 
