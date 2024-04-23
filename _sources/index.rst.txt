@@ -2,8 +2,8 @@ SEGUID v2: Checksums for Linear, Circular, Single- and Double-Stranded Biologica
 ===========================================================================================
 
 The **seguid** Python package implements functions for calculating biological sequence checksums for
-linear, circular, single- and double-stranded sequences based on either the SEGUID v2 algorithm (1)
-or the original SEGUID v1 (2).
+linear, circular, single- and double-stranded sequences based on either the SEGUID v2 algorithm (Babnigg & Giometti, 2006)
+or the original SEGUID v1 (Pereira et al., 2024).
 
 
 .. image:: _static/seguid-figure.png

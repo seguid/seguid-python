@@ -33,8 +33,8 @@
   <section id="seguid-v2-checksums-for-linear-circular-single-and-double-stranded-biological-sequences">
 <h1>SEGUID v2: Checksums for Linear, Circular, Single- and Double-Stranded Biological Sequences<a class="headerlink" href="#seguid-v2-checksums-for-linear-circular-single-and-double-stranded-biological-sequences" title="Link to this heading">¶</a></h1>
 <p>The <strong>seguid</strong> Python package implements functions for calculating biological sequence checksums for
-linear, circular, single- and double-stranded sequences based on either the SEGUID v2 algorithm (1)
-or the original SEGUID v1 (2).</p>
+linear, circular, single- and double-stranded sequences based on either the SEGUID v2 algorithm (Babnigg &amp; Giometti, 2006)
+or the original SEGUID v1 (Pereira et al., 2024).</p>
 <img alt="_images/seguid-figure.png" src="_images/seguid-figure.png" />
 <section id="single-stranded-dna-examples">
 <h2>Single-stranded DNA examples<a class="headerlink" href="#single-stranded-dna-examples" title="Link to this heading">¶</a></h2>
@@ -148,24 +148,24 @@ since pydivsufsort provides a faster algorithm for finding the
 </section>
 <section id="usage">
 <h3>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lsseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span><span class="s2">&quot;short&quot;</span><span class="p">,</span><span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lsseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
 
-<span class="n">csseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span><span class="s2">&quot;short&quot;</span><span class="p">,</span><span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<span class="n">csseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
 
-<span class="n">ldseguid</span><span class="p">(</span><span class="n">watson</span><span class="p">,</span> <span class="n">crick</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span><span class="s2">&quot;short&quot;</span><span class="p">,</span><span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<span class="n">ldseguid</span><span class="p">(</span><span class="n">watson</span><span class="p">,</span> <span class="n">crick</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
 
-<span class="n">cdseguid</span><span class="p">(</span><span class="n">watson</span><span class="p">,</span> <span class="n">crick</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span><span class="s2">&quot;short&quot;</span><span class="p">,</span><span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<span class="n">cdseguid</span><span class="p">(</span><span class="n">watson</span><span class="p">,</span> <span class="n">crick</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
 
-<span class="n">seguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span><span class="s2">&quot;short&quot;</span><span class="p">,</span><span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<span class="n">seguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
 </pre></div>
 </div>
 </section>
 <section id="function-arguments">
 <h3>Function arguments<a class="headerlink" href="#function-arguments" title="Link to this heading">¶</a></h3>
-<p><strong>seq</strong> (character string)
+<p><strong>seq</strong> (string)
 The sequence for which the checksum should be calculated. The sequence may only comprise of symbols in the
 alphabet specified by the alphabet argument.</p>
-<p><strong>alphabet</strong> (character string)
+<p><strong>alphabet</strong> (string)
 The type of sequence used. If “<code class="docutils literal notranslate"><span class="pre">{DNA}</span></code>” (default), then the input is a DNA sequence. If “<code class="docutils literal notranslate"><span class="pre">{RNA}</span></code>”, then the
 input is an RNA sequence. If “<code class="docutils literal notranslate"><span class="pre">{protein}</span></code>”, then the input is an amino-acid sequence. If “<code class="docutils literal notranslate"><span class="pre">{DNA-extended}</span></code>”
 or “<code class="docutils literal notranslate"><span class="pre">{RNA-extended}</span></code>”, then the input is a DNA or RNA sequence specified an extended set of symbols, including
@@ -174,13 +174,13 @@ of symbols, including IUPAC symbols (5). A custom alphabet may also be used. A n
 is specified as a comma-separated set of single symbols, e.g. “<code class="docutils literal notranslate"><span class="pre">X,Y,Z</span></code>”. A complementary alphabet is specified
 as a comma-separated set of paired symbols, e.g. “<code class="docutils literal notranslate"><span class="pre">AT,CG</span></code>”. It is also possible to extend a pre-defined
 alphabet, e.g. “<code class="docutils literal notranslate"><span class="pre">{DNA},XY</span></code>”.</p>
-<p><strong>form</strong> (character string)
+<p><strong>form</strong> (string)
 How the checksum is presented. If “<code class="docutils literal notranslate"><span class="pre">long</span></code>” (default), the full-length checksum is returned. If “<code class="docutils literal notranslate"><span class="pre">short</span></code>”,
 the short, six-digit checksum is returned. If “<code class="docutils literal notranslate"><span class="pre">both</span></code>”, both the short and the long checksums are returned.</p>
-<p><strong>watson, crick</strong> (character strings)
+<p><strong>watson, crick</strong> (strings)
 Two reverse-complementary DNA sequences. Both sequences should be specified in the 5’-to-3’ direction.</p>
-<p><strong>Value</strong> The SEGUID functions return a single character string, if form is either “<code class="docutils literal notranslate"><span class="pre">long</span></code>” or “<code class="docutils literal notranslate"><span class="pre">short</span></code>”. If form
-is “<code class="docutils literal notranslate"><span class="pre">both</span></code>”, then a tuple of length two is returned, where the first component holds the “<code class="docutils literal notranslate"><span class="pre">short</span></code>”
+<p><strong>Value</strong> The SEGUID functions return a single string, if form is either “<code class="docutils literal notranslate"><span class="pre">long</span></code>” or “<code class="docutils literal notranslate"><span class="pre">short</span></code>”. If form
+is “<code class="docutils literal notranslate"><span class="pre">both</span></code>”, then a tuple of two strings is returned, where the first component holds the “<code class="docutils literal notranslate"><span class="pre">short</span></code>”
 checksum and the second the “long” checksum. The long checksum, without the prefix, is string with 27
 characters. The short checksum, without the prefix, is the first six characters of the long checksum.
 All checksums are prefixed with a label indicating which SEGUID method was used. Except for seguid(),
