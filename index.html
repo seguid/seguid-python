@@ -142,8 +142,7 @@ at <a class="reference external" href="https://www.seguid.org/">seguid.org</a>.<
 <p>The function <code class="docutils literal notranslate"><span class="pre">seguid()</span></code> that calculates checksum according to the original SEGUID v1 specification (Babnigg &amp; Giometti, 2006)
 is also provided.</p>
 <p>This package works without external dependencies, but <code class="docutils literal notranslate"><span class="pre">csseguid()</span></code> and <code class="docutils literal notranslate"><span class="pre">cdseguid()</span></code>
-can be made faster by installing <a class="reference external" href="https://pypi.org/project/pydivsufsort/">pydivsufsort</a>
-since pydivsufsort provides a faster algorithm for finding the
+can be made faster by installing <a class="reference external" href="https://pypi.org/project/pydivsufsort/">pydivsufsort</a>, provides a faster implementation of the algorithm for finding the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Lexicographically_minimal_string_rotation">smallest string rotation</a>.</p>
 </section>
 <section id="usage">
@@ -165,6 +164,8 @@ since pydivsufsort provides a faster algorithm for finding the
 <p><strong>seq</strong> (string)
 The sequence for which the checksum should be calculated. The sequence may only comprise of symbols in the
 alphabet specified by the alphabet argument.</p>
+<p><strong>watson, crick</strong> (strings)
+Two reverse-complementary DNA sequences. Both sequences should be specified in the 5’-to-3’ direction.</p>
 <p><strong>alphabet</strong> (string)
 The type of sequence used. If <code class="docutils literal notranslate"><span class="pre">&quot;{DNA}&quot;</span></code> (default), then the input is a DNA sequence. If <code class="docutils literal notranslate"><span class="pre">&quot;{RNA}&quot;</span></code>, then the
 input is an RNA sequence. If <code class="docutils literal notranslate"><span class="pre">&quot;{protein}&quot;</span></code>, then the input is an amino-acid sequence. If <code class="docutils literal notranslate"><span class="pre">&quot;{DNA-extended}&quot;</span></code>
@@ -177,8 +178,6 @@ alphabet, e.g. <code class="docutils literal notranslate"><span class="pre">&quo
 <p><strong>form</strong> (string)
 How the checksum is presented. If <code class="docutils literal notranslate"><span class="pre">&quot;long&quot;</span></code> (default), the full-length checksum is returned. If <code class="docutils literal notranslate"><span class="pre">&quot;short&quot;</span></code>,
 the short, six-digit checksum is returned. If <code class="docutils literal notranslate"><span class="pre">&quot;both&quot;</span></code>, both the short and the long checksums are returned.</p>
-<p><strong>watson, crick</strong> (strings)
-Two reverse-complementary DNA sequences. Both sequences should be specified in the 5’-to-3’ direction.</p>
 </section>
 <section id="value">
 <h3>Value<a class="headerlink" href="#value" title="Link to this heading">¶</a></h3>
@@ -186,7 +185,7 @@ Two reverse-complementary DNA sequences. Both sequences should be specified in t
 is <code class="docutils literal notranslate"><span class="pre">&quot;both&quot;</span></code>, then a tuple of two strings is returned, where the first component holds the <code class="docutils literal notranslate"><span class="pre">&quot;short&quot;</span></code>
 checksum and the second the <code class="docutils literal notranslate"><span class="pre">&quot;long&quot;</span></code> checksum. The long checksum, without the prefix, is string with 27
 characters. The short checksum, without the prefix, is the first six characters of the long checksum.
-All checksums are prefixed with a label indicating which SEGUID method was used. Except for <code class="docutils literal notranslate"><span class="pre">seguid()</span></code>,
+All long checksums are prefixed with a label indicating which SEGUID method was used. Except for <code class="docutils literal notranslate"><span class="pre">seguid()</span></code>,
 which uses Base64 encoding, all functions produce checksums using the Base64url encoding
 (“Base 64 Encoding with URL and Filename Safe Alphabet”).</p>
 </section>
@@ -227,7 +226,7 @@ in uppercase with the trailing padding symbol (<code class="docutils literal not
 <p>The original definition of the SEGUID v1 checksum algorithm (Babnigg &amp; Giometti, 2006)
 included transformation to uppercase before calculating the checksum.
 Here, <code class="docutils literal notranslate"><span class="pre">seguid()</span></code> does <em>not</em> coerce the input sequence to upper case. If your input sequence
-has lower-case symbols, you can use <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.upper" title="(in Python v3.12)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.upper()</span></code></a> to emulate what the original method does.
+has lower-case symbols, you can use <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.upper" title="(in Python v3.12)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.upper()</span></code></a> to achieve what the original method does.
 <code class="docutils literal notranslate"><span class="pre">seguid()</span></code> only accepts symbols as specified by the <cite>alphabet</cite> argument.
 Thus, our implementation is more conservative, which has the benefit of
 lowering the risk of passing the incorrect sequence by mistake.</p>
@@ -248,12 +247,13 @@ these characters.</p>
 <dt class="sig sig-object py" id="seguid.lsseguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">lsseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#lsseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.lsseguid" title="Link to this definition">¶</a></dt>
 <dd><p>SEGUID checksum for linear single-stranded DNA.</p>
-<p>Identical to the <a class="reference internal" href="#module-seguid" title="seguid"><code class="xref py py-func docutils literal notranslate"><span class="pre">seguid()</span></code></a> function except for that forward slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>) and plus signs (<code class="docutils literal notranslate"><span class="pre">+</span></code>)
+<p>The same as the <a class="reference internal" href="#module-seguid" title="seguid"><code class="xref py py-func docutils literal notranslate"><span class="pre">seguid()</span></code></a> function except that forward slashes (<code class="docutils literal notranslate"><span class="pre">/</span></code>) and plus signs (<code class="docutils literal notranslate"><span class="pre">+</span></code>)
 in the resulting checksum are replaced by underscores (<code class="docutils literal notranslate"><span class="pre">_</span></code>) and minus signs (<code class="docutils literal notranslate"><span class="pre">-</span></code>), respectively
-following the Base64url standard in RFC 4648 section 5.</p>
-<p>This checksum is applicable to linear single-stranded DNA sequences or
-protein sequences. If protein sequences are analyzed, the alphabet
-argument should be <code class="docutils literal notranslate"><span class="pre">&quot;{protein}&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;{protein-extended}&quot;</span></code>.</p>
+following the Base64url standard in RFC 4648.</p>
+<p>This checksum is applicable to linear single-stranded DNA
+sequences and protein sequences, among other sequences.  If
+protein sequences are analyzed, the alphabet argument should be
+<code class="docutils literal notranslate"><span class="pre">&quot;{protein}&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;{protein-extended}&quot;</span></code>.</p>
 <p>The checksum is prefixed with <code class="docutils literal notranslate"><span class="pre">lsseguid=</span></code>.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">lsseguid</span><span class="p">(</span><span class="s2">&quot;AT&quot;</span><span class="p">)</span>
@@ -266,9 +266,10 @@ argument should be <code class="docutils literal notranslate"><span class="pre">
 <dt class="sig sig-object py" id="seguid.csseguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">csseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#csseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.csseguid" title="Link to this definition">¶</a></dt>
 <dd><p>SEGUID checksum for circular single-stranded DNA.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">csseguid()</span></code> is the <a class="reference internal" href="#seguid.lsseguid" title="seguid.lsseguid"><code class="xref py py-func docutils literal notranslate"><span class="pre">lsseguid()</span></code></a> checksum calculated for the lexicographically
-smallest string rotation of <code class="docutils literal notranslate"><span class="pre">seq</span></code>.</p>
-<p>Only defined for circular single-stranded sequences.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">csseguid()</span></code> is the <a class="reference internal" href="#seguid.lsseguid" title="seguid.lsseguid"><code class="xref py py-func docutils literal notranslate"><span class="pre">lsseguid()</span></code></a> checksum calculated
+for the lexicographically smallest string rotation of <code class="docutils literal notranslate"><span class="pre">seq</span></code>.
+This checksum is Only defined for circular single-stranded
+sequences.</p>
 <p>The checksum is prefixed with <code class="docutils literal notranslate"><span class="pre">csseguid=</span></code>.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">csseguid</span><span class="p">(</span><span class="s2">&quot;ATTT&quot;</span><span class="p">)</span>
@@ -287,13 +288,15 @@ smallest string rotation of <code class="docutils literal notranslate"><span cla
 <dt class="sig sig-object py" id="seguid.ldseguid">
 <span class="sig-prename descclassname"><span class="pre">seguid.</span></span><span class="sig-name descname"><span class="pre">ldseguid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">watson</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">crick</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">alphabet</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'{DNA}'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">form</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'long'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></span></span><a class="reference internal" href="_modules/seguid/_chksum.html#ldseguid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#seguid.ldseguid" title="Link to this definition">¶</a></dt>
 <dd><p>SEGUID checksum for linear double-stranded DNA.</p>
-<p>Calculates the <code class="docutils literal notranslate"><span class="pre">ldseguid()</span></code> checksum for a double-stranded DNA (dsDNA) sequence defined by two
+<p>This function calculates the SEGUID checksum for a double-stranded DNA (dsDNA) sequence defined by two
 strings representing the upper (Watson) and the complementary (Crick) DNA strands. Watson and Crick
-strands are always equal in length.</p>
-<p>Optional single-stranded DNA regions in the ends are indicated by a dash (<code class="docutils literal notranslate"><span class="pre">-</span></code>) in either strand.</p>
-<p>The algorithm first selects the lexicographically smallest of the Watson and Crick strands.</p>
-<p>The two string are joined 5’-3’, separated by a semicolon (<code class="docutils literal notranslate"><span class="pre">;</span></code>) and the <a class="reference internal" href="#seguid.lsseguid" title="seguid.lsseguid"><code class="xref py py-func docutils literal notranslate"><span class="pre">lsseguid()</span></code></a> function
-is used on the resulting string.</p>
+strands should be of equal length.
+Optional single-stranded DNA regions in the ends are indicated by a dash (<code class="docutils literal notranslate"><span class="pre">-</span></code>) in either strand.</p>
+<p>The algorithm first selects the lexicographically smallest of the
+Watson and Crick strands.  The two string are then joined 5’-3’,
+separated by a semicolon (<code class="docutils literal notranslate"><span class="pre">;</span></code>), and the <a class="reference internal" href="#seguid.lsseguid" title="seguid.lsseguid"><code class="xref py py-func docutils literal notranslate"><span class="pre">lsseguid()</span></code></a>
+function is used on the resulting string.</p>
+<p>For example, consider the linear dsDNA sequence defined by <code class="docutils literal notranslate"><span class="pre">watson=&quot;-TATGCC&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">crick=&quot;-GCATAC&quot;</span></code> as in:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dsDNA</span>    <span class="n">SEGUID</span> <span class="n">checksum</span>
 
 <span class="o">-</span><span class="n">TATGCC</span>  <span class="n">ldseguid</span><span class="o">=</span><span class="n">rr65d6AYuP</span><span class="o">-</span><span class="n">CdMaVmdw3L9FPt6I</span>
@@ -305,13 +308,11 @@ is used on the resulting string.</p>
 <span class="n">CCGTAT</span><span class="o">-</span>
 </pre></div>
 </div>
-<p>For the linear dsDNA sequence defined by <code class="docutils literal notranslate"><span class="pre">watson=&quot;-TATGCC&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">crick=&quot;-GCATAC&quot;</span></code>
-(see figures above), The <code class="docutils literal notranslate"><span class="pre">&quot;-GCATAC&quot;</span></code> strand is selected since lexicographically,
-<code class="docutils literal notranslate"><span class="pre">&quot;-GCATAC&quot;</span></code> &lt; <code class="docutils literal notranslate"><span class="pre">&quot;-TATGCC&quot;</span></code>.</p>
-<p>A string is constructed like so:</p>
+<p>The SEGUID algorithm identifies the <code class="docutils literal notranslate"><span class="pre">&quot;-GCATAC&quot;</span></code> strand as the lexicographic smallest of the two. Then it concattenates the two as:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;-GCATAC&quot;</span> <span class="o">+</span> <span class="s2">&quot;;&quot;</span> <span class="o">+</span> <span class="s2">&quot;-TATGCC&quot;</span>
 </pre></div>
 </div>
+<p>and calculates the final checksum based on that sequence.</p>
 <p>The checksum is prefixed with <code class="docutils literal notranslate"><span class="pre">ldseguid=</span></code>.</p>
 <p class="rubric">Examples</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ldseguid</span><span class="p">(</span><span class="s2">&quot;-TATGCC&quot;</span><span class="p">,</span> <span class="s2">&quot;-GCATAC&quot;</span><span class="p">)</span>
