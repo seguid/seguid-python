@@ -48,11 +48,11 @@ Usage
 Function arguments
 ------------------
 
-**seq** (character string)
+**seq** (string)
 The sequence for which the checksum should be calculated. The sequence may only comprise of symbols in the
 alphabet specified by the alphabet argument.
 
-**alphabet** (character string)
+**alphabet** (string)
 The type of sequence used. If "``{DNA}``" (default), then the input is a DNA sequence. If "``{RNA}``", then the
 input is an RNA sequence. If "``{protein}``", then the input is an amino-acid sequence. If "``{DNA-extended}``"
 or "``{RNA-extended}``", then the input is a DNA or RNA sequence specified an extended set of symbols, including
@@ -62,15 +62,15 @@ is specified as a comma-separated set of single symbols, e.g. "``X,Y,Z``". A com
 as a comma-separated set of paired symbols, e.g. "``AT,CG``". It is also possible to extend a pre-defined
 alphabet, e.g. "``{DNA},XY``".
 
-**form** (character string)
+**form** (string)
 How the checksum is presented. If "``long``" (default), the full-length checksum is returned. If "``short``",
 the short, six-digit checksum is returned. If "``both``", both the short and the long checksums are returned.
 
-**watson, crick** (character strings)
+**watson, crick** (strings)
 Two reverse-complementary DNA sequences. Both sequences should be specified in the 5'-to-3' direction.
 
-**Value** The SEGUID functions return a single character string, if form is either "``long``" or "``short``". If form
-is "``both``", then a tuple of length two is returned, where the first component holds the "``short``"
+**Value** The SEGUID functions return a single string, if form is either "``long``" or "``short``". If form
+is "``both``", then a tuple of two strings is returned, where the first component holds the "``short``"
 checksum and the second the "long" checksum. The long checksum, without the prefix, is string with 27
 characters. The short checksum, without the prefix, is the first six characters of the long checksum.
 All checksums are prefixed with a label indicating which SEGUID method was used. Except for seguid(),
