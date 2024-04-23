@@ -16,11 +16,11 @@ SEGUID checksums for linear, circular, single- and double-stranded sequences
 Four functions for calculations of SEGUID v2 checksums for biological sequences with
 linear or circular topologies and a single of two complementary strands are provided.
 
-A detailed description of the algorithms can be found in Pereira et al. 2024 (1).
+A detailed description of the algorithms can be found in Pereira et al. 2024 (2).
 Implementations of these functions in other programming languages cand be found
 at `seguid.org <https://www.seguid.org/>`_.
 
-The function ``seguid()`` that calculates checksum according to the original SEGUID v1 specification (2)
+The function ``seguid()`` that calculates checksum according to the original SEGUID v1 specification (1)
 is also provided.
 
 This package works without external dependencies, but ``csseguid()`` and ``cdseguid()``
