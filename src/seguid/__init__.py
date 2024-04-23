@@ -53,18 +53,18 @@ The sequence for which the checksum should be calculated. The sequence may only 
 alphabet specified by the alphabet argument.
 
 **alphabet** (string)
-The type of sequence used. If "``{DNA}``" (default), then the input is a DNA sequence. If "``{RNA}``", then the
-input is an RNA sequence. If "``{protein}``", then the input is an amino-acid sequence. If "``{DNA-extended}``"
-or "``{RNA-extended}``", then the input is a DNA or RNA sequence specified an extended set of symbols, including
-IUPAC symbols (4). If "``{protein-extended}``", then the input is an amino-acid sequence with an extended set
+The type of sequence used. If ``"{DNA}"`` (default), then the input is a DNA sequence. If ``"{RNA}"``, then the
+input is an RNA sequence. If ``"{protein}"``, then the input is an amino-acid sequence. If ``"{DNA-extended}"``
+or ``"{RNA-extended}"``, then the input is a DNA or RNA sequence specified an extended set of symbols, including
+IUPAC symbols (4). If ``"{protein-extended}"``, then the input is an amino-acid sequence with an extended set
 of symbols, including IUPAC symbols (5). A custom alphabet may also be used. A non-complementary alphabet
-is specified as a comma-separated set of single symbols, e.g. "``X,Y,Z``". A complementary alphabet is specified
-as a comma-separated set of paired symbols, e.g. "``AT,CG``". It is also possible to extend a pre-defined
-alphabet, e.g. "``{DNA},XY``".
+is specified as a comma-separated set of single symbols, e.g. ``"X,Y,Z"``. A complementary alphabet is specified
+as a comma-separated set of paired symbols, e.g. ``"AT,CG"``. It is also possible to extend a pre-defined
+alphabet, e.g. ``"{DNA},XY"``.
 
 **form** (string)
-How the checksum is presented. If "``long``" (default), the full-length checksum is returned. If "``short``",
-the short, six-digit checksum is returned. If "``both``", both the short and the long checksums are returned.
+How the checksum is presented. If ``"long"`` (default), the full-length checksum is returned. If ``"short"``,
+the short, six-digit checksum is returned. If ``"both"``, both the short and the long checksums are returned.
 
 **watson, crick** (strings)
 Two reverse-complementary DNA sequences. Both sequences should be specified in the 5'-to-3' direction.
@@ -72,29 +72,29 @@ Two reverse-complementary DNA sequences. Both sequences should be specified in t
 Value
 -----
 
-The SEGUID functions return a single string, if form is either "``long``" or "``short``". If form
-is "``both``", then a tuple of two strings is returned, where the first component holds the "``short``"
-checksum and the second the "long" checksum. The long checksum, without the prefix, is string with 27
+The SEGUID functions return a single string, if form is either ``"long"`` or ``"short"``. If form
+is ``"both"``, then a tuple of two strings is returned, where the first component holds the ``"short"``
+checksum and the second the ``"long"`` checksum. The long checksum, without the prefix, is string with 27
 characters. The short checksum, without the prefix, is the first six characters of the long checksum.
-All checksums are prefixed with a label indicating which SEGUID method was used. Except for seguid(),
-which uses base64 encoding, all functions produce checksums using the base64url encoding
+All checksums are prefixed with a label indicating which SEGUID method was used. Except for ``seguid()``,
+which uses Base64 encoding, all functions produce checksums using the Base64url encoding
 ("Base 64 Encoding with URL and Filename Safe Alphabet").
 
 
 Base64 and Base64url encodings
 ------------------------------
 
-The base64url encoding is the base64 encoding with non-URL-safe characters substituted with URL-safe ones (3).
-Specifically, the plus symbol (+) is replaced by the minus symbol (-), and the forward slash (/) is replaced
-by the underscore symbol (_).
+The Base64url encoding is the Base64 encoding with non-URL-safe characters substituted with URL-safe ones (3).
+Specifically, the plus symbol (``+``) is replaced by the minus symbol (``-``), and the forward slash (``/``) is replaced
+by the underscore symbol (``_``).
 
 The Base64 checksum used for the original SEGUID checksum is not guaranteed to contain symbols
 that can safely be used as-is in a Uniform Resource Locator (URL). Specifically, it may consist of forward
-slashes (/) and plus symbols (+), which are characters that carry special meaning in a URL. For the same
+slashes (``/``) and plus symbols (``+``), which are characters that carry special meaning in a URL. For the same
 reason, a Base64 checksum cannot safely be used as a file or directory name, because it may have a forward slash.
 
 The checksum returned is always 27-character long. This is because the SHA-1 hash (6) is 160-bit long
-(20 bytes), which result in the encoded representation always end with a padding character (=) so that the
+(20 bytes), which result in the encoded representation always end with a padding character (``=``) so that the
 length is a multiple of four character. We relax this requirement, by dropping the padding character.
 
 
