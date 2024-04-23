@@ -222,9 +222,9 @@ in uppercase with the trailing padding symbol (<code class="docutils literal not
 <p>The original definition of the SEGUID v1 checksum algorithm (Babnigg &amp; Giometti, 2006)
 included transformation to uppercase before calculating the checksum.</p>
 <p><code class="docutils literal notranslate"><span class="pre">seguid()</span></code> does <em>not</em> coerce the input sequence to upper case. If your input sequence
-has lower-case symbols, you can use <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.upper" title="(in Python v3.12)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.upper()</span></code></a> to emulate what the original method does.</p>
-<p><code class="docutils literal notranslate"><span class="pre">seguid()</span></code> only accepts symbols as specified by the <cite>alphabet</cite> argument.</p>
-<p>Thus, our implementation is more conservative, which has the benefit of
+has lower-case symbols, you can use <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str.upper" title="(in Python v3.12)"><code class="xref py py-meth docutils literal notranslate"><span class="pre">str.upper()</span></code></a> to emulate what the original method does.
+<code class="docutils literal notranslate"><span class="pre">seguid()</span></code> only accepts symbols as specified by the <cite>alphabet</cite> argument.
+Thus, our implementation is more conservative, which has the benefit of
 lowering the risk of passing the incorrect sequence by mistake.</p>
 <p>The resulting checksum string may contain forward slash (<code class="docutils literal notranslate"><span class="pre">/</span></code>) and plus-sign (<code class="docutils literal notranslate"><span class="pre">+</span></code>) symbols.
 These characters cannot be a part of a Uniform Resource Locator (URL) or a filename on

@@ -82,14 +82,14 @@
         <span class="k">return</span> <span class="n">csum</span><span class="p">[:</span><span class="n">short</span><span class="p">]</span>
 
 
-<span class="k">def</span> <span class="nf">_form</span><span class="p">(</span><span class="n">prefix</span><span class="p">,</span> <span class="n">csum</span><span class="p">,</span> <span class="n">form</span><span class="p">):</span>
-    <span class="n">longform</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="n">shortform</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-    <span class="k">if</span> <span class="n">form</span> <span class="o">!=</span> <span class="s2">&quot;short&quot;</span><span class="p">:</span>
-        <span class="n">longform</span> <span class="o">=</span> <span class="n">prefix</span> <span class="o">+</span> <span class="n">csum</span>
-    <span class="k">if</span> <span class="n">form</span> <span class="o">!=</span> <span class="s2">&quot;long&quot;</span><span class="p">:</span>
-        <span class="n">shortform</span> <span class="o">=</span> <span class="n">csum</span><span class="p">[:</span><span class="n">short</span><span class="p">]</span>
-    <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">((</span><span class="n">shortform</span><span class="p">,</span> <span class="n">longform</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+<span class="c1"># def _form(prefix, csum, form):</span>
+<span class="c1">#     longform = &quot;&quot;</span>
+<span class="c1">#     shortform = &quot;&quot;</span>
+<span class="c1">#     if form != &quot;short&quot;:</span>
+<span class="c1">#         longform = prefix + csum</span>
+<span class="c1">#     if form != &quot;long&quot;:</span>
+<span class="c1">#         shortform = csum[:short]</span>
+<span class="c1">#     return &quot; &quot;.join((shortform, longform)).strip()</span>
 
 
 <div class="viewcode-block" id="seguid">
@@ -110,9 +110,7 @@
 
 <span class="sd">    ``seguid()`` does *not* coerce the input sequence to upper case. If your input sequence</span>
 <span class="sd">    has lower-case symbols, you can use :meth:`str.upper` to emulate what the original method does.</span>
-
 <span class="sd">    ``seguid()`` only accepts symbols as specified by the `alphabet` argument.</span>
-
 <span class="sd">    Thus, our implementation is more conservative, which has the benefit of</span>
 <span class="sd">    lowering the risk of passing the incorrect sequence by mistake.</span>
 
