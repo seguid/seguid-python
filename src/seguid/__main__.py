@@ -63,7 +63,8 @@ else:
     else:
         raise ValueError("Unknown --type='" + type + "'")
 
-    if form != "both":
-        print(res)
-    else:
-        print(" ".join(res))
+    if isinstance(res, tuple):
+        res = " ".join(res)
+        
+    print(res)
+
