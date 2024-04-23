@@ -186,8 +186,10 @@ characters. The short checksum, without the prefix, is the first six characters 
 All checksums are prefixed with a label indicating which SEGUID method was used. Except for seguid(),
 which uses base64 encoding, all functions produce checksums using the base64url encoding
 (“Base 64 Encoding with URL and Filename Safe Alphabet”).</p>
-<p>Base64 and Base64url encodings
-The base64url encoding is the base64 encoding with non-URL-safe characters substituted with URL-safe ones (3).
+</section>
+<section id="base64-and-base64url-encodings">
+<h3>Base64 and Base64url encodings<a class="headerlink" href="#base64-and-base64url-encodings" title="Link to this heading">¶</a></h3>
+<p>The base64url encoding is the base64 encoding with non-URL-safe characters substituted with URL-safe ones (3).
 Specifically, the plus symbol (+) is replaced by the minus symbol (-), and the forward slash (/) is replaced
 by the underscore symbol (_).</p>
 <p>The Base64 checksum used for the original SEGUID checksum is not guaranteed to contain symbols
