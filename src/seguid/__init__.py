@@ -24,8 +24,7 @@ The function ``seguid()`` that calculates checksum according to the original SEG
 is also provided.
 
 This package works without external dependencies, but ``csseguid()`` and ``cdseguid()``
-can be made faster by installing `pydivsufsort <https://pypi.org/project/pydivsufsort/>`_
-since pydivsufsort provides a faster algorithm for finding the
+can be made faster by installing `pydivsufsort <https://pypi.org/project/pydivsufsort/>`_, provides a faster implementation of the algorithm for finding the
 `smallest string rotation <https://en.wikipedia.org/wiki/Lexicographically_minimal_string_rotation>`_.
 
 
@@ -52,6 +51,9 @@ Function arguments
 The sequence for which the checksum should be calculated. The sequence may only comprise of symbols in the
 alphabet specified by the alphabet argument.
 
+**watson, crick** (strings)
+Two reverse-complementary DNA sequences. Both sequences should be specified in the 5'-to-3' direction.
+
 **alphabet** (string)
 The type of sequence used. If ``"{DNA}"`` (default), then the input is a DNA sequence. If ``"{RNA}"``, then the
 input is an RNA sequence. If ``"{protein}"``, then the input is an amino-acid sequence. If ``"{DNA-extended}"``
@@ -66,8 +68,6 @@ alphabet, e.g. ``"{DNA},XY"``.
 How the checksum is presented. If ``"long"`` (default), the full-length checksum is returned. If ``"short"``,
 the short, six-digit checksum is returned. If ``"both"``, both the short and the long checksums are returned.
 
-**watson, crick** (strings)
-Two reverse-complementary DNA sequences. Both sequences should be specified in the 5'-to-3' direction.
 
 Value
 -----
@@ -76,7 +76,7 @@ The SEGUID functions return a single string, if form is either ``"long"`` or ``"
 is ``"both"``, then a tuple of two strings is returned, where the first component holds the ``"short"``
 checksum and the second the ``"long"`` checksum. The long checksum, without the prefix, is string with 27
 characters. The short checksum, without the prefix, is the first six characters of the long checksum.
-All checksums are prefixed with a label indicating which SEGUID method was used. Except for ``seguid()``,
+All long checksums are prefixed with a label indicating which SEGUID method was used. Except for ``seguid()``,
 which uses Base64 encoding, all functions produce checksums using the Base64url encoding
 ("Base 64 Encoding with URL and Filename Safe Alphabet").
 

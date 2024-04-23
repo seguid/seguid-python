@@ -74,7 +74,7 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     The original definition of the SEGUID v1 checksum algorithm (Babnigg & Giometti, 2006)
     included transformation to uppercase before calculating the checksum.
     Here, ``seguid()`` does *not* coerce the input sequence to upper case. If your input sequence
-    has lower-case symbols, you can use :meth:`str.upper` to emulate what the original method does.
+    has lower-case symbols, you can use :meth:`str.upper` to achieve what the original method does.
     ``seguid()`` only accepts symbols as specified by the `alphabet` argument.
     Thus, our implementation is more conservative, which has the benefit of
     lowering the risk of passing the incorrect sequence by mistake.
@@ -103,13 +103,14 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     """SEGUID checksum for linear single-stranded DNA.
 
-    Identical to the :func:`seguid()` function except for that forward slashes (``/``) and plus signs (``+``)
+    The same as the :func:`seguid()` function except that forward slashes (``/``) and plus signs (``+``)
     in the resulting checksum are replaced by underscores (``_``) and minus signs (``-``), respectively
-    following the Base64url standard in RFC 4648 section 5.
+    following the Base64url standard in RFC 4648.
 
-    This checksum is applicable to linear single-stranded DNA sequences or
-    protein sequences. If protein sequences are analyzed, the alphabet
-    argument should be ``"{protein}"`` or ``"{protein-extended}"``.
+    This checksum is applicable to linear single-stranded DNA
+    sequences and protein sequences, among other sequences.  If
+    protein sequences are analyzed, the alphabet argument should be
+    ``"{protein}"`` or ``"{protein-extended}"``.
 
     The checksum is prefixed with ``lsseguid=``.
 
@@ -117,6 +118,7 @@ def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     --------
     >>> lsseguid("AT")
     'lsseguid=Ax_RG6hzSrMEEWoCO1IWMGska-4'
+
     """
     return _form(
         lsseguid_prefix,
@@ -128,10 +130,10 @@ def lsseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     r"""SEGUID checksum for circular single-stranded DNA.
 
-    The ``csseguid()`` is the :func:`lsseguid()` checksum calculated for the lexicographically
-    smallest string rotation of ``seq``.
-
-    Only defined for circular single-stranded sequences.
+    The ``csseguid()`` is the :func:`lsseguid()` checksum calculated
+    for the lexicographically smallest string rotation of ``seq``.
+    This checksum is Only defined for circular single-stranded
+    sequences.
 
     The checksum is prefixed with ``csseguid=``.
 
@@ -145,6 +147,7 @@ def csseguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
     'csseguid=ot6JPLeAeMmfztW1736Kc6DAqlo'
     >>> lsseguid("TTTA")
     'lsseguid=8zCvKwyQAEsbPtC4yTV-pY0H93Q'
+
     """
     return _form(
         csseguid_prefix,
@@ -160,16 +163,17 @@ def ldseguid(
 ) -> str:
     r"""SEGUID checksum for linear double-stranded DNA.
 
-    Calculates the ``ldseguid()`` checksum for a double-stranded DNA (dsDNA) sequence defined by two
+    This function calculates the SEGUID checksum for a double-stranded DNA (dsDNA) sequence defined by two
     strings representing the upper (Watson) and the complementary (Crick) DNA strands. Watson and Crick
-    strands are always equal in length.
-
+    strands should be of equal length.
     Optional single-stranded DNA regions in the ends are indicated by a dash (``-``) in either strand.
 
-    The algorithm first selects the lexicographically smallest of the Watson and Crick strands.
+    The algorithm first selects the lexicographically smallest of the
+    Watson and Crick strands.  The two string are then joined 5'-3',
+    separated by a semicolon (``;``), and the :func:`lsseguid()`
+    function is used on the resulting string.
 
-    The two string are joined 5'-3', separated by a semicolon (``;``) and the :func:`lsseguid()` function
-    is used on the resulting string.
+    For example, consider the linear dsDNA sequence defined by ``watson="-TATGCC"`` and ``crick="-GCATAC"`` as in:
 
     ::
 
@@ -183,15 +187,13 @@ def ldseguid(
          |||||
         CCGTAT-
 
-    For the linear dsDNA sequence defined by ``watson="-TATGCC"``, ``crick="-GCATAC"``
-    (see figures above), The ``"-GCATAC"`` strand is selected since lexicographically,
-    ``"-GCATAC"`` < ``"-TATGCC"``.
-
-    A string is constructed like so:
+    The SEGUID algorithm identifies the ``"-GCATAC"`` strand as the lexicographic smallest of the two. Then it concattenates the two as:
     ::
 
         "-GCATAC" + ";" + "-TATGCC"
 
+    and calculates the final checksum based on that sequence.
+    
     The checksum is prefixed with ``ldseguid=``.
 
     Examples
@@ -200,6 +202,7 @@ def ldseguid(
     'ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I'
     >>> ldseguid("-GCATAC", "-TATGCC")
     'ldseguid=rr65d6AYuP-CdMaVmdw3L9FPt6I'
+
     """
     assert watson, "Watson sequence must not be empty"
     assert crick, "Crick sequence must not be empty"
