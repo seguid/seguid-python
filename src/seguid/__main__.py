@@ -63,7 +63,7 @@ else:
     else:
         raise ValueError("Unknown --type='" + type + "'")
 
-    if len(res) != 2:
+    if form != "both":
         print(res)
     else:
         print(" ".join(res))
