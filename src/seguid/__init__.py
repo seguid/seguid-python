@@ -69,7 +69,10 @@ the short, six-digit checksum is returned. If "``both``", both the short and the
 **watson, crick** (strings)
 Two reverse-complementary DNA sequences. Both sequences should be specified in the 5'-to-3' direction.
 
-**Value** The SEGUID functions return a single string, if form is either "``long``" or "``short``". If form
+Value
+-----
+
+The SEGUID functions return a single string, if form is either "``long``" or "``short``". If form
 is "``both``", then a tuple of two strings is returned, where the first component holds the "``short``"
 checksum and the second the "long" checksum. The long checksum, without the prefix, is string with 27
 characters. The short checksum, without the prefix, is the first six characters of the long checksum.
