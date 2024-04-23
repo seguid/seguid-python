@@ -16,11 +16,11 @@ SEGUID checksums for linear, circular, single- and double-stranded sequences
 Four functions for calculations of SEGUID v2 checksums for biological sequences with
 linear or circular topologies and a single of two complementary strands are provided.
 
-A detailed description of the algorithms can be found in Pereira et al. 2024 (2).
+A detailed description of the algorithms can be found in Pereira, et al. (2024).
 Implementations of these functions in other programming languages cand be found
 at `seguid.org <https://www.seguid.org/>`_.
 
-The function ``seguid()`` that calculates checksum according to the original SEGUID v1 specification (1)
+The function ``seguid()`` that calculates checksum according to the original SEGUID v1 specification (Babnigg & Giometti, 2006)
 is also provided.
 
 This package works without external dependencies, but ``csseguid()`` and ``cdseguid()``
@@ -84,7 +84,7 @@ which uses Base64 encoding, all functions produce checksums using the Base64url 
 Base64 and Base64url encodings
 ------------------------------
 
-The Base64url encoding is the Base64 encoding with non-URL-safe characters substituted with URL-safe ones (3).
+The Base64url encoding is the Base64 encoding with non-URL-safe characters substituted with URL-safe ones (Josefsson, 2006).
 Specifically, the plus symbol (``+``) is replaced by the minus symbol (``-``), and the forward slash (``/``) is replaced
 by the underscore symbol (``_``).
 
