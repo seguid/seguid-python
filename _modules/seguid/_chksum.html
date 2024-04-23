@@ -107,8 +107,7 @@
 
 <span class="sd">    The original definition of the SEGUID v1 checksum algorithm (Babnigg &amp; Giometti, 2006)</span>
 <span class="sd">    included transformation to uppercase before calculating the checksum.</span>
-
-<span class="sd">    ``seguid()`` does *not* coerce the input sequence to upper case. If your input sequence</span>
+<span class="sd">    Here, ``seguid()`` does *not* coerce the input sequence to upper case. If your input sequence</span>
 <span class="sd">    has lower-case symbols, you can use :meth:`str.upper` to emulate what the original method does.</span>
 <span class="sd">    ``seguid()`` only accepts symbols as specified by the `alphabet` argument.</span>
 <span class="sd">    Thus, our implementation is more conservative, which has the benefit of</span>
