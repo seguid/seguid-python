@@ -79,6 +79,8 @@ which uses base64 encoding, all functions produce checksums using the base64url 
 
 
 Base64 and Base64url encodings
+------------------------------
+
 The base64url encoding is the base64 encoding with non-URL-safe characters substituted with URL-safe ones (3).
 Specifically, the plus symbol (+) is replaced by the minus symbol (-), and the forward slash (/) is replaced
 by the underscore symbol (_).
@@ -98,6 +100,7 @@ length is a multiple of four character. We relax this requirement, by dropping t
 
 References
 ----------
+
 1. G Babnigg & CS Giometti, A database of unique protein sequence identifiers for proteome studies. Proteomics. 2006 Aug;6(16):4514-22, `doi:10.1002/pmic.200600032 <https://doi.org/10.1002/pmic.200600032>`_.
 
 2. H Pereira, PC Silva, WM Davis, L Abraham, G Babnigg, H Bengtsson & B Johansson, SEGUID v2: Extending SEGUID Checksums for Circular, Linear, Single- and Double-Stranded Biological Sequences, bioRxiv, `doi:10.1101/2024.02.28.582384 <https://doi.org/10.1101/2024.02.28.582384>`_.
