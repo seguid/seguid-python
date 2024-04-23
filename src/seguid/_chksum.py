@@ -50,14 +50,14 @@ def _form(prefix, csum, form):
         return csum[:short]
 
 
-def _form(prefix, csum, form):
-    longform = ""
-    shortform = ""
-    if form != "short":
-        longform = prefix + csum
-    if form != "long":
-        shortform = csum[:short]
-    return " ".join((shortform, longform)).strip()
+# def _form(prefix, csum, form):
+#     longform = ""
+#     shortform = ""
+#     if form != "short":
+#         longform = prefix + csum
+#     if form != "long":
+#         shortform = csum[:short]
+#     return " ".join((shortform, longform)).strip()
 
 
 def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
@@ -76,9 +76,7 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
 
     ``seguid()`` does *not* coerce the input sequence to upper case. If your input sequence
     has lower-case symbols, you can use :meth:`str.upper` to emulate what the original method does.
-
     ``seguid()`` only accepts symbols as specified by the `alphabet` argument.
-
     Thus, our implementation is more conservative, which has the benefit of
     lowering the risk of passing the incorrect sequence by mistake.
 

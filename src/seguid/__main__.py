@@ -63,4 +63,7 @@ else:
     else:
         raise ValueError("Unknown --type='" + type + "'")
 
-    print(res)
+    if len(res) != 2:
+        print(res)
+    else:
+        print(" ".join(res))
