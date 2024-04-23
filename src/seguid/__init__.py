@@ -34,15 +34,15 @@ Usage
 
 .. code-block:: python
 
-    lsseguid(seq, alphabet="{DNA}", form=c("long","short","both"))
+    lsseguid(seq, alphabet="{DNA}", form=c("long", "short", "both"))
 
-    csseguid(seq, alphabet="{DNA}", form=c("long","short","both"))
+    csseguid(seq, alphabet="{DNA}", form=c("long", "short", "both"))
 
-    ldseguid(watson, crick, alphabet="{DNA}", form=c("long","short","both"))
+    ldseguid(watson, crick, alphabet="{DNA}", form=c("long", "short", "both"))
 
-    cdseguid(watson, crick, alphabet="{DNA}", form=c("long","short","both"))
+    cdseguid(watson, crick, alphabet="{DNA}", form=c("long", "short", "both"))
 
-    seguid(seq, alphabet="{DNA}", form=c("long","short","both"))
+    seguid(seq, alphabet="{DNA}", form=c("long", "short", "both"))
 
 
 Function arguments
