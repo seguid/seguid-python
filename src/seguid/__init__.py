@@ -98,11 +98,11 @@ length is a multiple of four character. We relax this requirement, by dropping t
 
 References
 ----------
-1. G Babnigg & CS Giometti, A database of unique protein sequence identifiers for proteome studies. Proteomics. 2006 Aug;6(16):4514-22, doi:10.1002/pmic.200600032 .
+1. G Babnigg & CS Giometti, A database of unique protein sequence identifiers for proteome studies. Proteomics. 2006 Aug;6(16):4514-22, doi:10.1002/pmic.200600032.
 
-2. H Pereira, PC Silva, WM Davis, L Abraham, G Babnigg, H Bengtsson & B Johansson, SEGUID v2: Extending SEGUID Checksums for Circular, Linear, Single- and Double-Stranded Biological Sequences, bioRxiv, doi:10.1101/2024.02.28.582384 .
+2. H Pereira, PC Silva, WM Davis, L Abraham, G Babnigg, H Bengtsson & B Johansson, SEGUID v2: Extending SEGUID Checksums for Circular, Linear, Single- and Double-Stranded Biological Sequences, bioRxiv, doi:10.1101/2024.02.28.582384.
 
-3. S Josefsson, The Base16, Base32, and Base64 Data Encodings, RFC 4648, October 2006, doi:10.17487/RFC4648 .
+3. S Josefsson, The Base16, Base32, and Base64 Data Encodings, RFC 4648, October 2006, doi:10.17487/RFC4648.
 
 4. Wikipedia article 'Nucleic acid notation', February 2024, https://en.wikipedia.org/wiki/Nucleic_acid_notation.
 
