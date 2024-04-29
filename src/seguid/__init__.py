@@ -76,9 +76,9 @@ The SEGUID functions return a single string, if form is either ``"long"`` or ``"
 is ``"both"``, then a tuple of two strings is returned, where the first component holds the ``"short"``
 checksum and the second the ``"long"`` checksum. The long checksum, without the prefix, is a string with 27
 characters. The short checksum, without the prefix, is the first six characters of the long checksum.
-All long checksums are prefixed with a label indicating which SEGUID method was used. Except for ``seguid()``,
-which uses Base64 encoding, all functions produce checksums using the Base64url encoding
-("Base 64 Encoding with URL and Filename Safe Alphabet").
+All long checksums are prefixed with a label indicating which SEGUID method was used.
+All functions produce checksums using the Base64url encoding ("Base 64 Encoding with URL and Filename Safe Alphabet"), with the exception for ``seguid()``,
+which uses Base64 encoding.
 
 
 Base64 and Base64url encodings
