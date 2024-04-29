@@ -2,6 +2,9 @@ SHELL=bash
 
 all: install check check-cli
 
+version: install
+	python -m seguid --version
+
 
 #---------------------------------------------------------------
 # Install package
