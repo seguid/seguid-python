@@ -134,8 +134,8 @@ or the original SEGUID v1 (Babnigg &amp; Giometti, 2006).</p>
 </tr>
 </tbody>
 </table>
-<p>Four functions for calculations of SEGUID v2 checksums for biological sequences with
-linear or circular topologies and a single of two complementary strands are provided.</p>
+<p>Four SEGUID v2 checksum functions for biological sequences with linear or circular
+topology and a single or two complementary strands.</p>
 <p>A detailed description of the algorithms can be found in Pereira et al. (2024).
 Implementations of these functions in other programming languages cand be found
 at <a class="reference external" href="https://www.seguid.org/">seguid.org</a>.</p>
@@ -147,15 +147,15 @@ can be made faster by installing <a class="reference external" href="https://pyp
 </section>
 <section id="usage">
 <h3>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lsseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">lsseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s2">&quot;long&quot;</span><span class="p">)</span>
 
-<span class="n">csseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<span class="n">csseguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s2">&quot;long&quot;</span><span class="p">)</span>
 
-<span class="n">ldseguid</span><span class="p">(</span><span class="n">watson</span><span class="p">,</span> <span class="n">crick</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<span class="n">ldseguid</span><span class="p">(</span><span class="n">watson</span><span class="p">,</span> <span class="n">crick</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s2">&quot;long&quot;</span><span class="p">)</span>
 
-<span class="n">cdseguid</span><span class="p">(</span><span class="n">watson</span><span class="p">,</span> <span class="n">crick</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<span class="n">cdseguid</span><span class="p">(</span><span class="n">watson</span><span class="p">,</span> <span class="n">crick</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s2">&quot;long&quot;</span><span class="p">)</span>
 
-<span class="n">seguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="n">c</span><span class="p">(</span><span class="s2">&quot;long&quot;</span><span class="p">,</span> <span class="s2">&quot;short&quot;</span><span class="p">,</span> <span class="s2">&quot;both&quot;</span><span class="p">))</span>
+<span class="n">seguid</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="s2">&quot;</span><span class="si">{DNA}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">form</span><span class="o">=</span><span class="s2">&quot;long&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -358,11 +358,11 @@ sequences.</p>
 <hr />
 <ul>
     
-    <li class="toctree-l1"><a href="https://github.com/BjornFJohansson/pydna">Home page</a></li>
+    <li class="toctree-l1"><a href="https://seguid.org">Home page</a></li>
     
-    <li class="toctree-l1"><a href="https://github.com/BjornFJohansson/pydna?tab=readme-ov-file#-pydna">Source code</a></li>
+    <li class="toctree-l1"><a href="https://github.com/seguid/seguid-python">Source code</a></li>
     
-    <li class="toctree-l1"><a href="https://github.com/BjornFJohansson/pydna/issues">Issue Tracker</a></li>
+    <li class="toctree-l1"><a href="https://github.com/seguid/seguid-python/issues">Issue Tracker</a></li>
     
 </ul>
 <div class="relations">
