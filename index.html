@@ -108,6 +108,7 @@ or the original SEGUID v1 (Babnigg &amp; Giometti, 2006).</p>
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-seguid" title="Link to this heading">¶</a></h2>
 <section id="seguid-checksums-for-linear-circular-single-and-double-stranded-sequences">
 <h3>SEGUID checksums for linear, circular, single- and double-stranded sequences<a class="headerlink" href="#seguid-checksums-for-linear-circular-single-and-double-stranded-sequences" title="Link to this heading">¶</a></h3>
+<p>This package provides four functions, <code class="docutils literal notranslate"><span class="pre">lsseguid()</span></code>, <code class="docutils literal notranslate"><span class="pre">csseguid()</span></code>, <code class="docutils literal notranslate"><span class="pre">ldseguid()</span></code>, and <code class="docutils literal notranslate"><span class="pre">cdseguid()</span></code> (Table 1), for calculating SEGUID v2 checksums, and one function, <code class="docutils literal notranslate"><span class="pre">seguid()</span></code>, for calculating SEGUID v1 checksums.  SEGUID v2 is described in Pereira et al. (2024), and SEGUID v1 in Babnigg &amp; Giometti (2006).</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Topology</p></th>
@@ -134,13 +135,7 @@ or the original SEGUID v1 (Babnigg &amp; Giometti, 2006).</p>
 </tr>
 </tbody>
 </table>
-<p>Four SEGUID v2 checksum functions for biological sequences with linear or circular
-topology and a single or two complementary strands.</p>
-<p>A detailed description of the algorithms can be found in Pereira et al. (2024).
-Implementations of these functions in other programming languages cand be found
-at <a class="reference external" href="https://www.seguid.org/">seguid.org</a>.</p>
-<p>The function <code class="docutils literal notranslate"><span class="pre">seguid()</span></code> that calculates checksum according to the original SEGUID v1 specification (Babnigg &amp; Giometti, 2006)
-is also provided.</p>
+<p><em>Table 1: The four functions that calculate SEGUID v2 checksums for biological sequences with linear or circular topology and a single or two complementary strands.</em></p>
 <p>This package works without external dependencies, but <code class="docutils literal notranslate"><span class="pre">csseguid()</span></code> and <code class="docutils literal notranslate"><span class="pre">cdseguid()</span></code>
 can be made faster by installing <a class="reference external" href="https://pypi.org/project/pydivsufsort/">pydivsufsort</a>, provides a faster implementation of the algorithm for finding the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Lexicographically_minimal_string_rotation">smallest string rotation</a>.</p>
