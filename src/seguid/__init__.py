@@ -71,8 +71,11 @@ is ``"both"``, then a tuple of two strings is returned, where the first componen
 checksum and the second the ``"long"`` checksum. The long checksum, without the prefix, is a string with 27
 characters. The short checksum, without the prefix, is the first six characters of the long checksum.
 All long checksums are prefixed with a label indicating which SEGUID method was used.
+
 All functions produce checksums using the Base64url encoding ("Base 64 Encoding with URL and Filename Safe Alphabet"), with the exception for ``seguid()``,
-which uses Base64 encoding.
+which uses Base64 encoding. The "long" checksums returned are always 27-character long. This is because the SHA-1 hash (6) is 160-bit long
+(20 bytes), which result in the encoded representation always end with a padding character (``=``) so that the
+length is a multiple of four character. We relax this requirement, by dropping the padding character.
 
 
 Base64 and Base64url encodings
@@ -86,10 +89,6 @@ The Base64 checksum used for the original SEGUID checksum is not guaranteed to c
 that can safely be used as-is in a Uniform Resource Locator (URL). Specifically, it may consist of forward
 slashes (``/``) and plus symbols (``+``), which are characters that carry special meaning in a URL. For the same
 reason, a Base64 checksum cannot safely be used as a file or directory name, because it may have a forward slash.
-
-The checksum returned is always 27-character long. This is because the SHA-1 hash (6) is 160-bit long
-(20 bytes), which result in the encoded representation always end with a padding character (``=``) so that the
-length is a multiple of four character. We relax this requirement, by dropping the padding character.
 
 
 
