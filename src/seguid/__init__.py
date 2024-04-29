@@ -4,6 +4,8 @@
 SEGUID checksums for linear, circular, single- and double-stranded sequences
 ----------------------------------------------------------------------------
 
+This package provides four functions, ``lsseguid()``, ``csseguid()``, ``ldseguid()``, and ``cdseguid()`` (Table 1), for calculating SEGUID v2 checksums, and one function, ``seguid()``, for calculating SEGUID v1 checksums.  SEGUID v2 is described in Pereira et al. (2024), and SEGUID v1 in Babnigg & Giometti (2006).
+
 ================ ============== ====================
  Topology         Strandedness   Function
 ================ ============== ====================
@@ -13,15 +15,7 @@ SEGUID checksums for linear, circular, single- and double-stranded sequences
  **c**\ ircular   **d**\ ouble     ``cdseguid()``
 ================ ============== ====================
 
-Four SEGUID v2 checksum functions for biological sequences with linear or circular
-topology and a single or two complementary strands.
-
-A detailed description of the algorithms can be found in Pereira et al. (2024).
-Implementations of these functions in other programming languages cand be found
-at `seguid.org <https://www.seguid.org/>`_.
-
-The function ``seguid()`` that calculates checksum according to the original SEGUID v1 specification (Babnigg & Giometti, 2006)
-is also provided.
+*Table 1: The four functions that calculate SEGUID v2 checksums for biological sequences with linear or circular topology and a single or two complementary strands.*
 
 This package works without external dependencies, but ``csseguid()`` and ``cdseguid()``
 can be made faster by installing `pydivsufsort <https://pypi.org/project/pydivsufsort/>`_, provides a faster implementation of the algorithm for finding the
