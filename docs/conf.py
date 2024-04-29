@@ -42,9 +42,9 @@ html_static_path = ['_static']
 
 html_theme_options = {
     'extra_nav_links': {
-        "Home page": "https://github.com/BjornFJohansson/pydna",
-        "Source code": "https://github.com/BjornFJohansson/pydna?tab=readme-ov-file#-pydna",
-        "Issue Tracker": "https://github.com/BjornFJohansson/pydna/issues"
+        "Home page": "https://seguid.org",
+        "Source code": "https://github.com/seguid/seguid-python",
+        "Issue Tracker": "https://github.com/seguid/seguid-python/issues"
     }
 }
 
