@@ -13,8 +13,8 @@ SEGUID checksums for linear, circular, single- and double-stranded sequences
  **c**\ ircular   **d**\ ouble     ``cdseguid()``
 ================ ============== ====================
 
-Four functions for calculations of SEGUID v2 checksums for biological sequences with
-linear or circular topologies and a single of two complementary strands are provided.
+Four SEGUID v2 checksum functions for biological sequences with linear or circular
+topology and a single or two complementary strands.
 
 A detailed description of the algorithms can be found in Pereira et al. (2024).
 Implementations of these functions in other programming languages cand be found
@@ -33,15 +33,15 @@ Usage
 
 .. code-block:: python
 
-    lsseguid(seq, alphabet="{DNA}", form=c("long", "short", "both"))
+    lsseguid(seq, alphabet="{DNA}", form="long")
 
-    csseguid(seq, alphabet="{DNA}", form=c("long", "short", "both"))
+    csseguid(seq, alphabet="{DNA}", form="long")
 
-    ldseguid(watson, crick, alphabet="{DNA}", form=c("long", "short", "both"))
+    ldseguid(watson, crick, alphabet="{DNA}", form="long")
 
-    cdseguid(watson, crick, alphabet="{DNA}", form=c("long", "short", "both"))
+    cdseguid(watson, crick, alphabet="{DNA}", form="long")
 
-    seguid(seq, alphabet="{DNA}", form=c("long", "short", "both"))
+    seguid(seq, alphabet="{DNA}", form="long")
 
 
 Function arguments
