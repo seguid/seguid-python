@@ -15,6 +15,14 @@ parser = ArgumentParser(
     description="seguid: Sequence Globally Unique Identifier Checksums for Linear, Circular, Single- and Double-Stranded Biological Sequences",
     epilog=
 """
+Predefined alphabets:
+ '{DNA}'              Complementary DNA symbols (= 'AT,CG')
+ '{DNA-extended}'     Extended DNA (= '{DNA},BV,DH,KM,SS,RY,WW,NN')
+ '{RNA}'              Complementary RNA symbols (= 'AU,CG')
+ '{RNA-extended}'     Extended DNA (= '{RNA},BV,DH,KM,SS,RY,WW,NN')
+ '{protein}'          Amino-acid symbols (= 'A,C,D,E,F,G,H,I,K,L,M,N,P,Q,R,S,T,V,W,Y')
+ '{protein-extended}' Amino-acid symbols (= '{protein},O,U,B,J,Z,X')
+
 Examples:
 python -m seguid --version
 python -m seguid --help
@@ -36,7 +44,7 @@ License: MIT
 
 parser.add_argument("--version",  action="store_true", help="Display version")
 parser.add_argument("--type",     type=str, nargs="?", help="Type of checksum to calculate (lsseguid, csseguid, ldseguid, cdseguid, or seguid [default])")
-parser.add_argument("--alphabet", type=str, nargs="?", help="Set of symbols for the input sequence, e.g. '{DNA}', '{RNA}', '{protein}', 'AC,GT', and '{DNA},AU'")
+parser.add_argument("--alphabet", type=str, nargs="?", help="Set of symbols for the input sequence, e.g. '{DNA}', 'AC,GT', and '{DNA},AU'")
 parser.add_argument("--form",     type=str, nargs="?", help="Form of checksum to display ('long' [default], 'short', or 'both')")
 
 
