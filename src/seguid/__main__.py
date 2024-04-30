@@ -1,4 +1,5 @@
 from argparse import ArgumentParser
+from argparse import RawDescriptionHelpFormatter
 from seguid import __version__
 
 from seguid._chksum import seguid
@@ -11,12 +12,32 @@ from seguid._reprutils import parse_sequence_string
 
 parser = ArgumentParser(
     prog="python -m seguid",
-    description="seguid: Sequence Globally Unique Identifier (SEGUID) Checksums for Linear, Circular, Single-Stranded and Double-Stranded Biological Sequences",
+    description="seguid: Sequence Globally Unique Identifier Checksums for Linear, Circular, Single- and Double-Stranded Biological Sequences",
+    epilog=
+"""
+Examples:
+python -m seguid --version
+python -m seguid --help
+
+echo 'ACGT' | python -m seguid --type=lsseguid
+python -m seguid --type=lsseguid <<< 'ACGT'
+python -m seguid --type=cdseguid <<< $'ACGT\\nTGCA' # two-line syntax
+python -m seguid --type=ldseguid <<< 'ACGT;ACGT'   # watson-crick syntax
+python -m seguid --type=ldseguid <<< $'-CGT\\nTGCA' # two-line syntax
+python -m seguid --type=ldseguid <<< '-CGT;ACGT'   # watson-crick syntax
+python -m seguid --type=lsseguid --alphabet='{RNA}' <<< 'ACGU'
+
+Version: """ + __version__ + """
+Copyright: Bjorn Johansson, Henrik Bengtsson (2023-2024)
+License: MIT
+""",
+    formatter_class=RawDescriptionHelpFormatter  # Keeps the formatting of the epilog
 )
-parser.add_argument("--version", action="store_true", help="Show version")
-parser.add_argument("--alphabet", type=str, nargs="?", help="Type of input sequence")
-parser.add_argument("--type", type=str, nargs="?", help="Type of checksum to calculate")
-parser.add_argument("--form", type=str, nargs="?", help="Form of checksum to return")
+
+parser.add_argument("--version",  action="store_true", help="Display version")
+parser.add_argument("--type",     type=str, nargs="?", help="Type of checksum to calculate (lsseguid, csseguid, ldseguid, cdseguid, or seguid [default])")
+parser.add_argument("--alphabet", type=str, nargs="?", help="Set of symbols for the input sequence, e.g. '{DNA}', '{RNA}', '{protein}', 'AC,GT', and '{DNA},AU'")
+parser.add_argument("--form",     type=str, nargs="?", help="Form of checksum to display ('long' [default], 'short', or 'both')")
 
 
 args = vars(parser.parse_args())
