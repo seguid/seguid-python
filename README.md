@@ -1,3 +1,4 @@
+[![PyPI version](https://img.shields.io/pypi/v/seguid)](https://pypi.org/project/seguid/)
 [![Python checks](https://github.com/seguid/seguid-python/actions/workflows/check-python.yml/badge.svg)](https://github.com/seguid/seguid-python/actions/workflows/check-python.yml)
 [![seguid-tests](https://github.com/seguid/seguid-python/actions/workflows/seguid-tests.yml/badge.svg)](https://github.com/seguid/seguid-python/actions/workflows/seguid-tests.yml)
 [![Python Code Coverage](https://codecov.io/gh/seguid/seguid-python/graph/badge.svg)](https://codecov.io/gh/seguid/seguid-python)
