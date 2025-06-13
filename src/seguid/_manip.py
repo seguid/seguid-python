@@ -91,7 +91,7 @@ def min_rotation_py(s: str) -> int:
     """
 
     prev, rep = None, 0
-    ds = array("u", 2 * s)
+    ds = array("w", 2 * s)
     lens = len(s)
     lends = lens * 2
     old = 0
