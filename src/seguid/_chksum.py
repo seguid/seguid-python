@@ -67,7 +67,7 @@ def seguid(seq: str, alphabet: str = "{DNA}", form: str = "long") -> str:
         ``seguid()`` (obsolete) is superseded by :func:`lsseguid()` (recommended).
 
     Given a nucleotide or amino-acid sequence ``seq`` in uppercase, the function returns
-    a string containing the **SE**\ quence **G**\ lobally **U**\ nique **ID**\ entifier (**SEGUID**\ ).
+    a string containing the **SE**quence **G**lobally **U**nique **ID**entifier (**SEGUID**).
     The SEGUID is defined as the Base64 encoded SHA1 checksum calculated for the sequence
     in uppercase with the trailing padding symbol (``=``) removed.
 
@@ -193,7 +193,7 @@ def ldseguid(
         "-GCATAC" + ";" + "-TATGCC"
 
     and calculates the final checksum based on that sequence.
-    
+
     The checksum is prefixed with ``ldseguid=``.
 
     Examples
