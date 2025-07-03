@@ -9,10 +9,10 @@ This package provides four functions, ``lsseguid()``, ``csseguid()``, ``ldseguid
 ================ ============== ====================
  Topology         Strandedness   Function
 ================ ============== ====================
- **l**\ inear     **s**\ ingle     ``lsseguid()``
- **c**\ ircular   **s**\ ingle     ``csseguid()``
- **l**\ inear     **d**\ ouble     ``ldseguid()``
- **c**\ ircular   **d**\ ouble     ``cdseguid()``
+ **l**inear     **s**ingle     ``lsseguid()``
+ **c**ircular   **s**ingle     ``csseguid()``
+ **l**inear     **d**ouble     ``ldseguid()``
+ **c**ircular   **d**ouble     ``cdseguid()``
 ================ ============== ====================
 
 *Table 1: The four functions that calculate SEGUID v2 checksums for biological sequences with linear or circular topology and a single or two complementary strands.*
