@@ -15,8 +15,12 @@ repository = "https://github.com/seguid/seguid-python"
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/seguid/seguid-python/issues"
 [tool.poetry.dependencies]
-python = ">=3.6, <4.0"
-pydivsufsort = { version = "^0.0.18", optional = true }
+python = ">=3.7, <4.0"
+# pydivsufsort = { version = "^0.0.18", optional = true }
+pydivsufsort = [
+  {version = ">=0.0.18", python = ">3.8"},
+  {version = "<=0.0.14", python = "<=3.8"},
+]
 setuptools = [
   {version = "<=69.0.3", python = "<3.8"},
   {version = "<=59.6.0", python = "<3.7"},
