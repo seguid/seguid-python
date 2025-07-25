@@ -18,8 +18,8 @@ repository = "https://github.com/seguid/seguid-python"
 python = ">=3.7, <4.0"
 # pydivsufsort = { version = "^0.0.18", optional = true }
 pydivsufsort = [
-  {version = ">=0.0.18", python = ">3.8"},
-  {version = "<=0.0.14", python = "<=3.8"},
+  {version = ">=0.0.18", python = ">=3.9"},
+  {version = "<=0.0.14", python = "<3.9"},
 ]
 setuptools = [
   {version = "<=69.0.3", python = "<3.8"},
