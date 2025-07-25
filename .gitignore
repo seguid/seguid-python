@@ -3,9 +3,9 @@ docs/_build/
 __pycache__/
 tests/test_helper/
 .coverage
+.python-version
 
-
-# gitignore belo from: https://github.com/github/gitignore/blob/main/Python.gitignore
+# gitignore below from: https://github.com/github/gitignore/blob/main/Python.gitignore
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
