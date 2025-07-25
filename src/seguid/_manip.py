@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-from array import array
+import array
+# The 'u' format code (wchar_t) has been deprecated
+# https://docs.python.org/3/deprecations/index.html#pending-removal-in-python-3-16
+typecode = "w" if "w" in array.typecodes else "u"
 
 def rotate(seq: str, amount: int = 0) -> str:
     """Rotates a circular, DNA sequence a certain amount.
@@ -91,7 +94,7 @@ def min_rotation_py(s: str) -> int:
     """
 
     prev, rep = None, 0
-    ds = array("w", 2 * s)
+    ds = array.array(typecode, 2 * s)
     lens = len(s)
     lends = lens * 2
     old = 0
