@@ -22,14 +22,18 @@ jobs:
         config:
           - {os: windows-latest, python: '3.12' }
           - {os: windows-latest, python: '3.11' }
+
           - {os: macOS-latest,   python: '3.12' }
           - {os: macOS-latest,   python: '3.11' }
+
+          - {os: ubuntu-latest,  python: '3.14' }
+          - {os: ubuntu-latest,  python: '3.13' }
           - {os: ubuntu-latest,  python: '3.12' }
           - {os: ubuntu-latest,  python: '3.11' }
           - {os: ubuntu-latest,  python: '3.10' }
           - {os: ubuntu-latest,  python: '3.9' }
           - {os: ubuntu-latest,  python: '3.8' }
-          - {os: ubuntu-20.04,   python: '3.7' }
+#          - {os: ubuntu-20.04,   python: '3.7' }
 #          - {os: ubuntu-20.04,   python: '3.6' }
 #          - {os: ubuntu-20.04,   python: '3.5' }
 #          - {os: ubuntu-18.04,   python: '3.4' }
