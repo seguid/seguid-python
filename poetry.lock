@@ -4,7 +4,7 @@
 name = "numpy"
 version = "1.19.5"
 description = "NumPy is the fundamental package for array computing with Python."
-optional = false
+optional = true
 python-versions = ">=3.6"
 groups = ["main"]
 markers = "extra == \"pydivsufsort\""
@@ -49,7 +49,7 @@ files = [
 name = "pydivsufsort"
 version = "0.0.14"
 description = "String algorithms"
-optional = false
+optional = true
 python-versions = ">=3.6"
 groups = ["main"]
 markers = "python_version < \"3.9\" and extra == \"pydivsufsort\""
@@ -98,7 +98,7 @@ wheel = "*"
 name = "pydivsufsort"
 version = "0.0.18"
 description = "String algorithms"
-optional = false
+optional = true
 python-versions = ">=3.9"
 groups = ["main"]
 markers = "python_version >= \"3.9\" and extra == \"pydivsufsort\""
@@ -162,7 +162,7 @@ testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (
 name = "wheel"
 version = "0.37.1"
 description = "A built-package format for Python"
-optional = false
+optional = true
 python-versions = "!=3.0.*,!=3.1.*,!=3.2.*,!=3.3.*,!=3.4.*,>=2.7"
 groups = ["main"]
 markers = "extra == \"pydivsufsort\""
@@ -180,4 +180,4 @@ pydivsufsort = ["pydivsufsort", "pydivsufsort"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.7, <4.0"
-content-hash = "08da00df6191fbff2a007d7dfeb89a9624be87413ed30aaeebfec72e64eecaf6"
+content-hash = "803cf1835e3422b1b5e7478a8089131e77dfc14891df6b9c3371e8021856e6e0"
