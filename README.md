@@ -43,7 +43,7 @@ The package documentation is available on <https://seguid-python.seguid.org>.
 
 ## Installation
 
-The **seguid** package requires Python 3.7 or newer. To install it, use:
+The **seguid** package requires Python 3.6 or newer. To install it, use:
 
 ```sh
 $ python -m pip install --user seguid
